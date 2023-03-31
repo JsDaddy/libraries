@@ -1,0 +1,42 @@
+@import './typography.mixin';
+:root {
+  --yellowHover: #f4c529;
+  --black: #191919;
+  --yellow: #ffd64d;
+  --orange: #ff710a;
+  --white: #f8f8f8;
+  --full-white: #fff;
+  --red: #e35353;
+  --orangeYellow: linear-gradient(269.31deg, var(--orange) 19.29%, var(--yellow) 71.73%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+.h1-text {
+  @include h1-text;
+}
+h2,
+.h2-text {
+  @include h2-text;
+}
+h3,
+.h3-text {
+  @include h3-text;
+}
+h4,
+.h4-text {
+  @include h4-text;
+}
+h5,
+.text {
+  @include regular-text;
+}
