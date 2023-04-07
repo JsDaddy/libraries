@@ -10,12 +10,12 @@ import {
     ViewChildren,
 } from '@angular/core';
 import { NgClass, NgForOf, NgOptimizedImage, NgStyle } from '@angular/common';
-import { IListItem } from '../../assets/content/content.interfaces';
-import { AssetPipe } from '../asset/asset.pipe';
-import { HidePipe } from '../hide/hide.pipe';
-import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
-import { ColorPipe } from '../color/color.pipe';
-import { TrackByService } from '../track-by/track-by.service';
+import { IListItem } from '@open-source/content-interface/content.interfaces';
+import { AssetPipe } from '@libraries/asset/asset.pipe';
+import { HidePipe } from '@open-source/hide/hide.pipe';
+import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
+import { ColorPipe } from '@open-source/color/color.pipe';
+import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
     selector: 'ngx-mask-demo-accordion',

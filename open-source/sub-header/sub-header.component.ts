@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { ChipsComponent } from '../chips/chips.component';
-import { AssetPipe } from '../asset/asset.pipe';
+import { ChipsComponent } from '@open-source/chips/chips.component';
+import { AssetPipe } from '@libraries//asset/asset.pipe';
 
 @Component({
     selector: 'ngx-mask-demo-sub-header',

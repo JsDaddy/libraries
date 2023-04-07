@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
-import { AssetPipe } from '../asset/asset.pipe';
-import { ColorPipe } from '../color/color.pipe';
-import { HidePipe } from '../hide/hide.pipe';
-import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
-import { IHeaderITem } from '../header-interface/header.interface';
-import { TrackByService } from '../track-by/track-by.service';
+import { ColorPipe } from '@open-source/color/color.pipe';
+import { HidePipe } from '@open-source/hide/hide.pipe';
+import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
+import { IHeaderITem } from '@open-source//header-interface/header.interface';
+import { AssetPipe } from '@libraries/asset/asset.pipe';
+import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
     selector: 'ngx-mask-demo-header',

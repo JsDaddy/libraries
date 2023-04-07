@@ -1,7 +1,7 @@
 @import 'border-mixin';
 @import 'media-breakpoints';
 @import 'typography.mixin';
-@import '../fonts/fonts';
+@import 'src/libraries/fonts/fonts';
 :root {
     --yellowHover: #f4c529;
     --black: #191919;

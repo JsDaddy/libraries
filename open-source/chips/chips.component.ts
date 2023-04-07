@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { NgForOf } from '@angular/common';
-import { TrackByService } from '../track-by/track-by.service';
+import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
     selector: 'ngx-mask-demo-chips',
