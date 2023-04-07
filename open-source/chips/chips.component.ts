@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { TrackByService } from '@libraries/track-by/track-by.service';
+import { TrackByService } from '../../track-by/track-by.service';
 
 @Component({
-    selector: 'ngx-mask-demo-chips',
+    selector: 'jsdaddy-open-source-chips',
     templateUrl: './chips.component.html',
     styleUrls: ['./chips.component.scss'],
     standalone: true,

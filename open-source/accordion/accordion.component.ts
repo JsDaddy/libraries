@@ -18,7 +18,7 @@ import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
-    selector: 'ngx-mask-demo-accordion',
+    selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrls: ['./accordion.component.scss'],
     imports: [

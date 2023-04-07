@@ -8,7 +8,7 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
-    selector: 'ngx-mask-demo-header',
+    selector: 'jsdaddy-open-source-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
