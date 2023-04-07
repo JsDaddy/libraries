@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
 import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
-import { IHeaderITem } from '@open-source//header-interface/header.interface';
+import { IHeaderITem } from '@open-source//header/header-interface/header.interface';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 
@@ -14,7 +14,7 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
     standalone: true,
     imports: [
         NgOptimizedImage,
-        NgForOf,
+        NgFor,
         NgIf,
         NgClass,
         AssetPipe,

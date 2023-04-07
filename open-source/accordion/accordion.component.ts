@@ -9,8 +9,8 @@ import {
     QueryList,
     ViewChildren,
 } from '@angular/core';
-import { NgClass, NgForOf, NgOptimizedImage, NgStyle } from '@angular/common';
-import { IListItem } from '@open-source/content-interface/content.interfaces';
+import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
+import { IListItem } from '@open-source/accordion/content-interface/content.interfaces';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
 import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
@@ -23,7 +23,7 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
     styleUrls: ['./accordion.component.scss'],
     imports: [
         NgClass,
-        NgForOf,
+        NgFor,
         NgStyle,
         NgOptimizedImage,
         AssetPipe,

@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
     templateUrl: './chips.component.html',
     styleUrls: ['./chips.component.scss'],
     standalone: true,
-    imports: [NgForOf],
+    imports: [NgFor],
 })
 export class ChipsComponent {
     @Input() public chips!: string[];
