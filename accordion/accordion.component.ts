@@ -37,7 +37,7 @@ export class AccordionComponent implements AfterViewInit {
     public showNav = true;
     public chosenItem = 1;
     public chosenList = 1;
-    public readonly trackByPath = inject(TrackByService).trackBy('text');
+    public readonly trackByPath = inject(TrackByService).trackBy('id');
 
     @Input() public lists!: IListItem[];
     @Output() public itemAccordion = new EventEmitter<number>();

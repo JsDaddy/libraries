@@ -38,7 +38,7 @@ export class HeaderComponent {
             link: 'https://jsdaddy.github.io/ngx-loader-indicator/',
         },
     ];
-    public readonly trackByPath = inject(TrackByService).trackBy('number');
+    public readonly trackByPath = inject(TrackByService).trackBy('title');
     public showNav = false;
     public checkIsActive = window.location.href;
 
