@@ -1,0 +1,7 @@
+div {
+    padding: 5px 15px;
+    border-radius: 25px;
+    &.is-active {
+        background: var(--yellow) !important;
+    }
+}

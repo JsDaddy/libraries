@@ -27,6 +27,12 @@
     .sub-title {
         padding-bottom: 10px;
     }
+    .chips {
+        padding: 0 10px;
+        &:first-child {
+            padding: 0 5px 0 0;
+        }
+    }
 }
 
 @media screen and (max-width: $mobileWidth) {
