@@ -12,7 +12,7 @@ export class ChipComponent {
     @Input()
     public chipBgColor = 'rgba(0,0,0,0.05)';
     @Input()
-    public chipTextColor = '#191919';
+    public chipTextColor = '';
     @Input()
     public isActive = false;
     @Input()
