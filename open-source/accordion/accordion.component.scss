@@ -9,7 +9,7 @@
             }
             img {
                 transition: all 0.5s;
-                content: url('/assets/img/chevron-right-24px.svg');
+                content: url('/assets/images/chevron-right-24px.svg');
                 transform: rotate(180deg);
                 margin-left: 20px;
             }
@@ -32,14 +32,14 @@
             }
             img {
                 transition: all 0.5s;
-                content: url('/assets/img/chevron-right-24px-white.svg');
+                content: url('/assets/images/chevron-right-24px-white.svg');
             }
             &:hover {
                 .navigation-text {
                     color: var(--yellow);
                 }
                 img {
-                    content: url('/assets/img/chevron-right-24px.svg');
+                    content: url('/assets/images/chevron-right-24px.svg');
                 }
             }
         }
@@ -78,7 +78,7 @@
                 }
 
                 &:after {
-                    content: url('/assets/img/chevron-right-24px-white.svg');
+                    content: url('/assets/images/chevron-right-24px-white.svg');
                     margin-left: auto;
                     margin-right: 19px;
                 }
@@ -88,7 +88,7 @@
                     @include border-accordion-tb-yellow;
 
                     &.accordion:after {
-                        content: url('/assets/img/chevron-right-24px.svg');
+                        content: url('/assets/images/chevron-right-24px.svg');
                     }
 
                     .left-side-accordion {
@@ -116,7 +116,7 @@
                         border-width: 2px 0 0 0;
                     }
                     &:after {
-                        content: url('/assets/img/chevron-right-24px.svg');
+                        content: url('/assets/images/chevron-right-24px.svg');
                         transform: rotate(180deg);
                     }
                     .accordion-btn {
