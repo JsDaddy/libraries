@@ -10,7 +10,7 @@ import {
     ViewChildren,
 } from '@angular/core';
 import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
-import { IListItem } from '@open-source/accordion/content-interface/content.interfaces';
+import { IListItem } from '@open-source/accordion/content.interfaces';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
 import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';

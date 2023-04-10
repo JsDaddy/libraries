@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'jsdaddy-open-source-chip[chip]',
+    selector: 'jsdaddy-chip[chip]',
     standalone: true,
     templateUrl: './chip.component.html',
     styleUrls: ['./chip.component.scss'],
