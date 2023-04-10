@@ -14,20 +14,20 @@
             <div
                 class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
                 (click)="toggle(i); switchDoc(list.id)"
-                id="{{ list.id }}">
+                [id]="list.id">
                 <div class="left-side-accordion row ai-c bg-light-grey-accordion">
                     <img
                         width="32"
                         height="32"
                         [ngSrc]="list.defaultSvg | asset"
                         class="default-svg"
-                        alt="" />
+                        alt="accordion-default" />
                     <img
                         width="32"
                         height="32"
                         [ngSrc]="list.activeSvg | asset"
                         class="active-svg"
-                        alt="" />
+                        alt="accordion-active" />
                 </div>
                 <button class="accordion-btn bg-black full-white pointer">
                     {{ list.header }}
