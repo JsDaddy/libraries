@@ -1,17 +1,17 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { AssetPipe } from './asset.pipe';
 
-@Pipe({
-    name: 'asset',
-    standalone: true,
-})
-export class AssetPipe implements PipeTransform {
-    public transform(nameImg: string | undefined, additionalPath = '', isWebp = false): string {
-        if (!nameImg) {
-            return '';
-        }
-        if (additionalPath) {
-            return `assets/images/${additionalPath}/${nameImg}.${isWebp ? 'webp' : 'svg'}`;
-        }
-        return `assets/images/${nameImg}.svg`;
-    }
-}
+describe('AssetPipe', () => {
+    const pipe = new AssetPipe();
+    it('create an instance', () => {
+        expect(pipe).toBeTruthy();
+    });
+    it('test pipe', () => {
+        expect(pipe.transform('github')).toBe('assets/images/github.svg');
+        expect(pipe.transform('github', 'home')).toBe('assets/images/home/github.svg');
+        expect(pipe.transform('github', 'home', true)).toBe('assets/images/home/github.webp');
+    });
+    it('Should process non exist icon', () => {
+        expect(pipe.transform('')).toBe('');
+        expect(pipe.transform(undefined)).toBe('');
+    });
+});
