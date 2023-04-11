@@ -2,6 +2,11 @@
 @import 'media-breakpoints';
 @import 'typography.mixin';
 @import 'src/libraries/fonts/fonts';
+*:focus,
+*:active {
+    -webkit-tap-highlight-color: transparent;
+}
+
 :root {
     --yellowHover: #f4c529;
     --black: #191919;
