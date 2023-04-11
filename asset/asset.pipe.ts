@@ -5,13 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
     standalone: true,
 })
 export class AssetPipe implements PipeTransform {
-    public transform(nameImg: string | undefined, additionalPath = '', extension = 'svg'): string {
+    public transform(nameImg: string | undefined, additionalPath = '', isWebp = false): string {
         if (!nameImg) {
             return '';
         }
         if (additionalPath) {
-            return `assets/img/${additionalPath}/${nameImg}.${extension}`;
+            return `assets/images/${additionalPath}/${nameImg}.${isWebp ? 'webp' : 'svg'}`;
         }
-        return `assets/img/${nameImg}.svg`;
+        return `assets/images/${nameImg}.svg`;
     }
 }

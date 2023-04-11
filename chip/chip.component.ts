@@ -12,8 +12,6 @@ export class ChipComponent {
     @Input()
     public chipBgColor = 'rgba(0,0,0,0.05)';
     @Input()
-    public chipTextColor = '#191919';
-    @Input()
     public isActive = false;
     @Input()
     public pointer = false;
