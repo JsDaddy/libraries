@@ -28,7 +28,8 @@
         padding-bottom: 10px;
     }
     .chips {
-        padding: 0 10px;
+        flex-wrap: wrap;
+        gap: 10px;
         &:first-child {
             padding: 0 5px 0 0;
         }
