@@ -17,7 +17,7 @@
             .github-btn,
             .stars-btn {
                 padding: 3px 10px;
-                gap: 10px;
+                gap: 9px;
                 height: 27px;
                 border: 1px solid var(--black);
                 border-radius: 4px;
@@ -28,7 +28,8 @@
         padding-bottom: 10px;
     }
     .chips {
-        padding: 0 10px;
+        flex-wrap: wrap;
+        gap: 10px;
         &:first-child {
             padding: 0 5px 0 0;
         }
