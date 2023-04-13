@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class ScrollService {
-    public isInViewport(elm: any) {
+    public isInViewport(elm: HTMLElement) {
         const elementTop = elm.offsetTop;
         const elementBottom = elementTop + elm.offsetHeight;
         const viewportTop = document.documentElement.scrollTop;
