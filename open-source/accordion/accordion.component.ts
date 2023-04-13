@@ -17,6 +17,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -47,11 +48,9 @@ export class AccordionComponent implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
-        this.activatedRoute.fragment.subscribe((res) => {
-            if (res) {
-                this.chosenItem = +res;
-                this.itemInAccordion.emit(+res);
-            }
+        this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((res) => {
+            this.chosenItem = +res;
+            this.itemInAccordion.emit(+res);
         });
     }
 
