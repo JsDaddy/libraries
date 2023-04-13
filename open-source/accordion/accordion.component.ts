@@ -40,17 +40,17 @@ export class AccordionComponent implements AfterViewInit {
     public chosenList = 1;
     public chosenItem = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
+    private readonly activatedRoute = inject(ActivatedRoute);
     @Input() public lists!: IListItem[];
     @Output() public itemAccordion = new EventEmitter<number>();
     @Output() public itemInAccordion = new EventEmitter<number>();
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
-    public constructor(private activatedRoute: ActivatedRoute) {}
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
-        this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((res) => {
-            this.chosenItem = +res;
-            this.itemInAccordion.emit(+res);
+        this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((itemId) => {
+            this.chosenItem = +itemId;
+            this.itemInAccordion.emit(+itemId);
         });
     }
 
