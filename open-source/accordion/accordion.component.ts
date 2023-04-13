@@ -16,6 +16,7 @@ import { HidePipe } from '@open-source/hide/hide.pipe';
 import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -35,17 +36,23 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
 })
 export class AccordionComponent implements AfterViewInit {
     public showNav = true;
-    public chosenItem = 1;
     public chosenList = 1;
+    public chosenItem = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
-
     @Input() public lists!: IListItem[];
     @Output() public itemAccordion = new EventEmitter<number>();
     @Output() public itemInAccordion = new EventEmitter<number>();
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+    public constructor(private activatedRoute: ActivatedRoute) {}
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
+        this.activatedRoute.fragment.subscribe((res) => {
+            if (res) {
+                this.chosenItem = +res;
+                this.itemInAccordion.emit(+res);
+            }
+        });
     }
 
     public showNavBlock(): void {
