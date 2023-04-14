@@ -2,7 +2,7 @@
     <div class="git-text title row jc-sb">
         <h3 class="sub-text h3-text">{{ title }}</h3>
         <div class="title-btn row">
-            <a href="https://github.com/JsDaddy/">
+            <a href="https://github.com/JsDaddy/" target="_blank">
                 <button class="github-btn row full-white pointer span bg-black">
                     <img width="16" height="16" [ngSrc]="'github-white' | asset" alt="github" />
                     <span>All Stars</span>
@@ -14,8 +14,10 @@
                         class="rectangle" />
                 </button>
             </a>
-            <a href="https://github.com/JsDaddy/">
-                <button class="stars-btn row full-white span pointer bg-black">1104</button>
+            <a href="https://github.com/JsDaddy/" target="_blank">
+                <button class="stars-btn row full-white span pointer bg-black">
+                    {{ countOfStarsOnGithub$ | async }}
+                </button>
             </a>
         </div>
     </div>

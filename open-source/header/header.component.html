@@ -8,7 +8,7 @@
     </div>
     <div class="center-side row ai-c" *ngFor="let items of headerDoc; trackBy: trackByPath">
         <span class="mrl-20" [ngClass]="checkIsActive === items.link | color">
-            <a [href]="items.link">
+            <a [href]="items.link" target="_blank">
                 <button class="center-buttons row ai-c pointer">
                     {{ items.title }}
                 </button>
@@ -38,7 +38,7 @@
             <div
                 *ngFor="let items of headerDoc; trackBy: trackByPath"
                 [ngClass]="checkIsActive === items.link | color">
-                <a [href]="items.link">
+                <a [href]="items.link" target="_blank">
                     <button class="row">
                         {{ items.title }}
                     </button>
