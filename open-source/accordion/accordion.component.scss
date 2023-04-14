@@ -2,57 +2,6 @@
 :host {
     display: block;
     height: 100%;
-    .show {
-        &.navigation {
-            .navigation-text {
-                color: var(--yellow);
-            }
-            .white-chevron {
-                display: none;
-            }
-            .yellow-chevron {
-                display: block;
-                margin-left: 20px;
-                transition: all 0.5s;
-                transform: rotate(180deg);
-            }
-        }
-        &.drawer-container {
-            opacity: 1;
-            transition: all 1s;
-        }
-    }
-
-    .hide {
-        &.drawer-container {
-            visibility: hidden;
-            opacity: 0;
-            transition: all 1s;
-            transform: rotateX(45deg);
-        }
-        &.navigation {
-            .navigation-text {
-                color: var(--full-white);
-            }
-            .white-chevron {
-                display: block;
-            }
-            .yellow-chevron {
-                display: none;
-            }
-            &:hover {
-                .navigation-text {
-                    color: var(--yellow);
-                }
-                .white-chevron {
-                    display: none;
-                }
-                .yellow-chevron {
-                    display: block;
-                }
-            }
-        }
-    }
 }
 
 .navigation {
@@ -162,7 +111,7 @@
                     padding: 0 24px;
                     height: auto;
                     overflow: hidden;
-                    transition: max-height 0.2s ease-out;
+                    transition: max-height 3s ease-out;
                     .accordion-box {
                         height: 21px;
                         padding: 10px 0 0 60px;
@@ -204,6 +153,7 @@
     .drawer-container {
         top: 122px;
         width: 375px;
+        display: none;
         .drawer {
             .accordion-block {
                 width: 100%;
@@ -214,6 +164,52 @@
         }
         .visit-btn {
             display: none;
+        }
+    }
+    .show {
+        &.navigation {
+            .navigation-text {
+                color: var(--yellow);
+            }
+            .white-chevron {
+                display: none;
+            }
+            .yellow-chevron {
+                display: block;
+            }
+        }
+        &.drawer-container {
+            display: block;
+        }
+    }
+
+    .hide {
+        &.drawer-container {
+            display: none;
+        }
+        &.navigation {
+            .navigation-text {
+                color: var(--full-white);
+            }
+            .white-chevron {
+                display: block;
+            }
+            .yellow-chevron {
+                display: none;
+            }
+            &:hover {
+                .navigation-text {
+                    color: var(--yellow);
+                }
+                .white-chevron {
+                    display: none;
+                }
+                .yellow-chevron {
+                    display: block;
+                    margin-left: 20px;
+                    transform: rotate(180deg);
+                }
+            }
         }
     }
 }
