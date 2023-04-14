@@ -16,6 +16,5 @@ export class SubHeaderComponent {
     @Input() public title!: string;
     @Input() public subtitle!: string;
     @Input() public chips!: string[];
-    public readonly jsdaddyGithub = 'https://github.com/JsDaddy/';
     public readonly trackByPath = inject(TrackByService).trackBy('chip');
 }

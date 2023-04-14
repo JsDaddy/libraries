@@ -1,1 +1,7 @@
-<div class="stars-count span">{{ (countOfStarsOnGithub$ | async) || 0 }}</div>
+<a class="github-info pointer" target="_blank" [href]="jsdaddyGithub">
+    <div class="all-stars span">
+        <img width="16" height="16" [ngSrc]="'github' | asset : assetPathShared" alt="Github" />
+        <span> All Stars </span>
+    </div>
+    <div class="stars-count span">{{ (countOfStarsOnGithub$ | async) || 0 }}</div>
+</a>
