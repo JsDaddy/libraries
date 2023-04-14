@@ -2,7 +2,8 @@
     class="navigation row jc-sb ai-c bg-black full-white"
     (click)="showNavBlock()"
     [ngClass]="showNav | hide">
-    <img width="18" height="18" [ngSrc]="'white-chevron-down' | asset" alt="navigation" />
+    <img class="white-chevron" width="18" height="18" [ngSrc]="'white-chevron-down' | asset" alt="white-chevron" />
+    <img class="yellow-chevron" width="18" height="18" [ngSrc]="'yellow-chevron-down' | asset" alt="chevron-yellow" />
     <span class="navigation-text fs-16 ls-25 pointer uppercase">Navigation</span>
 </div>
 <div class="drawer-container column bg-black" [ngClass]="showNav | hide">
@@ -32,6 +33,20 @@
                 <button class="accordion-btn bg-black full-white pointer">
                     {{ list.header }}
                 </button>
+                <div class="right-side-accordion">
+                    <img
+                        width="12"
+                        height="12"
+                        [ngSrc]="list.whiteChevron | asset"
+                        class="chevron-default"
+                        alt="chevron-default" />
+                    <img
+                        width="12"
+                        height="12"
+                        [ngSrc]="list.yellowChevron | asset"
+                        class="chevron-active"
+                        alt="chevron-active" />
+                </div>
             </div>
             <div class="panel full-white text bg-black">
                 <p

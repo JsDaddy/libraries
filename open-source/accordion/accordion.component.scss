@@ -7,11 +7,14 @@
             .navigation-text {
                 color: var(--yellow);
             }
-            img {
-                transition: all 0.5s;
-                content: url('/assets/images/yellow-chevron-up.svg');
-                transform: rotate(180deg);
+            .white-chevron {
+                display: none;
+            }
+            .yellow-chevron {
+                display: block;
                 margin-left: 20px;
+                transition: all 0.5s;
+                transform: rotate(180deg);
             }
         }
         &.drawer-container {
@@ -22,6 +25,7 @@
 
     .hide {
         &.drawer-container {
+            visibility: hidden;
             opacity: 0;
             transition: all 1s;
             transform: rotateX(45deg);
@@ -30,18 +34,21 @@
             .navigation-text {
                 color: var(--full-white);
             }
-            img {
-                content: url('/assets/images/white-chevron-down.svg');
+            .white-chevron {
+                display: block;
+            }
+            .yellow-chevron {
+                display: none;
             }
             &:hover {
                 .navigation-text {
                     color: var(--yellow);
                 }
-                img {
-                    transition: all 1s;
-                    transform: rotate(180deg);
-                    margin-left: 20px;
-                    content: url('/assets/images/yellow-chevron-down.svg');
+                .white-chevron {
+                    display: none;
+                }
+                .yellow-chevron {
+                    display: block;
                 }
             }
         }
@@ -67,6 +74,16 @@
                 height: 50px;
                 margin: 10px 24px;
                 transition: all 1ms;
+                .right-side-accordion {
+                    margin-left: auto;
+                    margin-right: 20px;
+                    .chevron-default {
+                        display: block;
+                    }
+                    .chevron-active {
+                        display: none;
+                    }
+                }
                 .left-side-accordion {
                     border-radius: 50%;
                     margin: 9px 15px 9px 10px;
@@ -79,23 +96,21 @@
                         display: none;
                     }
                 }
-
-                &:after {
-                    content: url('/assets/images/white-chevron-down.svg');
-                    margin-left: auto;
-                    margin-right: 19px;
-                }
-
                 &:hover {
                     color: var(--yellow);
                     @include border-accordion-tb-yellow;
-
-                    &.accordion:after {
-                        transition: all 1s;
-                        transform: rotate(180deg);
-                        content: url('/assets/images/yellow-chevron-up.svg');
+                    .right-side-accordion {
+                        margin-left: auto;
+                        margin-right: 20px;
+                        .chevron-default {
+                            display: none;
+                        }
+                        .chevron-active {
+                            transition: all 1s;
+                            transform: rotate(180deg);
+                            display: block;
+                        }
                     }
-
                     .left-side-accordion {
                         .default-svg {
                             display: none;
@@ -119,12 +134,16 @@
                     &:hover {
                         border-width: 2px 0 0 0;
                     }
-                    &:after {
-                        transition: all 1s;
-                        content: url('/assets/images/yellow-chevron-up.svg');
-                    }
                     .accordion-btn {
                         color: var(--yellow);
+                    }
+                    .right-side-accordion {
+                        .chevron-default {
+                            display: none;
+                        }
+                        .chevron-active {
+                            display: block;
+                        }
                     }
                     .left-side-accordion {
                         border-radius: 50%;
