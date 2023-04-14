@@ -36,7 +36,7 @@ import { filter } from 'rxjs';
     standalone: true,
 })
 export class AccordionComponent implements AfterViewInit {
-    public showNav = true;
+    public showNav = false;
     public chosenList = 1;
     public chosenItem = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');

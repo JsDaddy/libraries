@@ -45,6 +45,9 @@
     .open-nav {
         display: none;
     }
+    .mob-open {
+        display: none;
+    }
     .nav-section {
         display: none;
     }
@@ -60,20 +63,19 @@
     display: block;
     &.header {
         display: flex;
-        background: black;
+        background: var(--black);
         .left-side {
-            .logo {
-                margin-left: 10px;
-                content: url('/assets/images/logo-white.svg');
-            }
+            display: none;
         }
         .open-nav {
-            img {
-                width: 68px;
-                height: 68px;
-                position: relative;
-                top: 1px;
-                content: url('/assets/images/close.svg');
+            display: none;
+        }
+        .mob-open {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .logo-white {
+                margin-left: 20px;
             }
         }
         .btn-bottom {
@@ -86,6 +88,9 @@
     &.header {
         display: flex;
         .nav-section {
+            display: none;
+        }
+        .mob-open {
             display: none;
         }
     }

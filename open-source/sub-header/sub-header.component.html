@@ -2,17 +2,13 @@
     <div class="git-text title row jc-sb">
         <h3 class="sub-text h3-text">{{ title }}</h3>
         <div class="title-btn row">
-            <button class="github-btn row full-white span bg-black">
-                <img width="16" height="16" [ngSrc]="'github-white' | asset" alt="github" />
-                <span>All Stars</span>
-                <img
-                    width="8"
-                    height="8"
-                    [ngSrc]="'rectangle' | asset"
-                    alt="rectangle"
-                    class="rectangle" />
-            </button>
-            <button class="stars-btn row full-white span bg-black">1104</button>
+            <a class="github-info pointer" target="_blank" [href]="jsdaddyGithub">
+                <div class="all-stars span">
+                    <img width="16" height="16" [ngSrc]="'github-white' | asset" alt="Github" />
+                    <span> All Stars </span>
+                </div>
+                <jsdaddy-github-stars></jsdaddy-github-stars>
+            </a>
         </div>
     </div>
     <span class="sub-title span">

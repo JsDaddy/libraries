@@ -31,6 +31,8 @@ export interface IListItem {
     text: ITextContent[];
     defaultSvg?: string;
     activeSvg?: string;
+    whiteChevron?: string;
+    yellowChevron?: string;
 }
 
 export interface IMaskOptions {
