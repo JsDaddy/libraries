@@ -19,8 +19,18 @@
         <img width="48" height="48" [ngSrc]="'burger' | asset" alt="burger" />
     </div>
     <div class="mob-open">
-        <img width="34" height="29" [ngSrc]="'logo-white' | asset" alt="logo-white" class="logo-white ais-c" />
-        <img width="68" height="67" [ngSrc]="'close' | asset" alt="close" (click)="toggleNavBlock()" />
+        <img
+            width="34"
+            height="29"
+            [ngSrc]="'logo-white' | asset"
+            alt="logo-white"
+            class="logo-white ais-c" />
+        <img
+            width="68"
+            height="67"
+            [ngSrc]="'close' | asset"
+            alt="close"
+            (click)="toggleNavBlock()" />
     </div>
     <div class="nav-section bg-black" [ngClass]="showNav | hide">
         <h3 class="full-white text uppercase ls-25">Repositories</h3>
