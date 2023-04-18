@@ -72,7 +72,9 @@
                 }
             }
             .panel {
-                display: none;
+                height: 0;
+                opacity: 0;
+                visibility: hidden;
             }
         }
         .active {
@@ -107,11 +109,12 @@
                     }
                 }
                 .panel {
-                    display: block;
+                    opacity: 1;
+                    visibility: visible;
+                    transition: all 1s;
                     padding: 0 24px;
                     height: auto;
                     overflow: hidden;
-                    transition: max-height 3s ease-out;
                     .accordion-box {
                         height: 21px;
                         padding: 10px 0 0 60px;
