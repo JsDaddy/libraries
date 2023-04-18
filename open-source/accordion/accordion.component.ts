@@ -16,7 +16,7 @@ import { HidePipe } from '@open-source/hide/hide.pipe';
 import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
@@ -41,6 +41,7 @@ export class AccordionComponent implements AfterViewInit {
     public chosenItem = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly route = inject(Router);
     @Input() public lists!: IListItem[];
     @Output() public itemAccordion = new EventEmitter<number>();
     @Output() public itemInAccordion = new EventEmitter<number>();
@@ -65,6 +66,9 @@ export class AccordionComponent implements AfterViewInit {
     public handleClick(idItem: number, scrollTo: string | undefined): void {
         this.chosenItem = idItem;
         this.itemInAccordion.emit(idItem);
+        this.route.navigate(['/'], {
+            fragment: idItem.toString(),
+        });
         if (!scrollTo) {
             return;
         }
