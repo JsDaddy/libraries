@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
@@ -40,7 +40,7 @@ export class HeaderComponent {
     ];
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public showNav = false;
-    public checkIsActive = window.location.href;
+    @Input() public checkIsActive!: string;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
