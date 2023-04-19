@@ -1,15 +1,15 @@
 <div
-    class="navigation row jc-sb ai-c bg-black full-white"
+    class="navigation row jc-sb ai-c bg-black pointer full-white"
     (click)="showNavBlock()"
     [ngClass]="showNav | hide">
     <img
-        class="white-chevron"
+        class="white-chevron pointer"
         width="18"
         height="18"
         [ngSrc]="'white-chevron-down' | asset"
         alt="white-chevron" />
     <img
-        class="yellow-chevron"
+        class="yellow-chevron pointer"
         width="18"
         height="18"
         [ngSrc]="'yellow-chevron-down' | asset"
@@ -24,7 +24,7 @@
             #accordion>
             <div
                 class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
-                (click)="toggle(i); switchDoc(list.id)"
+                (click)="toggle(i); switchDoc(list.id, list.text[0]?.scrollTo)"
                 [id]="list.id">
                 <div class="left-side-accordion row ai-c bg-light-grey-accordion">
                     <img

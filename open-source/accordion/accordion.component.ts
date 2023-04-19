@@ -18,6 +18,7 @@ import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import {BodyStylesService} from "@libraries/body-styles/body-styles.service";
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -34,11 +35,13 @@ import { filter } from 'rxjs';
         ColorPipe,
     ],
     standalone: true,
+    providers: [BodyStylesService],
 })
 export class AccordionComponent implements AfterViewInit {
     public showNav = false;
     public chosenItem = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
+    public readonly bodyStylesService = inject(BodyStylesService);
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly route = inject(Router);
     @Input() public lists!: IListItem[];
@@ -56,15 +59,23 @@ export class AccordionComponent implements AfterViewInit {
 
     public showNavBlock(): void {
         this.showNav = !this.showNav;
+        this.bodyStylesService.setOverflowBody(this.showNav);
     }
 
-    public switchDoc(index: number): void {
+    public switchDoc(index: number, scrollTo: string | undefined): void {
         this.itemAccordion.emit(index);
+        setTimeout(() => {
+            this.anchorScroll(1, scrollTo);
+        }, 300);
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
+        this.showNavBlock();
+        this.anchorScroll(idItem, scrollTo);
+    }
+
+    public anchorScroll(idItem: number, scrollTo: string | undefined): void {
         this.chosenItem = idItem;
-        this.itemInAccordion.emit(idItem);
         this.route.navigate(['/'], {
             fragment: idItem.toString(),
         });
@@ -73,7 +84,7 @@ export class AccordionComponent implements AfterViewInit {
         }
         const anchor: HTMLElement | null = document.getElementById(scrollTo);
         if (anchor) {
-            anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'start'});
         }
     }
 
