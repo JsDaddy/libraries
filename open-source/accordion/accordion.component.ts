@@ -18,7 +18,7 @@ import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import {BodyStylesService} from "@libraries/body-styles/body-styles.service";
+import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -84,7 +84,7 @@ export class AccordionComponent implements AfterViewInit {
         }
         const anchor: HTMLElement | null = document.getElementById(scrollTo);
         if (anchor) {
-            anchor.scrollIntoView({ behavior: 'smooth', block: 'start'});
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
