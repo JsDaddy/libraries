@@ -40,7 +40,7 @@ export class HeaderComponent {
     ];
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public showNav = false;
-    @Input() public checkIsActive!: string;
+    @Input() public githubMaskLink!: string;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
