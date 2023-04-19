@@ -73,7 +73,7 @@ export class AccordionComponent implements AfterViewInit {
         }
         const anchor: HTMLElement | null = document.getElementById(scrollTo);
         if (anchor) {
-            anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
