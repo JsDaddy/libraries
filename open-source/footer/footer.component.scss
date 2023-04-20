@@ -1,19 +1,13 @@
 @import 'src/libraries/styles/media-breakpoints';
 .all-rights {
-    height: calc(100vh - 400px);
+    height: calc(100vh - 600px);
     img {
         padding-bottom: 40px;
     }
 }
 
-@media screen and (max-width: $desktopWidth) {
-    .all-rights {
-        height: calc(100vh - 500px);
-    }
-}
-
 @media screen and (max-width: $mobileWidth) {
     .all-rights {
-        height: calc(100vh - 650px);
+        height: calc(100vh - 750px);
     }
 }

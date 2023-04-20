@@ -6,10 +6,10 @@ import {
     inject,
     Input,
     Output,
-    QueryList,
+    QueryList, ViewChild,
     ViewChildren,
 } from '@angular/core';
-import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
+import {NgClass, NgFor, NgIf, NgOptimizedImage, NgStyle} from '@angular/common';
 import { IListItem } from '@open-source/accordion/content.interfaces';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
@@ -17,7 +17,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, takeUntil } from 'rxjs';
+import {filter, fromEvent, takeUntil} from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
@@ -34,6 +34,7 @@ import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
         HidePipe,
         VisitBtnComponent,
         ColorPipe,
+        NgIf,
     ],
     standalone: true,
     providers: [BodyStylesService],
@@ -44,8 +45,10 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @Output() public switchCardIndex = new EventEmitter<number>();
 
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+    @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef;
 
     public showAccordion = false;
+    public some = false;
     public itemInAccordion = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
@@ -54,6 +57,15 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
+        fromEvent(window, 'click')
+            .pipe(takeUntil(this.unsubscribe$$))
+            .subscribe((e: Event) => {
+                if (this.showAccordion) {
+                    if (e.target !== this.accordionBlockElement.nativeElement) {
+                        this.showAccordionBlock();
+                    }
+                }
+            });
         this.openFirstAccordion();
         this.activatedRoute.fragment
             .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))

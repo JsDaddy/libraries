@@ -1,7 +1,7 @@
 <div
     class="navigation row jc-sb ai-c bg-black pointer full-white"
-    (click)="showAccordionBlock()"
-    [ngClass]="showAccordion | hide">
+    (click)="showAccordionBlock(); $event.stopPropagation()"
+    [ngClass]="showAccordion | hide" #toggleButton>
     <img
         class="white-chevron"
         width="18"
@@ -16,7 +16,7 @@
         alt="chevron-yellow" />
     <span class="navigation-text fs-16 ls-25 uppercase">Navigation</span>
 </div>
-<div class="drawer-container column bg-black" [ngClass]="showAccordion | hide">
+<div class="drawer-container column bg-black" [ngClass]="showAccordion | hide" #accordionBlock>
     <div class="drawer bg-black">
         <div
             *ngFor="let list of lists; let i = index; trackBy: trackByPath"
@@ -24,7 +24,7 @@
             #accordion>
             <div
                 class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
-                (click)="toggle(i); switchAccordion(list.id)">
+                (click)="toggle(i); switchAccordion(list.id); $event.stopPropagation()">
                 <div class="left-side-accordion row ai-c bg-light-grey-accordion">
                     <img
                         width="32"
