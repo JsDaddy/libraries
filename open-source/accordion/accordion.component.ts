@@ -57,12 +57,13 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         fromEvent(window, 'click')
-            .pipe(takeUntil(this.unsubscribe$$))
+            .pipe(
+                takeUntil(this.unsubscribe$$),
+                filter(() => this.showAccordion)
+            )
             .subscribe((e: Event) => {
-                if (this.showAccordion) {
-                    if (e.target !== this.accordionBlockElement.nativeElement) {
-                        this.showAccordionBlock();
-                    }
+                if (e.target !== this.accordionBlockElement.nativeElement) {
+                    this.showAccordionBlock();
                 }
             });
         this.openFirstAccordion();
