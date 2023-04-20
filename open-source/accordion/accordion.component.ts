@@ -59,13 +59,13 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
         fromEvent(window, 'click')
             .pipe(
                 takeUntil(this.unsubscribe$$),
-                filter(() => this.showAccordion)
+                filter(
+                    () =>
+                        this.showAccordion &&
+                        event?.target !== this.accordionBlockElement.nativeElement
+                )
             )
-            .subscribe((e: Event) => {
-                if (e.target !== this.accordionBlockElement.nativeElement) {
-                    this.showAccordionBlock();
-                }
-            });
+            .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
             .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))
