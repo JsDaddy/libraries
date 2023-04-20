@@ -38,43 +38,46 @@ import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
     providers: [BodyStylesService],
 })
 export class AccordionComponent implements AfterViewInit {
-    public showNav = false;
-    public chosenItem = 1;
+    @Input() public lists!: IListItem[];
+
+    @Output() public switchCards = new EventEmitter<number>();
+
+    @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+
+    public showAccordion = false;
+    public itemInAccordion = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
+
     private readonly activatedRoute = inject(ActivatedRoute);
-    private readonly route = inject(Router);
-    @Input() public lists!: IListItem[];
-    @Output() public itemAccordion = new EventEmitter<number>();
-    @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+    private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
         this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((itemId) => {
-            this.chosenItem = +itemId;
+            this.itemInAccordion = Number(itemId);
         });
     }
 
-    public showNavBlock(): void {
-        this.showNav = !this.showNav;
-        this.bodyStylesService.setOverflowBody(this.showNav);
+    public showAccordionBlock(): void {
+        this.showAccordion = !this.showAccordion;
+        this.bodyStylesService.setOverflowBody(this.showAccordion);
     }
 
-    public switchDoc(index: number): void {
-        this.itemAccordion.emit(index);
-        this.chosenItem = 1;
+    public switchAccordion(index: number): void {
+        this.switchCards.emit(index);
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
-        if (this.showNav) {
-            this.showNavBlock();
+        if (this.showAccordion) {
+            this.showAccordionBlock();
         }
         this.anchorScroll(idItem, scrollTo);
     }
 
     public anchorScroll(idItem: number, scrollTo: string | undefined): void {
-        this.chosenItem = idItem;
-        this.route.navigate(['/'], {
+        this.itemInAccordion = idItem;
+        this.router.navigate(['/'], {
             fragment: idItem.toString(),
         });
         if (!scrollTo) {

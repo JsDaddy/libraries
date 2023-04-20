@@ -7,6 +7,7 @@ import { IHeaderITem } from '@open-source/header/header.interface';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
+import { LinkPath } from '@libraries/link/link.path';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
@@ -26,24 +27,27 @@ import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
-    public headerDoc: IHeaderITem[] = [
+    @Input() public activeLink!: string;
+
+    public showNav = false;
+    public jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
+    public headerItems: IHeaderITem[] = [
         {
             title: 'Ngx-Mask',
-            link: 'https://jsdaddy.github.io/ngx-mask/',
+            link: LinkPath.NGX_MASK,
         },
         {
             title: 'Ngx-CopyPaste',
-            link: 'https://jsdaddy.github.io/ngx-copypaste/',
+            link: LinkPath.NGX_COPYPASTE,
         },
         {
             title: 'Ngx-Loader-Indicator',
-            link: 'https://jsdaddy.github.io/ngx-loader-indicator/',
+            link: LinkPath.NGX_LOADER,
         },
     ];
+
     public readonly trackByPath = inject(TrackByService).trackBy('title');
-    public showNav = false;
     public readonly bodyStylesService = inject(BodyStylesService);
-    @Input() public githubMaskLink!: string;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
