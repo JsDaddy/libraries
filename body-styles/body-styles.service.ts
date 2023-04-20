@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BodyStylesService {
-    public setOverflowBody(hidden: boolean): void {
+    public setOverflowYBody(hidden: boolean): void {
         const body = document.querySelector('body');
         if (!body) {
             return;

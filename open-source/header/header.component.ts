@@ -51,6 +51,6 @@ export class HeaderComponent {
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
-        this.bodyStylesService.setOverflowBody(this.showNav);
+        this.bodyStylesService.setOverflowYBody(this.showNav);
     }
 }
