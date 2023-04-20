@@ -6,11 +6,11 @@
             </a>
         </span>
     </div>
-    <div class="center-side row ai-c" *ngFor="let items of headerItems; trackBy: trackByPath">
-        <span class="mrl-20" [ngClass]="activeLink === items.link | color">
-            <a [href]="items.link" target="_blank" aria-label="github-pages">
+    <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
+        <span class="mrl-20" [ngClass]="activeLink === item.link | color">
+            <a [href]="item.link" target="_blank" aria-label="github-pages">
                 <button class="center-buttons row ai-c pointer">
-                    {{ items.title }}
+                    {{ item.title }}
                 </button>
             </a>
         </span>
@@ -36,11 +36,11 @@
         <h3 class="full-white text uppercase ls-25">Repositories</h3>
         <div class="nav-buttons">
             <div
-                *ngFor="let items of headerItems; trackBy: trackByPath"
-                [ngClass]="activeLink === items.link | color">
-                <a [href]="items.link" target="_blank" aria-label="github-pages">
+                *ngFor="let item of headerItems; trackBy: trackByPath"
+                [ngClass]="activeLink === item.link | color">
+                <a [href]="item.link" target="_blank" aria-label="github-pages">
                     <button class="row">
-                        {{ items.title }}
+                        {{ item.title }}
                     </button>
                 </a>
             </div>

@@ -30,7 +30,6 @@ export class HeaderComponent {
     @Input() public activeLink!: string;
 
     public showNav = false;
-    public jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
     public headerItems: IHeaderITem[] = [
         {
             title: 'Ngx-Mask',
@@ -46,6 +45,7 @@ export class HeaderComponent {
         },
     ];
 
+    public readonly jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public readonly bodyStylesService = inject(BodyStylesService);
 
