@@ -6,6 +6,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { IHeaderITem } from '@open-source/header/header.interface';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
+import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
@@ -22,6 +23,7 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
         HidePipe,
         VisitBtnComponent,
     ],
+    providers: [BodyStylesService],
 })
 export class HeaderComponent {
     public headerDoc: IHeaderITem[] = [
@@ -40,9 +42,11 @@ export class HeaderComponent {
     ];
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public showNav = false;
+    public readonly bodyStylesService = inject(BodyStylesService);
     @Input() public githubMaskLink!: string;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
+        this.bodyStylesService.setOverflowBody(this.showNav);
     }
 }

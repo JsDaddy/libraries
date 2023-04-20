@@ -17,7 +17,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import {auditTime, filter, of, take} from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 
 @Component({
@@ -64,13 +64,17 @@ export class AccordionComponent implements AfterViewInit {
 
     public switchDoc(index: number, scrollTo: string | undefined): void {
         this.itemAccordion.emit(index);
-        setTimeout(() => {
-            this.anchorScroll(1, scrollTo);
-        }, 300);
+        of(index)
+            .pipe(auditTime(300), take(1))
+            .subscribe(() => {
+                this.anchorScroll(1, scrollTo);
+            });
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
-        this.showNavBlock();
+        if (this.showNav) {
+            this.showNavBlock();
+        }
         this.anchorScroll(idItem, scrollTo);
     }
 
