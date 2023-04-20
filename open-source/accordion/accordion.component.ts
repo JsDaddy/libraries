@@ -40,7 +40,7 @@ import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 export class AccordionComponent implements AfterViewInit {
     @Input() public lists!: IListItem[];
 
-    @Output() public switchCards = new EventEmitter<number>();
+    @Output() public switchCardIndex = new EventEmitter<number>();
 
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
 
@@ -65,7 +65,7 @@ export class AccordionComponent implements AfterViewInit {
     }
 
     public switchAccordion(index: number): void {
-        this.switchCards.emit(index);
+        this.switchCardIndex.emit(index);
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
