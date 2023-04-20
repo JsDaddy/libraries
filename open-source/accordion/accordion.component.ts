@@ -17,7 +17,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {auditTime, filter, of, take} from 'rxjs';
+import { filter } from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 
 @Component({
@@ -46,14 +46,12 @@ export class AccordionComponent implements AfterViewInit {
     private readonly route = inject(Router);
     @Input() public lists!: IListItem[];
     @Output() public itemAccordion = new EventEmitter<number>();
-    @Output() public itemInAccordion = new EventEmitter<number>();
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
         this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((itemId) => {
             this.chosenItem = +itemId;
-            this.itemInAccordion.emit(+itemId);
         });
     }
 
@@ -62,13 +60,9 @@ export class AccordionComponent implements AfterViewInit {
         this.bodyStylesService.setOverflowBody(this.showNav);
     }
 
-    public switchDoc(index: number, scrollTo: string | undefined): void {
+    public switchDoc(index: number): void {
         this.itemAccordion.emit(index);
-        of(index)
-            .pipe(auditTime(300), take(1))
-            .subscribe(() => {
-                this.anchorScroll(1, scrollTo);
-            });
+        this.chosenItem = 1;
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
