@@ -48,7 +48,6 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef;
 
     public showAccordion = false;
-    public some = false;
     public itemInAccordion = 1;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
