@@ -6,10 +6,11 @@ import {
     inject,
     Input,
     Output,
-    QueryList, ViewChild,
+    QueryList,
+    ViewChild,
     ViewChildren,
 } from '@angular/core';
-import {NgClass, NgFor, NgIf, NgOptimizedImage, NgStyle} from '@angular/common';
+import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
 import { IListItem } from '@open-source/accordion/content.interfaces';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { HidePipe } from '@open-source/hide/hide.pipe';
@@ -17,7 +18,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {filter, fromEvent, takeUntil} from 'rxjs';
+import { filter, fromEvent, takeUntil } from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
@@ -34,7 +35,6 @@ import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
         HidePipe,
         VisitBtnComponent,
         ColorPipe,
-        NgIf,
     ],
     standalone: true,
     providers: [BodyStylesService],
