@@ -7,6 +7,7 @@ import {
     Input,
     Output,
     QueryList,
+    ViewChild,
     ViewChildren,
 } from '@angular/core';
 import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
@@ -17,7 +18,7 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, takeUntil } from 'rxjs';
+import { filter, fromEvent, takeUntil } from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
@@ -44,6 +45,7 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @Output() public switchCardIndex = new EventEmitter<number>();
 
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+    @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef;
 
     public showAccordion = false;
     public itemInAccordion = 1;
@@ -54,6 +56,16 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
+        fromEvent(window, 'click')
+            .pipe(
+                takeUntil(this.unsubscribe$$),
+                filter(
+                    () =>
+                        this.showAccordion &&
+                        event?.target !== this.accordionBlockElement.nativeElement
+                )
+            )
+            .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
             .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))
