@@ -16,5 +16,6 @@ export class SubHeaderComponent {
     @Input() public title!: string;
     @Input() public subtitle!: string;
     @Input() public chips!: string[];
+
     public readonly trackByPath = inject(TrackByService).trackBy('chip');
 }

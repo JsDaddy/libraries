@@ -17,7 +17,9 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, takeUntil } from 'rxjs';
+import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
+import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -34,38 +36,51 @@ import { filter } from 'rxjs';
         ColorPipe,
     ],
     standalone: true,
+    providers: [BodyStylesService],
 })
-export class AccordionComponent implements AfterViewInit {
-    public showNav = false;
-    public chosenItem = 1;
-    public readonly trackByPath = inject(TrackByService).trackBy('id');
-    private readonly activatedRoute = inject(ActivatedRoute);
-    private readonly route = inject(Router);
+export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @Input() public lists!: IListItem[];
-    @Output() public itemAccordion = new EventEmitter<number>();
-    @Output() public itemInAccordion = new EventEmitter<number>();
+
+    @Output() public switchCardIndex = new EventEmitter<number>();
+
     @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
+
+    public showAccordion = false;
+    public itemInAccordion = 1;
+    public readonly trackByPath = inject(TrackByService).trackBy('id');
+    public readonly bodyStylesService = inject(BodyStylesService);
+
+    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
-        this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((itemId) => {
-            this.chosenItem = +itemId;
-            this.itemInAccordion.emit(+itemId);
-        });
+        this.activatedRoute.fragment
+            .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))
+            .subscribe((itemId) => {
+                this.itemInAccordion = Number(itemId);
+            });
     }
 
-    public showNavBlock(): void {
-        this.showNav = !this.showNav;
+    public showAccordionBlock(): void {
+        this.showAccordion = !this.showAccordion;
+        this.bodyStylesService.setOverflowYBody(this.showAccordion);
     }
 
-    public switchDoc(index: number): void {
-        this.itemAccordion.emit(index);
+    public switchAccordion(index: number): void {
+        this.switchCardIndex.emit(index);
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
-        this.chosenItem = idItem;
-        this.itemInAccordion.emit(idItem);
-        this.route.navigate(['/'], {
+        if (this.showAccordion) {
+            this.showAccordionBlock();
+        }
+        this.anchorScroll(idItem, scrollTo);
+    }
+
+    public anchorScroll(idItem: number, scrollTo: string | undefined): void {
+        this.itemInAccordion = idItem;
+        this.router.navigate(['/'], {
             fragment: idItem.toString(),
         });
         if (!scrollTo) {
