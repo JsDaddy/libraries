@@ -1,14 +1,14 @@
 <div class="header row ai-c bg-full-white" [ngClass]="showNav | hide">
     <div class="left-side">
         <span class="logo">
-            <a [href]="jsDaddyWebsite" target="_blank" aria-label="jsdaddy-website">
+            <a [href]="jsDaddyWebsite" target="_blank" aria-label="Navigate to JsDaddy corporate site">
                 <img width="34" height="29" [ngSrc]="'logo' | asset" alt="jsdaddy" class="logo" />
             </a>
         </span>
     </div>
     <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
         <span class="mrl-20" [ngClass]="activeLink === item.link | color">
-            <a [href]="item.link" target="_blank" aria-label="github-pages">
+            <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
                 <button class="center-buttons row ai-c pointer">
                     {{ item.title }}
                 </button>
@@ -38,7 +38,7 @@
             <div
                 *ngFor="let item of headerItems; trackBy: trackByPath"
                 [ngClass]="activeLink === item.link | color">
-                <a [href]="item.link" target="_blank" aria-label="github-pages">
+                <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
                     <button class="row">
                         {{ item.title }}
                     </button>
