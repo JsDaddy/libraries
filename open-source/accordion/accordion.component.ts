@@ -17,8 +17,9 @@ import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, takeUntil } from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
+import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -37,7 +38,7 @@ import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
     standalone: true,
     providers: [BodyStylesService],
 })
-export class AccordionComponent implements AfterViewInit {
+export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @Input() public lists!: IListItem[];
 
     @Output() public switchCardIndex = new EventEmitter<number>();
@@ -54,9 +55,11 @@ export class AccordionComponent implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         this.openFirstAccordion();
-        this.activatedRoute.fragment.pipe(filter(Boolean)).subscribe((itemId) => {
-            this.itemInAccordion = Number(itemId);
-        });
+        this.activatedRoute.fragment
+            .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))
+            .subscribe((itemId) => {
+                this.itemInAccordion = Number(itemId);
+            });
     }
 
     public showAccordionBlock(): void {
