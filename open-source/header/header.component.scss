@@ -59,42 +59,6 @@
     }
 }
 
-.show {
-    display: block;
-    &.header {
-        display: flex;
-        background: var(--black);
-        .left-side {
-            display: none;
-        }
-        .open-nav {
-            display: none;
-        }
-        .mob-open {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            .logo-white {
-                margin-left: 20px;
-            }
-        }
-        .btn-bottom {
-            position: absolute;
-            bottom: 125px;
-        }
-    }
-}
-.hide {
-    &.header {
-        display: flex;
-        .nav-section {
-            display: none;
-        }
-        .mob-open {
-            display: none;
-        }
-    }
-}
 @media screen and (max-width: $desktopWidth) {
     .header {
         .left-side {
@@ -155,6 +119,43 @@
                         }
                     }
                 }
+                .btn-bottom {
+                    width: 314px;
+                    position: absolute;
+                    bottom: 125px;
+                }
+            }
+        }
+    }
+    .show {
+        display: block;
+        &.header {
+            display: flex;
+            background: var(--black);
+            .left-side {
+                display: none;
+            }
+            .open-nav {
+                display: none;
+            }
+            .mob-open {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                .logo-white {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+    .hide {
+        &.header {
+            display: flex;
+            .nav-section {
+                display: none;
+            }
+            .mob-open {
+                display: none;
             }
         }
     }
