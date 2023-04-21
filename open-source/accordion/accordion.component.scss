@@ -161,6 +161,7 @@
         display: none;
         overflow: auto;
         .drawer {
+            height: 800px;
             .accordion-block {
                 width: 100%;
                 .accordion {
@@ -186,6 +187,7 @@
         }
         &.drawer-container {
             display: block;
+            overflow: auto;
         }
     }
 
