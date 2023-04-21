@@ -6,8 +6,14 @@
     }
 }
 
+@media screen and (max-width: $desktopWidth) {
+    .all-rights {
+        height: 250px;
+    }
+}
+
 @media screen and (max-width: $mobileWidth) {
     .all-rights {
-        height: calc(100vh - 750px);
+        height: 150px;
     }
 }

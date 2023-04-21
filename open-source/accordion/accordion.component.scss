@@ -131,6 +131,7 @@
             }
         }
         .visit-btn {
+            width: 262px;
             padding: 40px 24px 0 24px;
             position: absolute;
             bottom: 125px;
@@ -158,7 +159,9 @@
         top: 122px;
         width: 375px;
         display: none;
+        overflow: auto;
         .drawer {
+            height: 800px;
             .accordion-block {
                 width: 100%;
                 .accordion {
@@ -184,6 +187,7 @@
         }
         &.drawer-container {
             display: block;
+            overflow: auto;
         }
     }
 
@@ -222,6 +226,7 @@
     .drawer-container {
         width: 100%;
         .drawer {
+            height: 650px;
             padding: 0 25px;
             .accordion-block {
                 width: 100%;
