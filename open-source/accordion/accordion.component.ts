@@ -76,7 +76,7 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
 
     public showAccordionBlock(): void {
         this.showAccordion = !this.showAccordion;
-        this.bodyStylesService.setOverflowYBody(this.showAccordion);
+        this.bodyStylesService.setOverflowYBodyHtml(this.showAccordion);
     }
 
     public switchAccordion(index: number): void {
