@@ -50,6 +50,7 @@
     }
     .nav-section {
         display: none;
+        overflow: hidden;
     }
     .mrl-20 {
         margin-left: 20px;
@@ -79,6 +80,7 @@
         .nav-section {
             display: block;
             position: fixed;
+            overflow: auto;
             z-index: 2;
             height: 100%;
             top: 68px;
@@ -87,6 +89,7 @@
             width: 100%;
             padding: 15px 20px;
             .nav-buttons {
+                height: 760px;
                 padding: 45px 60px 0 0;
 
                 button {
@@ -121,8 +124,8 @@
                 }
                 .btn-bottom {
                     width: 90vw;
-                    position: absolute;
-                    bottom: 125px;
+                    position: fixed;
+                    bottom: 20px;
                 }
             }
         }

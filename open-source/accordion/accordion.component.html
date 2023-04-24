@@ -61,7 +61,7 @@
                 <p
                     *ngFor="let item of list.text; trackBy: trackByPath"
                     class="accordion-box pointer"
-                    [ngClass]="item.id === itemInAccordion | color"
+                    [ngClass]="item.id | color : itemInAccordion"
                     (click)="handleClick(item.id, item.scrollTo)">
                     {{ item.content }}
                 </p>
