@@ -10,7 +10,7 @@
         </span>
     </div>
     <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
-        <span class="mrl-20" [ngClass]="activeLink === item.link | color">
+        <span class="mrl-20" [ngClass]="activeLink | color : item.link">
             <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
                 <button class="center-buttons row ai-c pointer">
                     {{ item.title }}
@@ -40,7 +40,7 @@
         <div class="nav-buttons column">
             <div
                 *ngFor="let item of headerItems; trackBy: trackByPath"
-                [ngClass]="activeLink === item.link | color">
+                [ngClass]="activeLink | color : item.link">
                 <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
                     <button class="row">
                         {{ item.title }}
