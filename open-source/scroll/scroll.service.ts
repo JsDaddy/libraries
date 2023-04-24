@@ -4,9 +4,9 @@ import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class OnScrollService extends UnSubscriber {
-    public activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
-
+export class ScrollService extends UnSubscriber {
+    private readonly activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
+    public readonly activeCard$ = this.activeCardId$$.asObservable();
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;
 
