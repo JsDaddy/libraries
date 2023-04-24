@@ -37,7 +37,7 @@
     </div>
     <div class="nav-section bg-black" [ngClass]="showNav | hide">
         <h3 class="full-white text uppercase ls-25">Repositories</h3>
-        <div class="nav-buttons">
+        <div class="nav-buttons column">
             <div
                 *ngFor="let item of headerItems; trackBy: trackByPath"
                 [ngClass]="activeLink === item.link | color">
