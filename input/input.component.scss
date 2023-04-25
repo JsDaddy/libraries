@@ -1,0 +1,75 @@
+.input-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 2px solid var(--full-white);
+    border-radius: 10px;
+    &.dark {
+        border-color: var(--black);
+    }
+    textarea {
+        height: 157px;
+        resize: none;
+    }
+    input,
+    textarea {
+        box-sizing: border-box;
+        width: 67%;
+        padding: 14px 15px;
+        outline: none;
+        border: none;
+        color: var(--full-white);
+        font-family: 'Varela', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        background-color: transparent;
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+            -webkit-text-fill-color: #fff !important;
+            caret-color: white;
+        }
+        &.dark {
+            color: var(--black);
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                transition: background-color 5000s ease-in-out 0s;
+                -webkit-text-fill-color: var(--black) !important;
+                caret-color: var(--black);
+            }
+        }
+    }
+
+    label {
+        margin: 0 16px 0 auto;
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 13px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+    }
+
+    .dark::placeholder {
+        color: var(--black);
+        opacity: 0.25;
+    }
+
+    &.not-valid {
+        color: var(--red);
+        border-bottom: 2px solid var(--red);
+    }
+
+    &.valid {
+        border-bottom: 2px solid var(--yellow);
+    }
+}
