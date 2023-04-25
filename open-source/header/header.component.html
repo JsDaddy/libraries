@@ -8,7 +8,7 @@
                 <img
                     width="34"
                     height="29"
-                    [ngSrc]="'logo' | asset : assetPath"
+                    [ngSrc]="'logo' | asset : openSourcePath"
                     alt="jsdaddy"
                     class="logo" />
             </a>
@@ -24,19 +24,19 @@
         </span>
     </div>
     <div class="open-nav pointer" (click)="toggleNavBlock()">
-        <img width="48" height="48" [ngSrc]="'burger' | asset : assetPath" alt="burger" />
+        <img width="48" height="48" [ngSrc]="'burger' | asset : openSourcePath" alt="burger" />
     </div>
     <div class="mob-open pointer">
         <img
             width="34"
             height="29"
-            [ngSrc]="'logo-white' | asset : assetPath"
+            [ngSrc]="'logo-white' | asset : openSourcePath"
             alt="logo-white"
             class="logo-white ais-c" />
         <img
             width="68"
             height="67"
-            [ngSrc]="'close' | asset : assetPath"
+            [ngSrc]="'close' | asset : openSourcePath"
             alt="close"
             (click)="toggleNavBlock()" />
     </div>
