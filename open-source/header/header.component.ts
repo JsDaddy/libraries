@@ -8,6 +8,7 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { LinkPath } from '@libraries/link/link.path';
+import { OpenSourcePath } from '@open-source/path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
@@ -48,6 +49,7 @@ export class HeaderComponent {
     public readonly jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public readonly bodyStylesService = inject(BodyStylesService);
+    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;

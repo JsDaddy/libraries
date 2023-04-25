@@ -3,15 +3,20 @@
         <span class="logo">
             <a
                 [href]="jsDaddyWebsite"
-                target="_blank"
+                target="_self"
                 aria-label="Navigate to JsDaddy corporate site">
-                <img width="34" height="29" [ngSrc]="'logo' | asset" alt="jsdaddy" class="logo" />
+                <img
+                    width="34"
+                    height="29"
+                    [ngSrc]="'logo' | asset : openSourcePath"
+                    alt="Logo JsDaddy"
+                    class="logo" />
             </a>
         </span>
     </div>
     <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
         <span class="mrl-20" [ngClass]="activeLink | color : item.link">
-            <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
+            <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
                 <button class="center-buttons row ai-c pointer">
                     {{ item.title }}
                 </button>
@@ -19,19 +24,19 @@
         </span>
     </div>
     <div class="open-nav pointer" (click)="toggleNavBlock()">
-        <img width="48" height="48" [ngSrc]="'burger' | asset" alt="burger" />
+        <img width="48" height="48" [ngSrc]="'burger' | asset : openSourcePath" alt="burger" />
     </div>
     <div class="mob-open pointer">
         <img
             width="34"
             height="29"
-            [ngSrc]="'logo-white' | asset"
-            alt="logo-white"
+            [ngSrc]="'logo-white' | asset : openSourcePath"
+            alt="Logo JsDaddy"
             class="logo-white ais-c" />
         <img
             width="68"
             height="67"
-            [ngSrc]="'close' | asset"
+            [ngSrc]="'close' | asset : openSourcePath"
             alt="close"
             (click)="toggleNavBlock()" />
     </div>
@@ -41,7 +46,7 @@
             <div
                 *ngFor="let item of headerItems; trackBy: trackByPath"
                 [ngClass]="activeLink | color : item.link">
-                <a [href]="item.link" target="_blank" aria-label="Navigate to Github-pages">
+                <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
                     <button class="row">
                         {{ item.title }}
                     </button>

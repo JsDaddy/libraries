@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
+import { OpenSourcePath } from '@open-source/path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-footer',
@@ -9,4 +10,6 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
     standalone: true,
     imports: [NgOptimizedImage, AssetPipe],
 })
-export class FooterComponent {}
+export class FooterComponent {
+    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
+}
