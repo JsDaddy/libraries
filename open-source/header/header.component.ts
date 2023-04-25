@@ -8,7 +8,7 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { LinkPath } from '@libraries/link/link.path';
-import {OpenSourcePath} from "@open-source/path/open-source.path";
+import { OpenSourcePath } from '@open-source/path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
