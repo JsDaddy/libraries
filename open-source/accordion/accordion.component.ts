@@ -21,6 +21,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, fromEvent, takeUntil } from 'rxjs';
 import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
+import { OpenSourcePath } from '@open-source/path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -49,6 +50,7 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
 
     public showAccordion = false;
     public itemInAccordion = 1;
+    public readonly assetPath = OpenSourcePath.OPEN_SOURCE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
 
