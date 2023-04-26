@@ -1,4 +1,7 @@
 export const enum OpenSourcePath {
     ROOT = '/open-source',
-    OPTIONS = '/open-source/options',
+    FOOTER = '/open-source/footer',
+    HEADER = '/open-source/header',
+    VISIT_BTN = '/open-source/visit-btn',
+    ACCORDION = '/open-source/accordion',
 }

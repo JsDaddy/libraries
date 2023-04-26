@@ -50,7 +50,7 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
 
     public showAccordion = false;
     public itemInAccordion = 1;
-    public readonly openSourcePath = OpenSourcePath.ROOT;
+    public readonly openSourcePath = OpenSourcePath.ACCORDION;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
 
