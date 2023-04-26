@@ -13,5 +13,5 @@ import { OpenSourcePath } from '@open-source/path/open-source.path';
 })
 export class VisitBtnComponent {
     public readonly jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
-    public readonly openSourcePath = OpenSourcePath.VISIT_BTN;
+    public readonly openSourceVisitBtnPath = OpenSourcePath.VISIT_BTN;
 }

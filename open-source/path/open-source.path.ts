@@ -4,4 +4,5 @@ export const enum OpenSourcePath {
     HEADER = '/open-source/header',
     VISIT_BTN = '/open-source/visit-btn',
     ACCORDION = '/open-source/accordion',
+    OPTIONS = '/open-source/options',
 }
