@@ -11,5 +11,5 @@ import { OpenSourcePath } from '@open-source/path/open-source.path';
     imports: [NgOptimizedImage, AssetPipe],
 })
 export class FooterComponent {
-    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
+    public readonly openSourceFooterPath = OpenSourcePath.FOOTER;
 }

@@ -49,7 +49,7 @@ export class HeaderComponent {
     public readonly jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
     public readonly trackByPath = inject(TrackByService).trackBy('title');
     public readonly bodyStylesService = inject(BodyStylesService);
-    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
+    public readonly openSourceHeaderPath = OpenSourcePath.HEADER;
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;
