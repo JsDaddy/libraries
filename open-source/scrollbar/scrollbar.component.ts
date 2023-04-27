@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'jsdaddy-open-source-scrollbar',
     templateUrl: './scrollbar.component.html',
-    styleUrls: ['./scrollbarcomponent.scss'],
+    styleUrls: ['./scrollbar.component.scss'],
     standalone: true,
     encapsulation: ViewEncapsulation.None,
 })
