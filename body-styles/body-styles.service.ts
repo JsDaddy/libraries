@@ -9,6 +9,6 @@ export class BodyStylesService {
             return;
         }
         body.style.overflowY = hidden ? 'hidden' : 'overlay';
-        html.style.overflowY = hidden ? 'hidden' : 'overlay';
+        html.style.overflowY = hidden ? 'hidden' : '';
     }
 }
