@@ -22,7 +22,7 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { takeUntil } from 'rxjs';
 import { InputPipe } from './input.pipe';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import {AutofocusDirective} from "@libraries/input/auto-focus.directive";
+import { AutofocusDirective } from '@libraries/input/auto-focus.directive';
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
