@@ -89,7 +89,6 @@
             width: 100%;
             padding: 15px 20px;
             .nav-buttons {
-                height: 760px;
                 padding: 45px 60px 0 0;
 
                 button {
@@ -159,6 +158,20 @@
             }
             .mob-open {
                 display: none;
+            }
+        }
+    }
+}
+@media screen and (max-height: 400px) {
+    .header {
+        .nav-section {
+            .nav-buttons {
+                height: 300px;
+                padding: 45px 60px 0 0;
+                .btn-bottom {
+                    position: sticky;
+                    margin-left: 10px;
+                }
             }
         }
     }
