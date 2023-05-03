@@ -1,25 +1,37 @@
 <div class="input-wrapper" [ngClass]="[control | input : true, isDark ? 'dark' : '']">
-    <input
-        *ngIf="!isTextarea; else textarea"
-        [formControl]="control"
-        [ngClass]="{ dark: isDark }"
-        type="text"
-        name="input"
-        jsdaddyAutofocus
-        [placeholder]="placeholder"
-        (keyup.enter)="onLabelClick()"
-        class="span" />
-    <ng-template #textarea>
-        <textarea
+    <ng-container *ngIf="withoutAutoFocus">
+        <input
             [formControl]="control"
             [ngClass]="{ dark: isDark }"
-            jsdaddyAutofocus
             type="text"
             name="input"
             [placeholder]="placeholder"
             (keyup.enter)="onLabelClick()"
-            class="span"></textarea>
-    </ng-template>
+            class="span" />
+    </ng-container>
+    <ng-container *ngIf="!withoutAutoFocus">
+        <input
+            *ngIf="!isTextarea; else textarea"
+            [formControl]="control"
+            [ngClass]="{ dark: isDark }"
+            type="text"
+            name="input"
+            jsdaddyAutofocus
+            [placeholder]="placeholder"
+            (keyup.enter)="onLabelClick()"
+            class="span" />
+        <ng-template #textarea>
+            <textarea
+                [formControl]="control"
+                [ngClass]="{ dark: isDark }"
+                jsdaddyAutofocus
+                type="text"
+                name="input"
+                [placeholder]="placeholder"
+                (keyup.enter)="onLabelClick()"
+                class="span"></textarea>
+        </ng-template>
+    </ng-container>
     <label (click)="onLabelClick()" for="input">
         <ng-container *ngIf="(control | input) || (label | uppercase) as label; else suffixicon">
             {{ label }}
