@@ -4,9 +4,8 @@
         [formControl]="control"
         [ngClass]="{ dark: isDark }"
         type="text"
+        [jsdaddyAutofocus]="autoFocus"
         name="input"
-        jsdaddyAutofocus
-        [autoFocus]="autoFocus"
         [placeholder]="placeholder"
         (keyup.enter)="onLabelClick()"
         class="span" />
@@ -14,10 +13,9 @@
         <textarea
             [formControl]="control"
             [ngClass]="{ dark: isDark }"
-            jsdaddyAutofocus
-            [autoFocus]="autoFocus"
             type="text"
             name="input"
+            [jsdaddyAutofocus]="autoFocus"
             [placeholder]="placeholder"
             (keyup.enter)="onLabelClick()"
             class="span"></textarea>

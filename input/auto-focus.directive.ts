@@ -6,9 +6,8 @@ import { Directive, ElementRef, inject, Input } from '@angular/core';
 })
 export class AutofocusDirective {
     @Input()
-    public set autoFocus(value: boolean) {
+    public set jsdaddyAutofocus(value: boolean) {
         value ? this.elRef.nativeElement.focus() : '';
     }
-
     public elRef = inject(ElementRef);
 }

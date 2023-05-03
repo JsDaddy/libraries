@@ -21,8 +21,8 @@ import {
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { takeUntil } from 'rxjs';
 import { InputPipe } from './input.pipe';
-import { AutofocusDirective } from './auto-focus.directive';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
+import {AutofocusDirective} from "@libraries/input/auto-focus.directive";
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
@@ -58,6 +58,7 @@ export class InputComponent extends UnSubscriber implements ControlValueAccessor
     @Input() public validators: ValidatorFn[] = [];
     @Input() public isDark = false;
     @Input() public autoFocus = true;
+
     @Output() public labelClick: EventEmitter<void> = new EventEmitter();
 
     public readonly additionalPath = 'shared';
