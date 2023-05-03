@@ -8,7 +8,7 @@
 
 @media screen and (max-width: $desktopWidth) {
     .all-rights {
-        height: 250px;
+        height: calc(100vh - 65vh);
     }
 }
 
