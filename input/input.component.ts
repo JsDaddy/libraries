@@ -57,7 +57,7 @@ export class InputComponent extends UnSubscriber implements ControlValueAccessor
     @Input() public isTextarea = false;
     @Input() public validators: ValidatorFn[] = [];
     @Input() public isDark = false;
-    @Input() public withoutAutoFocus = false;
+    @Input() public autoFocus = true;
     @Output() public labelClick: EventEmitter<void> = new EventEmitter();
 
     public readonly additionalPath = 'shared';

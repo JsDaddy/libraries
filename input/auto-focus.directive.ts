@@ -1,13 +1,14 @@
-import { Directive, ElementRef, OnInit, inject } from '@angular/core';
+import { Directive, ElementRef, inject, Input } from '@angular/core';
 
 @Directive({
     selector: '[jsdaddyAutofocus]',
     standalone: true,
 })
-export class AutofocusDirective implements OnInit {
-    public elRef = inject(ElementRef);
-
-    public ngOnInit(): void {
-        this.elRef.nativeElement.focus();
+export class AutofocusDirective {
+    @Input()
+    public set autoFocus(value: boolean) {
+        value ? this.elRef.nativeElement.focus() : '';
     }
+
+    public elRef = inject(ElementRef);
 }
