@@ -27,7 +27,11 @@ export class ScrollService extends UnSubscriber {
     }
 
     public isInViewport(elm: HTMLElement) {
-        const elementTop = elm.offsetTop - this.minusTopHeight;
+        const windowHeight = window.document.body.offsetHeight;
+        let elementTop = elm.offsetTop - this.minusTopHeight;
+        if (windowHeight < 450) {
+            elementTop = elm.offsetTop - 150;
+        }
         const elementBottom = elementTop + elm.offsetHeight;
         const viewportTop = document.documentElement.scrollTop;
         const viewportBottom = viewportTop + document.documentElement.clientHeight;
