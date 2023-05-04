@@ -41,12 +41,12 @@ export interface IMaskOptions {
     _dropSpecialCharacters: boolean;
     _showMaskTyped: boolean;
     _clearIfNotMatch: boolean;
-
+    _shownMaskExpression: string;
     _validation: boolean;
 
     _hiddenInput: boolean;
 
-    _specialCharacters: string;
+    _specialCharacters: string | string[];
 
     _thousandSeparator: string;
 }
