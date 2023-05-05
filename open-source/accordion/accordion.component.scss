@@ -86,6 +86,9 @@
             &.accordion-block {
                 .accordion {
                     border-width: 2px 0 0 0;
+                    border-style: solid;
+                    border-bottom-left-radius: 1%;
+                    border-bottom-right-radius: 1%;
                     border-color: var(--yellow);
                     &:hover {
                         border-width: 2px 0 0 0;
@@ -125,6 +128,8 @@
                     }
                     .accordion-box:last-child {
                         @include border-bottom-yellow;
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
                         padding: 10px 0 26px 60px;
                     }
                 }
