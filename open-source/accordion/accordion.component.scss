@@ -232,13 +232,40 @@
                 width: 100%;
                 .panel {
                     .accordion-box {
-                        width: 84%;
+                        width: calc(84% - 2px);
                     }
                 }
             }
         }
         .visit-btn {
             display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .drawer-container {
+        .drawer {
+            .accordion-block {
+                .panel {
+                    .accordion-box {
+                        width: calc(84% - 8px);
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .drawer-container {
+        .drawer {
+            .accordion-block {
+                .panel {
+                    .accordion-box {
+                        width: calc(84% - 9px);
+                    }
+                }
+            }
         }
     }
 }
