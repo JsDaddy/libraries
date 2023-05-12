@@ -5,23 +5,23 @@ import {
     EventEmitter,
     inject,
     Input,
-    Output,
+    Output, PLATFORM_ID,
     QueryList,
     ViewChild,
     ViewChildren,
 } from '@angular/core';
-import { NgClass, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
-import { IListItem } from '@open-source/accordion/content.interfaces';
-import { AssetPipe } from '@libraries/asset/asset.pipe';
-import { HidePipe } from '@open-source/hide/hide.pipe';
-import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
-import { ColorPipe } from '@open-source/color/color.pipe';
-import { TrackByService } from '@libraries/track-by/track-by.service';
+import { DOCUMENT, isPlatformServer, NgClass, NgFor, NgStyle } from '@angular/common';
+import { IListItem } from './content.interfaces';
+import { AssetPipe } from '../../asset/asset.pipe';
+import { HidePipe } from '../hide/hide.pipe';
+import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
+import { ColorPipe } from '../color/color.pipe';
+import { TrackByService } from '../../track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, fromEvent, takeUntil } from 'rxjs';
-import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import { OpenSourcePath } from '@open-source/path/open-source.path';
+import { filter, fromEvent } from 'rxjs';
+import { BodyStylesService } from '../../body-styles/body-styles.service';
+import { OpenSourcePath } from '../path/open-source.path';
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -31,7 +31,6 @@ import { OpenSourcePath } from '@open-source/path/open-source.path';
         NgClass,
         NgFor,
         NgStyle,
-        NgOptimizedImage,
         AssetPipe,
         HidePipe,
         VisitBtnComponent,
@@ -40,7 +39,7 @@ import { OpenSourcePath } from '@open-source/path/open-source.path';
     standalone: true,
     providers: [BodyStylesService],
 })
-export class AccordionComponent extends UnSubscriber implements AfterViewInit {
+export class AccordionComponent  implements AfterViewInit {
     @Input() public lists!: IListItem[];
 
     @Output() public switchCardIndex = new EventEmitter<number>();
@@ -57,21 +56,23 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
 
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly router = inject(Router);
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly document = inject(DOCUMENT);
 
     public ngAfterViewInit(): void {
         fromEvent(window, 'click')
             .pipe(
-                takeUntil(this.unsubscribe$$),
                 filter(
                     () =>
                         this.showAccordion &&
                         event?.target !== this.accordionBlockElement.nativeElement
-                )
+                ),
+                takeUntilDestroyed()
             )
             .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
-            .pipe(takeUntil(this.unsubscribe$$), filter(Boolean))
+            .pipe(filter(Boolean),takeUntilDestroyed())
             .subscribe((itemId) => {
                 this.itemInAccordion = Number(itemId);
             });
@@ -94,6 +95,9 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     }
 
     public anchorScroll(idItem: number, scrollTo: string | undefined): void {
+        if (isPlatformServer(this.platformId)) {
+            return;
+        }
         this.itemInAccordion = idItem;
         this.router.navigate(['/'], {
             fragment: idItem.toString(),
@@ -101,7 +105,7 @@ export class AccordionComponent extends UnSubscriber implements AfterViewInit {
         if (!scrollTo) {
             return;
         }
-        const anchor: HTMLElement | null = document.getElementById(scrollTo);
+        const anchor: HTMLElement | null = this.document.getElementById(scrollTo);
         if (anchor) {
             anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

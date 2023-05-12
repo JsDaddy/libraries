@@ -1,14 +1,14 @@
 import { Component, inject, Input } from '@angular/core';
-import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { ColorPipe } from '@open-source/color/color.pipe';
-import { HidePipe } from '@open-source/hide/hide.pipe';
-import { VisitBtnComponent } from '@open-source/visit-btn/visit-btn.component';
-import { IHeaderITem } from '@open-source/header/header.interface';
-import { AssetPipe } from '@libraries/asset/asset.pipe';
-import { TrackByService } from '@libraries/track-by/track-by.service';
-import { BodyStylesService } from '@libraries/body-styles/body-styles.service';
-import { LinkPath } from '@libraries/link/link.path';
-import { OpenSourcePath } from '@open-source/path/open-source.path';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { ColorPipe } from '../color/color.pipe';
+import { HidePipe } from '../hide/hide.pipe';
+import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
+import { IHeaderITem } from '../header/header.interface';
+import { AssetPipe } from '../../asset/asset.pipe';
+import { TrackByService } from '../../track-by/track-by.service';
+import { BodyStylesService } from '../../body-styles/body-styles.service';
+import { LinkPath } from '../../link/link.path';
+import { OpenSourcePath } from '../path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
@@ -16,7 +16,6 @@ import { OpenSourcePath } from '@open-source/path/open-source.path';
     styleUrls: ['./header.component.scss'],
     standalone: true,
     imports: [
-        NgOptimizedImage,
         NgFor,
         NgIf,
         NgClass,
