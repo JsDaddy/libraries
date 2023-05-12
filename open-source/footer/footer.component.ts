@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AssetPipe } from '../asset/asset.pipe';
+import { AssetPipe } from '../../asset/asset.pipe';
 import { OpenSourcePath } from '../path/open-source.path';
 
 @Component({
