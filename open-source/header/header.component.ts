@@ -15,15 +15,7 @@ import { OpenSourcePath } from '../path/open-source.path';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
-    imports: [
-        NgFor,
-        NgIf,
-        NgClass,
-        AssetPipe,
-        ColorPipe,
-        HidePipe,
-        VisitBtnComponent,
-    ],
+    imports: [NgFor, NgIf, NgClass, AssetPipe, ColorPipe, HidePipe, VisitBtnComponent],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {

@@ -1,11 +1,11 @@
 import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
 import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
-import { DOCUMENT, isPlatformServer } from "@angular/common";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
-export class ScrollService  {
+export class ScrollService {
     private readonly activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;

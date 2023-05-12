@@ -21,7 +21,7 @@ import {
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
 import { AutofocusDirective } from '../input/auto-focus.directive';
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
@@ -50,7 +50,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 export class InputComponent implements ControlValueAccessor, OnInit {
     private readonly fb = inject(FormBuilder);
 
-    @Input({required: true}) public placeholder!: string;
+    @Input({ required: true }) public placeholder!: string;
     @Input() public label?: string | null;
     @Input() public isTextarea = false;
     @Input() public validators: ValidatorFn[] = [];

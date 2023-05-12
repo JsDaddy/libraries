@@ -1,5 +1,5 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformServer } from "@angular/common";
+import { DOCUMENT, isPlatformServer } from '@angular/common';
 
 @Injectable()
 export class BodyStylesService {

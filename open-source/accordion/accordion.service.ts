@@ -1,6 +1,6 @@
 import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
-import { DOCUMENT, isPlatformServer } from "@angular/common";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class AccordionService {

@@ -5,7 +5,8 @@ import {
     EventEmitter,
     inject,
     Input,
-    Output, PLATFORM_ID,
+    Output,
+    PLATFORM_ID,
     QueryList,
     ViewChild,
     ViewChildren,
@@ -21,25 +22,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, fromEvent } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { OpenSourcePath } from '../path/open-source.path';
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrls: ['./accordion.component.scss'],
-    imports: [
-        NgClass,
-        NgFor,
-        NgStyle,
-        AssetPipe,
-        HidePipe,
-        VisitBtnComponent,
-        ColorPipe,
-    ],
+    imports: [NgClass, NgFor, NgStyle, AssetPipe, HidePipe, VisitBtnComponent, ColorPipe],
     standalone: true,
     providers: [BodyStylesService],
 })
-export class AccordionComponent  implements AfterViewInit {
+export class AccordionComponent implements AfterViewInit {
     @Input() public lists!: IListItem[];
 
     @Output() public switchCardIndex = new EventEmitter<number>();
@@ -72,7 +65,7 @@ export class AccordionComponent  implements AfterViewInit {
             .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
-            .pipe(filter(Boolean),takeUntilDestroyed())
+            .pipe(filter(Boolean), takeUntilDestroyed())
             .subscribe((itemId) => {
                 this.itemInAccordion = Number(itemId);
             });

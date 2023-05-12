@@ -13,7 +13,7 @@ import { GithubStarsService } from '../github/github-stars.service';
     imports: [AsyncPipe, AssetPipe],
 })
 export class GithubButtonsComponent {
-    @Input({required: true}) public title!: string;
+    @Input({ required: true }) public title!: string;
     public readonly assetPathShared = SharedAssetPath.ROOT;
     public readonly jsdaddyGithub = 'https://github.com/JsDaddy/';
     public readonly countOfStarsOnGithub$: Observable<number> =
