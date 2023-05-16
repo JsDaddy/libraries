@@ -1,12 +1,18 @@
-import { ElementRef, Injectable, QueryList } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
+import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
-export class AccordionService extends UnSubscriber {
+export class AccordionService {
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly document = inject(DOCUMENT);
+
     public onChangeAccordion(cards: QueryList<ElementRef>): void {
-        cards.changes.pipe(takeUntil(this.unsubscribe$$)).subscribe((elementRef) => {
-            const firstNativeElement: HTMLElement | null = document.getElementById(
+        if (isPlatformServer(this.platformId)) {
+            return;
+        }
+        cards.changes.pipe(takeUntilDestroyed()).subscribe((elementRef) => {
+            const firstNativeElement: HTMLElement | null = this.document.getElementById(
                 elementRef.first.nativeElement.id
             );
             if (firstNativeElement) {

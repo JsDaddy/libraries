@@ -1,7 +1,7 @@
 @import 'border-mixin';
 @import 'media-breakpoints';
 @import 'typography.mixin';
-@import 'src/libraries/fonts/fonts';
+@import '../fonts/fonts';
 *:focus,
 *:active {
     -webkit-tap-highlight-color: transparent;
@@ -161,7 +161,8 @@ h5,
 
 .orange-yellow {
     background: var(--orangeYellow);
-    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
 }
 .yellow {
@@ -325,7 +326,7 @@ code {
 
 ::-webkit-scrollbar-thumb {
     background-image: linear-gradient(0deg, #f79046 0.28%, rgba(247, 144, 70, 0) 100%),
-        url('~src/assets/images/content/scroll-shadow.svg');
+        url('../../assets/images/content/scroll-shadow.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -333,5 +334,6 @@ code {
 }
 
 body {
-    overflow: overlay;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

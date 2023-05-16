@@ -1,20 +1,23 @@
-import { ElementRef, inject, Injectable, QueryList } from '@angular/core';
-import { BehaviorSubject, debounceTime, fromEvent, takeUntil } from 'rxjs';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
+import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
+import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
-export class ScrollService extends UnSubscriber {
+export class ScrollService {
     private readonly activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;
     private readonly minusTopMobileHeight = 150;
+    private readonly document = inject(DOCUMENT);
+    private readonly platformId = inject(PLATFORM_ID);
 
     public readonly activeCard$ = this.activeCardId$$.asObservable();
 
     public onScroll(cards: QueryList<ElementRef>): void {
         fromEvent(document, 'scroll')
-            .pipe(debounceTime(100), takeUntil(this.unsubscribe$$))
+            .pipe(debounceTime(100), takeUntilDestroyed())
             .subscribe(() => {
                 const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;
@@ -31,12 +34,15 @@ export class ScrollService extends UnSubscriber {
     }
 
     public isInViewport(elm: HTMLElement) {
-        const windowHeight = window.document.body.offsetHeight;
+        if (isPlatformServer(this.platformId)) {
+            return false;
+        }
+        const windowHeight = this.document.body.offsetHeight;
         let elementTop = elm.offsetTop - this.minusTopHeight;
         const elementBottom = elementTop + elm.offsetHeight;
 
-        const viewportTop = document.documentElement.scrollTop;
-        const viewportBottom = viewportTop + document.documentElement.clientHeight;
+        const viewportTop = this.document.documentElement.scrollTop;
+        const viewportBottom = viewportTop + this.document.documentElement.clientHeight;
         if (windowHeight < 450) {
             elementTop = elm.offsetTop - this.minusTopMobileHeight;
         }

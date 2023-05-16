@@ -1,4 +1,4 @@
-import { NgClass, NgIf, NgOptimizedImage, UpperCasePipe } from '@angular/common';
+import { NgClass, NgIf, UpperCasePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -18,17 +18,15 @@ import {
     ReactiveFormsModule,
     ValidatorFn,
 } from '@angular/forms';
-import { AssetPipe } from '@libraries/asset/asset.pipe';
-import { takeUntil } from 'rxjs';
+import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import { AutofocusDirective } from '@libraries/input/auto-focus.directive';
+import { AutofocusDirective } from '../input/auto-focus.directive';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
     standalone: true,
     imports: [
-        NgOptimizedImage,
         NgClass,
         NgIf,
         ReactiveFormsModule,
@@ -49,10 +47,10 @@ import { AutofocusDirective } from '@libraries/input/auto-focus.directive';
         },
     ],
 })
-export class InputComponent extends UnSubscriber implements ControlValueAccessor, OnInit {
+export class InputComponent implements ControlValueAccessor, OnInit {
     private readonly fb = inject(FormBuilder);
 
-    @Input() public placeholder!: string;
+    @Input({ required: true }) public placeholder!: string;
     @Input() public label?: string | null;
     @Input() public isTextarea = false;
     @Input() public validators: ValidatorFn[] = [];
@@ -67,7 +65,7 @@ export class InputComponent extends UnSubscriber implements ControlValueAccessor
     private cdr = inject(ChangeDetectorRef);
 
     public ngOnInit(): void {
-        this.control.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe((value: string) => {
+        this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value: string) => {
             this.onChange && this.onChange(value);
             this.cdr.detectChanges();
         });
