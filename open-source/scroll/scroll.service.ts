@@ -1,5 +1,13 @@
-import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
-import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
+import {
+    ElementRef,
+    inject,
+    Injectable,
+    Injector,
+    PLATFORM_ID,
+    QueryList,
+    runInInjectionContext,
+} from '@angular/core';
+import { BehaviorSubject, debounceTime, fromEvent, MonoTypeOperatorFunction } from 'rxjs';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,12 +20,18 @@ export class ScrollService {
     private readonly minusTopMobileHeight = 150;
     private readonly document = inject(DOCUMENT);
     private readonly platformId = inject(PLATFORM_ID);
+    private readonly injector = inject(Injector);
 
     public readonly activeCard$ = this.activeCardId$$.asObservable();
 
     public onScroll(cards: QueryList<ElementRef>): void {
         fromEvent(document, 'scroll')
-            .pipe(debounceTime(100), takeUntilDestroyed())
+            .pipe(
+                debounceTime(100),
+                runInInjectionContext<MonoTypeOperatorFunction<Event>>(this.injector, () =>
+                    takeUntilDestroyed()
+                )
+            )
             .subscribe(() => {
                 const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;

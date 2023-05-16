@@ -4,10 +4,12 @@ import {
     ElementRef,
     EventEmitter,
     inject,
+    Injector,
     Input,
     Output,
     PLATFORM_ID,
     QueryList,
+    runInInjectionContext,
     ViewChild,
     ViewChildren,
 } from '@angular/core';
@@ -19,7 +21,7 @@ import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import { ColorPipe } from '../color/color.pipe';
 import { TrackByService } from '../../track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, fromEvent } from 'rxjs';
+import { filter, fromEvent, MonoTypeOperatorFunction } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { OpenSourcePath } from '../path/open-source.path';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -51,6 +53,7 @@ export class AccordionComponent implements AfterViewInit {
     private readonly router = inject(Router);
     private readonly platformId = inject(PLATFORM_ID);
     private readonly document = inject(DOCUMENT);
+    private readonly injector = inject(Injector);
 
     public ngAfterViewInit(): void {
         fromEvent(window, 'click')
@@ -60,12 +63,19 @@ export class AccordionComponent implements AfterViewInit {
                         this.showAccordion &&
                         event?.target !== this.accordionBlockElement.nativeElement
                 ),
-                takeUntilDestroyed()
+                runInInjectionContext<MonoTypeOperatorFunction<Event>>(this.injector, () =>
+                    takeUntilDestroyed()
+                )
             )
             .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
-            .pipe(filter(Boolean), takeUntilDestroyed())
+            .pipe(
+                filter(Boolean),
+                runInInjectionContext<MonoTypeOperatorFunction<string>>(this.injector, () =>
+                    takeUntilDestroyed()
+                )
+            )
             .subscribe((itemId) => {
                 this.itemInAccordion = Number(itemId);
             });
