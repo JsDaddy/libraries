@@ -117,7 +117,7 @@
                     }
                 }
                 .panel {
-                    max-height: 320px;
+                    max-height: max-content;
                     .accordion-box {
                         height: 21px;
                         visibility: visible;

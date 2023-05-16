@@ -43,7 +43,7 @@ export interface IMaskOptions {
     _clearIfNotMatch: boolean;
     _shownMaskExpression: string;
     _validation: boolean;
-
+    _allowNegativeNumbers: boolean;
     _hiddenInput: boolean;
 
     _specialCharacters: string | string[];
