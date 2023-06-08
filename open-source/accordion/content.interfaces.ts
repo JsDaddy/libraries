@@ -45,7 +45,7 @@ export interface IMaskOptions {
     _validation: boolean;
     _allowNegativeNumbers: boolean;
     _hiddenInput: boolean;
-
+    _leadZero: boolean;
     _specialCharacters: string | string[];
 
     _thousandSeparator: string;
