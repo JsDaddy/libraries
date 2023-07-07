@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     EventEmitter,
     inject,
     Input,
@@ -63,12 +64,15 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     public control: FormControl = this.fb.control(null);
 
     private cdr = inject(ChangeDetectorRef);
+    private readonly destroyRef = inject(DestroyRef);
 
     public ngOnInit(): void {
-        this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value: string) => {
-            this.onChange && this.onChange(value);
-            this.cdr.detectChanges();
-        });
+        this.control.valueChanges
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((value: string) => {
+                this.onChange && this.onChange(value);
+                this.cdr.detectChanges();
+            });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
