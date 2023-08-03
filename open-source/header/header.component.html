@@ -8,14 +8,14 @@
                 <img
                     width="50"
                     height="50"
-                    [src]="'logo' | asset: openSourceHeaderPath"
+                    [src]="'logo' | asset : openSourceHeaderPath"
                     alt="Logo JsDaddy"
                     class="logo" />
             </a>
         </span>
     </div>
     <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
-        <span class="mrl-20" [ngClass]="activeLink | color: item.link">
+        <span class="mrl-20" [ngClass]="activeLink | color : item.link">
             <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
                 <button class="center-buttons row ai-c pointer">
                     {{ item.title }}
@@ -24,19 +24,19 @@
         </span>
     </div>
     <div class="open-nav pointer" (click)="toggleNavBlock()">
-        <img width="48" height="48" [src]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
+        <img width="48" height="48" [src]="'burger' | asset : openSourceHeaderPath" alt="Burger" />
     </div>
     <div class="mob-open pointer">
         <img
             width="50"
             height="50"
-            [src]="'logo-white' | asset: openSourceHeaderPath"
+            [src]="'logo-white' | asset : openSourceHeaderPath"
             alt="Logo JsDaddy"
             class="logo-white ais-c" />
         <img
             width="68"
             height="67"
-            [src]="'close' | asset: openSourceHeaderPath"
+            [src]="'close' | asset : openSourceHeaderPath"
             alt="Close"
             (click)="toggleNavBlock()" />
     </div>
@@ -45,7 +45,7 @@
         <div class="nav-buttons column">
             <div
                 *ngFor="let item of headerItems; trackBy: trackByPath"
-                [ngClass]="activeLink | color: item.link">
+                [ngClass]="activeLink | color : item.link">
                 <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
                     <button class="row">
                         {{ item.title }}
