@@ -38,7 +38,7 @@ export interface IListItem {
 export interface IMaskOptions {
     _prefix: string;
     _suffix: string;
-    _dropSpecialCharacters: boolean;
+    _dropSpecialCharacters: boolean | string[];
     _showMaskTyped: boolean;
     _clearIfNotMatch: boolean;
     _shownMaskExpression: string;
