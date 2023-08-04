@@ -4,7 +4,7 @@
     [href]="jsdaddyGithub"
     aria-label="Navigate to github">
     <div class="all-stars span">
-        <img width="16" height="16" [src]="'github' | asset : assetPathShared" alt="Github" />
+        <img width="16" height="16" [src]="'github' | asset: assetPathShared" alt="Github" />
         <span> {{ title }} </span>
     </div>
     <div class="stars-count span">{{ (countOfStarsOnGithub$ | async) || 0 }}</div>
