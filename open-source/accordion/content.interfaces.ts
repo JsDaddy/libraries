@@ -1,4 +1,5 @@
 import { UntypedFormControl } from '@angular/forms';
+import { InputTransformFn, OutputTransformFn } from 'ngx-mask';
 
 export interface IComDoc {
     header: string;
@@ -50,6 +51,8 @@ export interface IMaskOptions {
     _apm: boolean;
     _decimalMarker: string | string[];
     _thousandSeparator: string;
+    _inputTransformFn: InputTransformFn;
+    _outputTransformFn: OutputTransformFn;
 }
 
 export type TExample<T extends object> = {
