@@ -51,6 +51,7 @@ export interface IMaskOptions {
     _apm: boolean;
     _decimalMarker: string | string[];
     _thousandSeparator: string;
+    _keepCharacterPositions: boolean;
     _inputTransformFn: InputTransformFn;
     _outputTransformFn: OutputTransformFn;
 }
