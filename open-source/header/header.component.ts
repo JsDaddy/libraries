@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { ColorPipe } from '../color/color.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
@@ -15,7 +15,16 @@ import { OpenSourcePath } from '../path/open-source.path';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
-    imports: [NgFor, NgIf, NgClass, AssetPipe, ColorPipe, HidePipe, VisitBtnComponent],
+    imports: [
+        NgFor,
+        NgIf,
+        NgClass,
+        AssetPipe,
+        ColorPipe,
+        HidePipe,
+        VisitBtnComponent,
+        NgOptimizedImage,
+    ],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {

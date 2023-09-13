@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./chip.component.scss'],
 })
 export class ChipComponent {
-    @Input({ required: true })
+    @Input()
     public chip!: string;
     @Input()
     public chipBgColor = 'rgba(0,0,0,0.05)';

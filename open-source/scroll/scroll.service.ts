@@ -1,24 +1,23 @@
-import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
-import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
+import { ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
+import { BehaviorSubject, debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
 @Injectable()
-export class ScrollService {
+export class ScrollService extends UnSubscriber {
     private readonly activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;
     private readonly minusTopMobileHeight = 150;
     private readonly document = inject(DOCUMENT);
     private readonly platformId = inject(PLATFORM_ID);
-    private readonly destroyRef = inject(DestroyRef);
 
     public readonly activeCard$ = this.activeCardId$$.asObservable();
 
     public onScroll(cards: QueryList<ElementRef>): void {
         fromEvent(document, 'scroll')
-            .pipe(debounceTime(100), takeUntilDestroyed(this.destroyRef))
+            .pipe(debounceTime(100), takeUntil(this.unsubscribe$$))
             .subscribe(() => {
                 const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;

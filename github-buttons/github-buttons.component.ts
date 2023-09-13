@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AssetPipe } from '../asset/asset.pipe';
 import { SharedAssetPath } from '../asset/asset.path';
@@ -10,10 +10,10 @@ import { GithubStarsService } from '../github/github-stars.service';
     templateUrl: './github-buttons.component.html',
     styleUrls: ['./github-buttons.component.scss'],
     standalone: true,
-    imports: [AsyncPipe, AssetPipe],
+    imports: [AsyncPipe, AssetPipe, NgOptimizedImage],
 })
 export class GithubButtonsComponent {
-    @Input({ required: true }) public title!: string;
+    @Input() public title!: string;
     public readonly assetPathShared = SharedAssetPath.ROOT;
     public readonly jsdaddyGithub = 'https://github.com/JsDaddy/';
     public readonly countOfStarsOnGithub$: Observable<number> =

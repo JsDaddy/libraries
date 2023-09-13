@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     Component,
-    DestroyRef,
     ElementRef,
     EventEmitter,
     inject,
@@ -12,7 +11,14 @@ import {
     ViewChild,
     ViewChildren,
 } from '@angular/core';
-import { DOCUMENT, isPlatformServer, NgClass, NgFor, NgStyle } from '@angular/common';
+import {
+    DOCUMENT,
+    isPlatformServer,
+    NgClass,
+    NgFor,
+    NgOptimizedImage,
+    NgStyle,
+} from '@angular/common';
 import { IListItem } from './content.interfaces';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
@@ -20,20 +26,29 @@ import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import { ColorPipe } from '../color/color.pipe';
 import { TrackByService } from '../../track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, fromEvent } from 'rxjs';
+import { filter, fromEvent, takeUntil } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { OpenSourcePath } from '../path/open-source.path';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrls: ['./accordion.component.scss'],
-    imports: [NgClass, NgFor, NgStyle, AssetPipe, HidePipe, VisitBtnComponent, ColorPipe],
+    imports: [
+        NgClass,
+        NgFor,
+        NgStyle,
+        AssetPipe,
+        HidePipe,
+        VisitBtnComponent,
+        ColorPipe,
+        NgOptimizedImage,
+    ],
     standalone: true,
     providers: [BodyStylesService],
 })
-export class AccordionComponent implements AfterViewInit {
+export class AccordionComponent extends UnSubscriber implements AfterViewInit {
     @Input() public lists!: IListItem[];
 
     @Output() public switchCardIndex = new EventEmitter<number>();
@@ -52,7 +67,6 @@ export class AccordionComponent implements AfterViewInit {
     private readonly router = inject(Router);
     private readonly platformId = inject(PLATFORM_ID);
     private readonly document = inject(DOCUMENT);
-    private readonly destroyRef = inject(DestroyRef);
 
     public ngAfterViewInit(): void {
         fromEvent(window, 'click')
@@ -62,12 +76,12 @@ export class AccordionComponent implements AfterViewInit {
                         this.showAccordion &&
                         event?.target !== this.accordionBlockElement.nativeElement
                 ),
-                takeUntilDestroyed(this.destroyRef)
+                takeUntil(this.unsubscribe$$)
             )
             .subscribe(() => this.showAccordionBlock());
         this.openFirstAccordion();
         this.activatedRoute.fragment
-            .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
+            .pipe(filter(Boolean), takeUntil(this.unsubscribe$$))
             .subscribe((itemId) => {
                 this.itemInAccordion = Number(itemId);
             });

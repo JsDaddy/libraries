@@ -3,7 +3,6 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DestroyRef,
     EventEmitter,
     inject,
     Input,
@@ -22,7 +21,8 @@ import {
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
 import { AutofocusDirective } from '../input/auto-focus.directive';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
+import { takeUntil } from 'rxjs';
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
@@ -48,10 +48,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         },
     ],
 })
-export class InputComponent implements ControlValueAccessor, OnInit {
+export class InputComponent extends UnSubscriber implements ControlValueAccessor, OnInit {
     private readonly fb = inject(FormBuilder);
 
-    @Input({ required: true }) public placeholder!: string;
+    @Input() public placeholder!: string;
     @Input() public label?: string | null;
     @Input() public isTextarea = false;
     @Input() public validators: ValidatorFn[] = [];
@@ -64,15 +64,12 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     public control: FormControl = this.fb.control(null);
 
     private cdr = inject(ChangeDetectorRef);
-    private readonly destroyRef = inject(DestroyRef);
 
     public ngOnInit(): void {
-        this.control.valueChanges
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((value: string) => {
-                this.onChange && this.onChange(value);
-                this.cdr.detectChanges();
-            });
+        this.control.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe((value: string) => {
+            this.onChange && this.onChange(value);
+            this.cdr.detectChanges();
+        });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

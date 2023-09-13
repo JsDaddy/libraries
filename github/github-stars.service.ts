@@ -1,7 +1,8 @@
 import { isPlatformServer } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject, makeStateKey } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { concatAll, of, reduce } from 'rxjs';
 import { BaseHttpService } from '../base-http/base-http.service';
+import { makeStateKey } from '@angular/platform-browser';
 
 @Injectable()
 export class GithubStarsService {

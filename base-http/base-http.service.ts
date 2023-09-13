@@ -1,6 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, PLATFORM_ID, StateKey, TransferState } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { StateKey, TransferState } from '@angular/platform-browser';
+
 import { catchError, Observable, of, tap } from 'rxjs';
 import { DOMAIN } from '../token/token';
 

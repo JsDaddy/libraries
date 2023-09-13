@@ -8,7 +8,7 @@
                 <img
                     width="34"
                     height="29"
-                    [src]="'logo' | asset: openSourceHeaderPath"
+                    [ngSrc]="'logo' | asset: openSourceHeaderPath"
                     alt="Logo JsDaddy"
                     class="logo" />
             </a>
@@ -24,19 +24,19 @@
         </span>
     </div>
     <div class="open-nav pointer" (click)="toggleNavBlock()">
-        <img width="48" height="48" [src]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
+        <img width="48" height="48" [ngSrc]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
     </div>
     <div class="mob-open pointer">
         <img
             width="34"
             height="29"
-            [src]="'logo-white' | asset: openSourceHeaderPath"
+            [ngSrc]="'logo-white' | asset: openSourceHeaderPath"
             alt="Logo JsDaddy"
             class="logo-white ais-c" />
         <img
             width="68"
             height="67"
-            [src]="'close' | asset: openSourceHeaderPath"
+            [ngSrc]="'close' | asset: openSourceHeaderPath"
             alt="Close"
             (click)="toggleNavBlock()" />
     </div>
