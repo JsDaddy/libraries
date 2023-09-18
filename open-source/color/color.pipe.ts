@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
     name: 'color',
-    standalone: true,
 })
 export class ColorPipe implements PipeTransform {
     public transform(

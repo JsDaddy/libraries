@@ -1,10 +1,6 @@
-import { Component, inject, Input } from '@angular/core';
-import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { ColorPipe } from '../color/color.pipe';
-import { HidePipe } from '../hide/hide.pipe';
-import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
+import { Component, Input } from '@angular/core';
+
 import { IHeaderITem } from '../header/header.interface';
-import { AssetPipe } from '../../asset/asset.pipe';
 import { TrackByService } from '../../track-by/track-by.service';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { LinkPath } from '../../link/link.path';
@@ -14,17 +10,6 @@ import { OpenSourcePath } from '../path/open-source.path';
     selector: 'jsdaddy-open-source-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    standalone: true,
-    imports: [
-        NgFor,
-        NgIf,
-        NgClass,
-        AssetPipe,
-        ColorPipe,
-        HidePipe,
-        VisitBtnComponent,
-        NgOptimizedImage,
-    ],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
@@ -47,9 +32,14 @@ export class HeaderComponent {
     ];
 
     public readonly jsDaddyWebsite = LinkPath.WEBSITE_JSDDADY;
-    public readonly trackByPath = inject(TrackByService).trackBy('title');
-    public readonly bodyStylesService = inject(BodyStylesService);
+    // public readonly trackByPath = inject(TrackByService).trackBy('title');
+    // public readonly bodyStylesService = inject(BodyStylesService);
     public readonly openSourceHeaderPath = OpenSourcePath.HEADER;
+
+    public constructor(
+        public readonly bodyStylesService: BodyStylesService,
+        public readonly trackByPath: TrackByService
+    ) {}
 
     public toggleNavBlock(): void {
         this.showNav = !this.showNav;

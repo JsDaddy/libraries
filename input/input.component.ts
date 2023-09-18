@@ -1,4 +1,3 @@
-import { NgClass, NgIf, UpperCasePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -15,27 +14,13 @@ import {
     FormBuilder,
     FormControl,
     NG_VALUE_ACCESSOR,
-    ReactiveFormsModule,
     ValidatorFn,
 } from '@angular/forms';
-import { AssetPipe } from '../asset/asset.pipe';
-import { InputPipe } from './input.pipe';
-import { AutofocusDirective } from '../input/auto-focus.directive';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 import { takeUntil } from 'rxjs';
 
 @Component({
     selector: 'jsdaddy-input[placeholder]',
-    standalone: true,
-    imports: [
-        NgClass,
-        NgIf,
-        ReactiveFormsModule,
-        UpperCasePipe,
-        AssetPipe,
-        InputPipe,
-        AutofocusDirective,
-    ],
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
     encapsulation: ViewEncapsulation.Emulated,

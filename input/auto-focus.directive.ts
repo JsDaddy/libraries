@@ -2,7 +2,6 @@ import { Directive, ElementRef, inject, Input } from '@angular/core';
 
 @Directive({
     selector: '[jsdaddyAutofocus]',
-    standalone: true,
 })
 export class AutofocusDirective {
     @Input()

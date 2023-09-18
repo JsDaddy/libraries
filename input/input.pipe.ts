@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 
 @Pipe({
     name: 'input',
-    standalone: true,
     pure: false,
 })
 export class InputPipe implements PipeTransform {

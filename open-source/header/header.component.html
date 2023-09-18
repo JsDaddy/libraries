@@ -1,64 +1,63 @@
-<div class="header row ai-c bg-full-white" [ngClass]="showNav | hide">
-    <div class="left-side">
-        <span class="logo">
-            <a
-                [href]="jsDaddyWebsite"
-                target="_self"
-                aria-label="Navigate to JsDaddy corporate site">
-                <img
-                    width="34"
-                    height="29"
-                    [ngSrc]="'logo' | asset : openSourceHeaderPath"
-                    alt="Logo JsDaddy"
-                    class="logo" />
-            </a>
-        </span>
-    </div>
-    <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
-        <span class="mrl-20" [ngClass]="activeLink | color : item.link">
+<!--<div class="header row ai-c bg-full-white" [ngClass]="showNav | hide">-->
+<div class="left-side">
+    <span class="logo">
+        <a [href]="jsDaddyWebsite" target="_self" aria-label="Navigate to JsDaddy corporate site">
+            <!--                <img-->
+            <!--                    width="34"-->
+            <!--                    height="29"-->
+            <!--                    [ngSrc]="'logo' | asset : openSourceHeaderPath"-->
+            <!--                    alt="Logo JsDaddy"-->
+            <!--                    class="logo" />-->
+        </a>
+    </span>
+</div>
+<div
+    class="center-side row ai-c"
+    *ngFor="let item of headerItems; trackBy: trackByPath.trackBy('title')">
+    <!--        <span class="mrl-20" [ngClass]="activeLink | color : item.link">-->
+    <!--            <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">-->
+    <!--                <button class="center-buttons row ai-c pointer">-->
+    <!--                    {{ item.title }}-->
+    <!--                </button>-->
+    <!--            </a>-->
+    <!--        </span>-->
+</div>
+<!--    <div class="open-nav pointer" (click)="toggleNavBlock()">-->
+<!--        <img-->
+<!--            width="48"-->
+<!--            height="48"-->
+<!--            [ngSrc]="'burger' | asset : openSourceHeaderPath"-->
+<!--            alt="Burger" />-->
+<!--    </div>-->
+<!--    <div class="mob-open pointer">-->
+<!--        <img-->
+<!--            width="34"-->
+<!--            height="29"-->
+<!--            [ngSrc]="'logo-white' | asset : openSourceHeaderPath"-->
+<!--            alt="Logo JsDaddy"-->
+<!--            class="logo-white ais-c" />-->
+<!--        <img-->
+<!--            width="68"-->
+<!--            height="67"-->
+<!--            [ngSrc]="'close' | asset : openSourceHeaderPath"-->
+<!--            alt="Close"-->
+<!--            (click)="toggleNavBlock()" />-->
+<!--    </div>-->
+<!--    <div class="nav-section bg-black" [ngClass]="showNav | hide">-->
+<div class="nav-section bg-black">
+    <h3 class="full-white text uppercase ls-25">Repositories</h3>
+    <div class="nav-buttons column">
+        <div *ngFor="let item of headerItems; trackBy: trackByPath.trackBy('title')">
+            <!--                [ngClass]="activeLink | color : item.link">-->
             <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
-                <button class="center-buttons row ai-c pointer">
+                <button class="row">
                     {{ item.title }}
                 </button>
             </a>
-        </span>
-    </div>
-    <div class="open-nav pointer" (click)="toggleNavBlock()">
-        <img
-            width="48"
-            height="48"
-            [ngSrc]="'burger' | asset : openSourceHeaderPath"
-            alt="Burger" />
-    </div>
-    <div class="mob-open pointer">
-        <img
-            width="34"
-            height="29"
-            [ngSrc]="'logo-white' | asset : openSourceHeaderPath"
-            alt="Logo JsDaddy"
-            class="logo-white ais-c" />
-        <img
-            width="68"
-            height="67"
-            [ngSrc]="'close' | asset : openSourceHeaderPath"
-            alt="Close"
-            (click)="toggleNavBlock()" />
-    </div>
-    <div class="nav-section bg-black" [ngClass]="showNav | hide">
-        <h3 class="full-white text uppercase ls-25">Repositories</h3>
-        <div class="nav-buttons column">
-            <div
-                *ngFor="let item of headerItems; trackBy: trackByPath"
-                [ngClass]="activeLink | color : item.link">
-                <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
-                    <button class="row">
-                        {{ item.title }}
-                    </button>
-                </a>
-            </div>
-            <div class="btn-bottom">
-                <jsdaddy-open-source-visit-btn />
-            </div>
+        </div>
+        <div class="btn-bottom">
+            <!--                <jsdaddy-open-source-visit-btn></jsdaddy-open-source-visit-btn>-->
         </div>
     </div>
 </div>
+<!--</div>-->

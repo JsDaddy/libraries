@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, InjectionToken, PLATFORM_ID } from '@angular/core';
 import { StateKey, TransferState } from '@angular/platform-browser';
 
 import { catchError, Observable, of, tap } from 'rxjs';
@@ -9,9 +9,15 @@ import { DOMAIN } from '../token/token';
 @Injectable()
 export class BaseHttpService {
     private readonly domain = inject<string[]>(DOMAIN);
-    private readonly http = inject(HttpClient);
-    private readonly platformId = inject<string>(PLATFORM_ID);
-    private readonly transferState = inject(TransferState);
+    // private readonly http = inject(HttpClient);
+    // private readonly platformId = inject<string>(PLATFORM_ID);
+    // private readonly transferState = inject(TransferState);
+
+    public constructor(
+        private readonly http: HttpClient,
+        private readonly transferState: TransferState,
+        private readonly platformId: InjectionToken<string>
+    ) {}
 
     public getData<T>(path: string, defaultValue: T, key: StateKey<T>): Observable<T> {
         if (key) {
