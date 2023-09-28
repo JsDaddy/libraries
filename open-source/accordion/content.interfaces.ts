@@ -54,6 +54,7 @@ export interface IMaskOptions {
     _inputTransformFn: InputTransformFn;
     _outputTransformFn: OutputTransformFn;
 }
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface InputTransformFn {
     (value: unknown): string | number;
 }
