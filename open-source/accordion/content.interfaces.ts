@@ -1,5 +1,4 @@
 import { UntypedFormControl } from '@angular/forms';
-import { InputTransformFn, OutputTransformFn } from 'ngx-mask';
 
 export interface IComDoc {
     header: string;
@@ -54,6 +53,14 @@ export interface IMaskOptions {
     _keepCharacterPositions: boolean;
     _inputTransformFn: InputTransformFn;
     _outputTransformFn: OutputTransformFn;
+}
+export interface InputTransformFn {
+    (value: unknown): string | number;
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export interface OutputTransformFn {
+    (value: string | number | undefined | null): unknown;
 }
 
 export type TExample<T extends object> = {

@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ColorPipe implements PipeTransform {
     public transform(
-        value: number | string | undefined,
+        value: number | string | undefined | unknown,
         comparison: number | string | undefined
     ): string {
         return value === comparison ? 'yellow' : 'black';
