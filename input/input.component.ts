@@ -1,4 +1,4 @@
-import { NgClass, NgIf, UpperCasePipe } from '@angular/common';
+import { NgClass, UpperCasePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -29,7 +29,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: true,
     imports: [
         NgClass,
-        NgIf,
         ReactiveFormsModule,
         UpperCasePipe,
         AssetPipe,
@@ -37,7 +36,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         AutofocusDirective,
     ],
     templateUrl: './input.component.html',
-    styleUrls: ['./input.component.scss'],
+    styleUrl: './input.component.scss',
     encapsulation: ViewEncapsulation.Emulated,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [

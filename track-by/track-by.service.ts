@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class TrackByService {
     public trackBy(key: string | number) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -9,10 +9,11 @@
         {{ subtitle }}
     </span>
     <div class="chips row orange">
-        <jsdaddy-chip
-            class="chips"
-            chipBgColor="rgba(255, 113, 10, 0.05)"
-            *ngFor="let chip of chips; trackBy: trackByPath"
-            [chip]="chip"></jsdaddy-chip>
+        @for (chip of chips; track chip) {
+            <jsdaddy-chip
+                class="chips"
+                chipBgColor="rgba(255, 113, 10, 0.05)"
+                [chip]="chip"></jsdaddy-chip>
+        }
     </div>
 </div>

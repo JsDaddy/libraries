@@ -12,13 +12,12 @@ import {
     ViewChild,
     ViewChildren,
 } from '@angular/core';
-import { DOCUMENT, isPlatformServer, NgClass, NgFor, NgStyle } from '@angular/common';
+import { DOCUMENT, isPlatformServer, NgClass, NgStyle } from '@angular/common';
 import { IListItem } from './content.interfaces';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import { ColorPipe } from '../color/color.pipe';
-import { TrackByService } from '../../track-by/track-by.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, fromEvent } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
@@ -28,8 +27,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
-    styleUrls: ['./accordion.component.scss'],
-    imports: [NgClass, NgFor, NgStyle, AssetPipe, HidePipe, VisitBtnComponent, ColorPipe],
+    styleUrl: './accordion.component.scss',
+    imports: [NgClass, NgStyle, AssetPipe, HidePipe, VisitBtnComponent, ColorPipe],
     standalone: true,
     providers: [BodyStylesService],
 })
@@ -45,7 +44,6 @@ export class AccordionComponent implements AfterViewInit {
     public itemInAccordion = 1;
 
     public readonly openSourceAccordionPath = OpenSourcePath.ACCORDION;
-    public readonly trackByPath = inject(TrackByService).trackBy('id');
     public readonly bodyStylesService = inject(BodyStylesService);
 
     private readonly activatedRoute = inject(ActivatedRoute);

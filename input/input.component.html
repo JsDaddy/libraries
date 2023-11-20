@@ -1,14 +1,25 @@
 <div class="input-wrapper" [ngClass]="[control | input: true, isDark ? 'dark' : '']">
-    <input
-        *ngIf="!isTextarea; else textarea"
-        [formControl]="control"
-        [ngClass]="{ dark: isDark }"
-        type="text"
-        [jsdaddyAutofocus]="autoFocus"
-        name="input"
-        [placeholder]="placeholder"
-        (keyup.enter)="onLabelClick()"
-        class="span" />
+    @if (!isTextarea) {
+        <input
+            [formControl]="control"
+            [ngClass]="{ dark: isDark }"
+            type="text"
+            [jsdaddyAutofocus]="autoFocus"
+            name="input"
+            [placeholder]="placeholder"
+            (keyup.enter)="onLabelClick()"
+            class="span" />
+    } @else {
+        <textarea
+            [formControl]="control"
+            [ngClass]="{ dark: isDark }"
+            type="text"
+            name="input"
+            [jsdaddyAutofocus]="autoFocus"
+            [placeholder]="placeholder"
+            (keyup.enter)="onLabelClick()"
+            class="span"></textarea>
+    }
     <ng-template #textarea>
         <textarea
             [formControl]="control"
@@ -21,16 +32,16 @@
             class="span"></textarea>
     </ng-template>
     <label (click)="onLabelClick()" for="input">
-        <ng-container *ngIf="(control | input) || (label | uppercase) as label; else suffixicon">
+        @if ((control | input) || (label | uppercase); as label) {
             {{ label }}
-        </ng-container>
-        <ng-template #suffixicon>
-            <img
-                *ngIf="control.touched"
-                alt="Done"
-                width="15"
-                height="11"
-                [src]="'done-yellow' | asset: additionalPath" />
-        </ng-template>
+        } @else {
+            @if (control.touched) {
+                <img
+                    alt="Done"
+                    width="15"
+                    height="11"
+                    [src]="'done-yellow' | asset: additionalPath" />
+            }
+        }
     </label>
 </div>

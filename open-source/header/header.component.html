@@ -14,15 +14,17 @@
             </a>
         </span>
     </div>
-    <div class="center-side row ai-c" *ngFor="let item of headerItems; trackBy: trackByPath">
-        <span class="mrl-20" [ngClass]="activeLink | color: item.link">
-            <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
-                <button class="center-buttons row ai-c pointer">
-                    {{ item.title }}
-                </button>
-            </a>
-        </span>
-    </div>
+    @for (item of headerItems; track item.title) {
+        <div class="center-side row ai-c">
+            <span class="mrl-20" [ngClass]="activeLink | color: item.link">
+                <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
+                    <button class="center-buttons row ai-c pointer">
+                        {{ item.title }}
+                    </button>
+                </a>
+            </span>
+        </div>
+    }
     <div class="open-nav pointer" (click)="toggleNavBlock()">
         <img width="48" height="48" [src]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
     </div>
@@ -43,15 +45,15 @@
     <div class="nav-section bg-black" [ngClass]="showNav | hide">
         <h3 class="full-white text uppercase ls-25">Repositories</h3>
         <div class="nav-buttons column">
-            <div
-                *ngFor="let item of headerItems; trackBy: trackByPath"
-                [ngClass]="activeLink | color: item.link">
-                <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
-                    <button class="row">
-                        {{ item.title }}
-                    </button>
-                </a>
-            </div>
+            @for (item of headerItems; track item.title) {
+                <div [ngClass]="activeLink | color: item.link">
+                    <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
+                        <button class="row">
+                            {{ item.title }}
+                        </button>
+                    </a>
+                </div>
+            }
             <div class="btn-bottom">
                 <jsdaddy-open-source-visit-btn />
             </div>

@@ -18,55 +18,55 @@
 </div>
 <div class="drawer-container column bg-black" [ngClass]="showAccordion | hide" #accordionBlock>
     <div class="drawer bg-black">
-        <div
-            *ngFor="let list of lists; let i = index; trackBy: trackByPath"
-            class="non-active accordion-block"
-            #accordion>
-            <div
-                class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
-                (click)="toggle(i); switchAccordion(list.id); $event.stopPropagation()">
-                <div class="left-side-accordion row ai-c bg-light-grey-accordion">
-                    <img
-                        width="32"
-                        height="32"
-                        [src]="list.defaultSvg | asset: openSourceAccordionPath"
-                        class="default-svg"
-                        alt="Accordion white" />
-                    <img
-                        width="32"
-                        height="32"
-                        [src]="list.activeSvg | asset: openSourceAccordionPath"
-                        class="active-svg"
-                        alt="Accordion yellow" />
+        @for (list of lists; track list.id; let i = $index) {
+            <div class="non-active accordion-block" #accordion>
+                <div
+                    class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
+                    (click)="toggle(i); switchAccordion(list.id); $event.stopPropagation()">
+                    <div class="left-side-accordion row ai-c bg-light-grey-accordion">
+                        <img
+                            width="32"
+                            height="32"
+                            [src]="list.defaultSvg | asset: openSourceAccordionPath"
+                            class="default-svg"
+                            alt="Accordion white" />
+                        <img
+                            width="32"
+                            height="32"
+                            [src]="list.activeSvg | asset: openSourceAccordionPath"
+                            class="active-svg"
+                            alt="Accordion yellow" />
+                    </div>
+                    <button class="accordion-btn bg-black full-white pointer">
+                        {{ list.header }}
+                    </button>
+                    <div class="right-side-accordion">
+                        <img
+                            width="12"
+                            height="12"
+                            [src]="list.whiteChevron | asset: openSourceAccordionPath"
+                            class="chevron-default"
+                            alt="Chevron white" />
+                        <img
+                            width="12"
+                            height="12"
+                            [src]="list.yellowChevron | asset: openSourceAccordionPath"
+                            class="chevron-active"
+                            alt="Chevron yellow" />
+                    </div>
                 </div>
-                <button class="accordion-btn bg-black full-white pointer">
-                    {{ list.header }}
-                </button>
-                <div class="right-side-accordion">
-                    <img
-                        width="12"
-                        height="12"
-                        [src]="list.whiteChevron | asset: openSourceAccordionPath"
-                        class="chevron-default"
-                        alt="Chevron white" />
-                    <img
-                        width="12"
-                        height="12"
-                        [src]="list.yellowChevron | asset: openSourceAccordionPath"
-                        class="chevron-active"
-                        alt="Chevron yellow" />
+                <div class="panel full-white text bg-black">
+                    @for (item of list.text; track item.id) {
+                        <p
+                            class="accordion-box pointer"
+                            [ngClass]="item.id | color: itemInAccordion"
+                            (click)="handleClick(item.id, item.scrollTo)">
+                            {{ item.content }}
+                        </p>
+                    }
                 </div>
             </div>
-            <div class="panel full-white text bg-black">
-                <p
-                    *ngFor="let item of list.text; trackBy: trackByPath"
-                    class="accordion-box pointer"
-                    [ngClass]="item.id | color: itemInAccordion"
-                    (click)="handleClick(item.id, item.scrollTo)">
-                    {{ item.content }}
-                </p>
-            </div>
-        </div>
+        }
         <div class="visit-btn">
             <jsdaddy-open-source-visit-btn />
         </div>

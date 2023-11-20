@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     selector: 'jsdaddy-chip[chip]',
     standalone: true,
     templateUrl: './chip.component.html',
-    styleUrls: ['./chip.component.scss'],
+    styleUrl: './chip.component.scss',
 })
 export class ChipComponent {
     @Input({ required: true })

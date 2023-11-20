@@ -6,7 +6,7 @@ import { OpenSourcePath } from '../path/open-source.path';
 @Component({
     selector: 'jsdaddy-open-source-visit-btn',
     templateUrl: './visit-btn.component.html',
-    styleUrls: ['./visit-btn.component.scss'],
+    styleUrl: './visit-btn.component.scss',
     standalone: true,
     imports: [AssetPipe],
 })
