@@ -6,6 +6,7 @@
             type="text"
             [jsdaddyAutofocus]="autoFocus"
             name="input"
+            id="{{ uniqueId }}"
             [placeholder]="placeholder"
             (keyup.enter)="onLabelClick()"
             class="span" />
@@ -15,23 +16,14 @@
             [ngClass]="{ dark: isDark }"
             type="text"
             name="input"
+            id="{{ uniqueId }}"
             [jsdaddyAutofocus]="autoFocus"
             [placeholder]="placeholder"
             (keyup.enter)="onLabelClick()"
             class="span"></textarea>
     }
-    <ng-template #textarea>
-        <textarea
-            [formControl]="control"
-            [ngClass]="{ dark: isDark }"
-            type="text"
-            name="input"
-            [jsdaddyAutofocus]="autoFocus"
-            [placeholder]="placeholder"
-            (keyup.enter)="onLabelClick()"
-            class="span"></textarea>
-    </ng-template>
-    <label (click)="onLabelClick()" for="input">
+
+    <label (click)="onLabelClick()" for="{{ uniqueId }}">
         @if ((control | input) || (label | uppercase); as label) {
             {{ label }}
         } @else {
