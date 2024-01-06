@@ -7,6 +7,7 @@ import {
     inject,
     Input,
     Output,
+    // type-coverage:ignore-next-line
     PLATFORM_ID,
     QueryList,
     ViewChild,
@@ -37,8 +38,10 @@ export class AccordionComponent implements AfterViewInit {
 
     @Output() public switchCardIndex = new EventEmitter<number>();
 
-    @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<ElementRef>;
-    @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef;
+    @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<
+        ElementRef<HTMLElement>
+    >;
+    @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef<HTMLElement>;
 
     public showAccordion = false;
     public itemInAccordion = 1;
@@ -48,7 +51,7 @@ export class AccordionComponent implements AfterViewInit {
 
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly router = inject(Router);
-    private readonly platformId = inject(PLATFORM_ID);
+    private readonly platformId = inject<string>(PLATFORM_ID);
     private readonly document = inject(DOCUMENT);
     private readonly destroyRef = inject(DestroyRef);
 

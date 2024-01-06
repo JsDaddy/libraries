@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+// type-coverage:ignore-next-line
 import { inject, Injectable, PLATFORM_ID, StateKey, TransferState } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { DOMAIN } from '../token/token';

@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
     pure: false,
 })
 export class InputPipe implements PipeTransform {
-    public transform(value: FormControl | null, className?: boolean): string {
+    public transform(value: FormControl<string | null>, className?: boolean): string {
         if (value && (value.dirty || value.touched)) {
             const errors = value.errors;
             if (className && errors) {

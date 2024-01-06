@@ -1,3 +1,4 @@
+// type-coverage:ignore-next-line
 import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
 import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,12 +12,12 @@ export class ScrollService {
     private readonly minusTopHeight = 300;
     private readonly minusTopMobileHeight = 150;
     private readonly document = inject(DOCUMENT);
-    private readonly platformId = inject(PLATFORM_ID);
+    private readonly platformId = inject<string>(PLATFORM_ID);
     private readonly destroyRef = inject(DestroyRef);
 
     public readonly activeCard$ = this.activeCardId$$.asObservable();
 
-    public onScroll(cards: QueryList<ElementRef>): void {
+    public onScroll(cards: QueryList<ElementRef<HTMLElement>>): void {
         fromEvent(document, 'scroll')
             .pipe(debounceTime(100), takeUntilDestroyed(this.destroyRef))
             .subscribe(() => {

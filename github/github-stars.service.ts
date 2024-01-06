@@ -1,4 +1,5 @@
 import { isPlatformServer } from '@angular/common';
+// type-coverage:ignore-next-line
 import { Injectable, PLATFORM_ID, inject, makeStateKey } from '@angular/core';
 import { concatAll, of, reduce } from 'rxjs';
 import { BaseHttpService } from '../base-http/base-http.service';
@@ -6,7 +7,7 @@ import { BaseHttpService } from '../base-http/base-http.service';
 @Injectable()
 export class GithubStarsService {
     public http = inject(BaseHttpService);
-    private readonly platformId = inject(PLATFORM_ID);
+    private readonly platformId = inject<string>(PLATFORM_ID);
 
     public getAllStars() {
         if (isPlatformServer(this.platformId)) {

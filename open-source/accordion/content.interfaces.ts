@@ -1,4 +1,4 @@
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 export interface IComDoc {
     header: string;
@@ -9,7 +9,7 @@ export interface IComDoc {
 }
 
 export interface IControl {
-    form: UntypedFormControl;
+    form: FormControl<string | null>;
     model: string;
 }
 

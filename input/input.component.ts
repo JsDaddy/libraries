@@ -60,7 +60,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     @Output() public labelClick: EventEmitter<void> = new EventEmitter();
 
     public readonly additionalPath = 'shared';
-    public control: FormControl = this.fb.control(null);
+    public control: FormControl<string | null> = this.fb.control(null);
 
     private cdr = inject(ChangeDetectorRef);
     private readonly destroyRef = inject(DestroyRef);
@@ -68,14 +68,14 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     public ngOnInit(): void {
         this.control.valueChanges
             .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((value: string) => {
+            .subscribe((value) => {
                 this.onChange && this.onChange(value);
                 this.cdr.detectChanges();
             });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public writeValue(value: any): void {
+    public writeValue(value: string | null): void {
         if (value === null) {
             this.control.reset();
         }
@@ -92,7 +92,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     }
 
     /* eslint-disable @typescript-eslint/no-empty-function */
-    public onChange: (value: string) => void = () => {};
+    public onChange: (value: string | null) => void = () => {};
     public onTouched: () => void = () => {};
 
     public onLabelClick(): void {

@@ -11,5 +11,5 @@ export class AutofocusDirective {
             this.elRef.nativeElement.focus();
         }
     }
-    public elRef = inject(ElementRef);
+    public elRef = inject<ElementRef<HTMLElement>>(ElementRef);
 }
