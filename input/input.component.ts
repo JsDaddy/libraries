@@ -66,12 +66,10 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     private readonly destroyRef = inject(DestroyRef);
 
     public ngOnInit(): void {
-        this.control.valueChanges
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((value) => {
-                this.onChange && this.onChange(value);
-                this.cdr.detectChanges();
-            });
+        this.control.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
+            this.onChange && this.onChange(value);
+            this.cdr.detectChanges();
+        });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
