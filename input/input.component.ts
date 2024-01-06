@@ -72,7 +72,6 @@ export class InputComponent implements ControlValueAccessor, OnInit {
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public writeValue(value: string | null): void {
         if (value === null) {
             this.control.reset();
