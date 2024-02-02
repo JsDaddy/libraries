@@ -1,15 +1,17 @@
-import { Directive, ElementRef, inject, Input } from '@angular/core';
+import { Directive, effect, ElementRef, inject, input } from '@angular/core';
 
 @Directive({
     selector: '[jsdaddyAutofocus]',
     standalone: true,
 })
 export class AutofocusDirective {
-    @Input()
-    public set jsdaddyAutofocus(value: boolean) {
-        if (value) {
-            this.elRef.nativeElement.focus();
-        }
-    }
+    public jsdaddyAutofocus = input<boolean>();
     public elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    public constructor() {
+        effect(() => {
+            if (this.jsdaddyAutofocus()) {
+                this.elRef.nativeElement.focus();
+            }
+        });
+    }
 }

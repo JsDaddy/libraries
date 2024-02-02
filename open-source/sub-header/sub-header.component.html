@@ -1,15 +1,15 @@
 <div class="sub-header column white">
     <div class="git-text title row jc-sb">
-        <h3 class="sub-text h3-text">{{ title }}</h3>
+        <h3 class="sub-text h3-text">{{ title() }}</h3>
         <div class="title-btn row">
             <jsdaddy-github-buttons title="GitHub Stars"></jsdaddy-github-buttons>
         </div>
     </div>
     <span class="sub-title span">
-        {{ subtitle }}
+        {{ subtitle() }}
     </span>
     <div class="chips row orange">
-        @for (chip of chips; track chip) {
+        @for (chip of chips(); track chip) {
             <jsdaddy-chip
                 class="chips"
                 chipBgColor="rgba(255, 113, 10, 0.05)"

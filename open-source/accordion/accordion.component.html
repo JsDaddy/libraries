@@ -18,7 +18,7 @@
 </div>
 <div class="drawer-container column bg-black" [ngClass]="showAccordion | hide" #accordionBlock>
     <div class="drawer bg-black">
-        @for (list of lists; track list.id; let i = $index) {
+        @for (list of lists(); track list.id; let i = $index) {
             <div class="non-active accordion-block" #accordion>
                 <div
                     class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"

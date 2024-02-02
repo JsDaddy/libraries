@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'jsdaddy-chip[chip]',
@@ -7,12 +7,8 @@ import { Component, Input } from '@angular/core';
     styleUrl: './chip.component.scss',
 })
 export class ChipComponent {
-    @Input({ required: true })
-    public chip!: string;
-    @Input()
-    public chipBgColor = 'rgba(0,0,0,0.05)';
-    @Input()
-    public isActive = false;
-    @Input()
-    public pointer = false;
+    public chip = input.required<string>();
+    public chipBgColor = input('rgba(0,0,0,0.05)');
+    public isActive = input(false);
+    public pointer = input(false);
 }

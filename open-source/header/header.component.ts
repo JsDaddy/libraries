@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ColorPipe } from '../color/color.pipe';
 import { HidePipe } from '../hide/hide.pipe';
@@ -18,7 +18,7 @@ import { OpenSourcePath } from '../path/open-source.path';
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
-    @Input() public activeLink!: string;
+    public activeLink  = input<string>();
 
     public showNav = false;
     public headerItems: IHeaderITem[] = [

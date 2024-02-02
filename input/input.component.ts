@@ -5,8 +5,7 @@ import {
     Component,
     DestroyRef,
     EventEmitter,
-    inject,
-    Input,
+    inject, input,
     OnInit,
     Output,
     ViewEncapsulation,
@@ -48,16 +47,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     ],
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
-    private readonly fb = inject(FormBuilder);
-
-    @Input({ required: true }) public placeholder!: string;
-    @Input() public label?: string | null;
-    @Input() public isTextarea = false;
-    @Input() public validators: ValidatorFn[] = [];
-    @Input() public isDark = false;
-    @Input() public autoFocus = true;
+    public placeholder = input.required<string>();
+    public label = input<string | null>(null);
+    public isTextarea = input(false);
+    public validators  = input<ValidatorFn[]>([]);
+    public isDark = input(false);
+    public autoFocus = input(true);
 
     @Output() public labelClick: EventEmitter<void> = new EventEmitter();
+
+    private readonly fb = inject(FormBuilder);
 
     public readonly additionalPath = 'shared';
     public control: FormControl<string | null> = this.fb.control(null);
@@ -79,7 +78,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
             this.control.reset();
         }
 
-        this.control.setValidators(this.validators);
+        this.control.setValidators(this.validators());
         this.control.setValue(value);
     }
 

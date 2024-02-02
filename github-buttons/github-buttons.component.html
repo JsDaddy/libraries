@@ -1,7 +1,7 @@
 <a class="github-info pointer" target="_blank" [href]="jsdaddyGithub">
     <div class="all-stars span">
         <img width="16" height="16" [src]="'github' | asset: assetPathShared" alt="Github" />
-        <span aria-label="Navigate to github"> {{ title }} </span>
+        <span aria-label="Navigate to github"> {{ title() }} </span>
     </div>
     <div class="stars-count span">{{ countOfStarsOnGithub() || 0 }}</div>
 </a>

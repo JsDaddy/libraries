@@ -4,8 +4,7 @@ import {
     DestroyRef,
     ElementRef,
     EventEmitter,
-    inject,
-    Input,
+    inject, input,
     Output,
     // type-coverage:ignore-next-line
     PLATFORM_ID,
@@ -34,7 +33,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     providers: [BodyStylesService],
 })
 export class AccordionComponent implements AfterViewInit {
-    @Input() public lists!: IListItem[];
+    public lists = input<IListItem[]> ();
 
     @Output() public switchCardIndex = new EventEmitter<number>();
 

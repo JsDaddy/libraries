@@ -1,31 +1,31 @@
-<div class="input-wrapper" [ngClass]="[control | input: true, isDark ? 'dark' : '']">
-    @if (!isTextarea) {
+<div class="input-wrapper" [ngClass]="[control | input: true, isDark() ? 'dark' : '']">
+    @if (!isTextarea()) {
         <input
             [formControl]="control"
-            [ngClass]="{ dark: isDark }"
+            [ngClass]="{ dark: isDark() }"
             type="text"
-            [jsdaddyAutofocus]="autoFocus"
+            [jsdaddyAutofocus]="autoFocus()"
             name="input"
             id="{{ uniqueId }}"
-            [placeholder]="placeholder"
+            [placeholder]="placeholder()"
             (keyup.enter)="onLabelClick()"
             class="span" />
     } @else {
         <textarea
             [formControl]="control"
-            [ngClass]="{ dark: isDark }"
+            [ngClass]="{ dark: isDark() }"
             type="text"
             name="input"
             id="{{ uniqueId }}"
-            [jsdaddyAutofocus]="autoFocus"
-            [placeholder]="placeholder"
+            [jsdaddyAutofocus]="autoFocus()"
+            [placeholder]="placeholder()"
             (keyup.enter)="onLabelClick()"
             class="span"></textarea>
     }
 
     <label (click)="onLabelClick()" for="{{ uniqueId }}">
-        @if ((control | input) || (label | uppercase); as label) {
-            {{ label }}
+        @if ((control | input) || (label() | uppercase); as l) {
+            {{ l }}
         } @else {
             @if (control.touched) {
                 <img
