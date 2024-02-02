@@ -14,11 +14,9 @@ export class GithubStarsService {
             return of(0);
         }
         return this.http
-            .getData<{ stargazers_count: number }[]>(
-                `https://api.github.com/users/JsDaddy/repos`,
-                [],
-                makeStateKey<{ stargazers_count: number }[]>('all-stars')
-            )
+            .getData<
+                { stargazers_count: number }[]
+            >(`https://api.github.com/users/JsDaddy/repos`, [], makeStateKey<{ stargazers_count: number }[]>('all-stars'))
             .pipe(
                 concatAll(),
 

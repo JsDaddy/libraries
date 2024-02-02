@@ -18,7 +18,7 @@ import { OpenSourcePath } from '../path/open-source.path';
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
-    public activeLink  = input<string>();
+    public activeLink = input<string>();
 
     public showNav = false;
     public headerItems: IHeaderITem[] = [

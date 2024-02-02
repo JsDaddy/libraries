@@ -5,7 +5,8 @@ import {
     Component,
     DestroyRef,
     EventEmitter,
-    inject, input,
+    inject,
+    input,
     OnInit,
     Output,
     ViewEncapsulation,
@@ -50,7 +51,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     public placeholder = input.required<string>();
     public label = input<string | null>(null);
     public isTextarea = input(false);
-    public validators  = input<ValidatorFn[]>([]);
+    public validators = input<ValidatorFn[]>([]);
     public isDark = input(false);
     public autoFocus = input(true);
 
