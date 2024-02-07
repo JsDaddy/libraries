@@ -3,13 +3,14 @@ import { AssetPipe } from '../asset/asset.pipe';
 import { SharedAssetPath } from '../asset/asset.path';
 import { GithubStarsService } from '../github/github-stars.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
     selector: 'jsdaddy-github-buttons[title]',
     templateUrl: './github-buttons.component.html',
     styleUrl: './github-buttons.component.scss',
     standalone: true,
-    imports: [AssetPipe],
+    imports: [AssetPipe, NgOptimizedImage],
 })
 export class GithubButtonsComponent {
     public title = input.required<string>();

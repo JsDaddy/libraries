@@ -1,4 +1,4 @@
-import { NgClass, UpperCasePipe } from '@angular/common';
+import { NgClass, NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -34,6 +34,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         AssetPipe,
         InputPipe,
         AutofocusDirective,
+        NgOptimizedImage,
     ],
     templateUrl: './input.component.html',
     styleUrl: './input.component.scss',

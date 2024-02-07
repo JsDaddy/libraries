@@ -6,13 +6,13 @@
         class="white-chevron"
         width="18"
         height="18"
-        [src]="'white-chevron-down' | asset: openSourceAccordionPath"
+        [ngSrc]="'white-chevron-down' | asset: openSourceAccordionPath"
         alt="Chevron white" />
     <img
         class="yellow-chevron"
         width="18"
         height="18"
-        [src]="'yellow-chevron-down' | asset: openSourceAccordionPath"
+        [ngSrc]="'yellow-chevron-down' | asset: openSourceAccordionPath"
         alt="Chevron yellow" />
     <span class="navigation-text fs-16 ls-25 uppercase">Navigation</span>
 </div>
@@ -27,13 +27,13 @@
                         <img
                             width="32"
                             height="32"
-                            [src]="list.defaultSvg | asset: openSourceAccordionPath"
+                            [ngSrc]="list.defaultSvg | asset: openSourceAccordionPath"
                             class="default-svg"
                             alt="Accordion white" />
                         <img
                             width="32"
                             height="32"
-                            [src]="list.activeSvg | asset: openSourceAccordionPath"
+                            [ngSrc]="list.activeSvg | asset: openSourceAccordionPath"
                             class="active-svg"
                             alt="Accordion yellow" />
                     </div>
@@ -44,13 +44,13 @@
                         <img
                             width="12"
                             height="12"
-                            [src]="list.whiteChevron | asset: openSourceAccordionPath"
+                            [ngSrc]="list.whiteChevron | asset: openSourceAccordionPath"
                             class="chevron-default"
                             alt="Chevron white" />
                         <img
                             width="12"
                             height="12"
-                            [src]="list.yellowChevron | asset: openSourceAccordionPath"
+                            [ngSrc]="list.yellowChevron | asset: openSourceAccordionPath"
                             class="chevron-active"
                             alt="Chevron yellow" />
                     </div>
