@@ -1,7 +1,7 @@
 <div
     class="navigation row jc-sb ai-c bg-black pointer full-white"
     (click)="showAccordionBlock(); $event.stopPropagation()"
-    [ngClass]="showAccordion | hide">
+    [class]="showAccordion | hide">
     <img
         class="white-chevron"
         width="18"
@@ -16,7 +16,7 @@
         alt="Chevron yellow" />
     <span class="navigation-text fs-16 ls-25 uppercase">Navigation</span>
 </div>
-<div class="drawer-container column bg-black" [ngClass]="showAccordion | hide" #accordionBlock>
+<div class="drawer-container column bg-black" [class]="showAccordion | hide" #accordionBlock>
     <div class="drawer bg-black">
         @for (list of lists(); track list.id; let i = $index) {
             <div class="non-active accordion-block" #accordion>
@@ -59,7 +59,7 @@
                     @for (item of list.text; track item.id) {
                         <p
                             class="accordion-box pointer"
-                            [ngClass]="item.id | color: itemInAccordion"
+                            [class]="item.id | color: itemInAccordion"
                             (click)="handleClick(item.id, item.scrollTo)">
                             {{ item.content }}
                         </p>

@@ -1,8 +1,9 @@
-<div class="input-wrapper" [ngClass]="[control | input: true, isDark() ? 'dark' : '']">
+<div class="input-wrapper" [class]="control | input: true"
+     [class.dark]="isDark()">
     @if (!isTextarea()) {
         <input
             [formControl]="control"
-            [ngClass]="{ dark: isDark() }"
+            [class.dark]="isDark()"
             type="text"
             [jsdaddyAutofocus]="autoFocus()"
             name="input"
@@ -13,7 +14,7 @@
     } @else {
         <textarea
             [formControl]="control"
-            [ngClass]="{ dark: isDark() }"
+            [class.dark]="isDark()"
             type="text"
             name="input"
             id="{{ uniqueId }}"

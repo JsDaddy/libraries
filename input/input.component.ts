@@ -1,4 +1,4 @@
-import { NgClass, NgOptimizedImage, UpperCasePipe } from '@angular/common';
+import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -28,7 +28,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'jsdaddy-input[placeholder]',
     standalone: true,
     imports: [
-        NgClass,
         ReactiveFormsModule,
         UpperCasePipe,
         AssetPipe,

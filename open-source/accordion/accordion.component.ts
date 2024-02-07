@@ -13,7 +13,7 @@ import {
     ViewChild,
     ViewChildren,
 } from '@angular/core';
-import { DOCUMENT, isPlatformServer, NgClass, NgStyle } from '@angular/common';
+import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
 import { IListItem } from './content.interfaces';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
@@ -29,7 +29,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrl: './accordion.component.scss',
-    imports: [NgClass, NgStyle, AssetPipe, HidePipe, VisitBtnComponent, ColorPipe],
+    imports: [AssetPipe, HidePipe, VisitBtnComponent, ColorPipe, NgOptimizedImage],
     standalone: true,
     providers: [BodyStylesService],
 })
