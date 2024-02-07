@@ -3,7 +3,7 @@ import { AssetPipe } from '../asset/asset.pipe';
 import { SharedAssetPath } from '../asset/asset.path';
 import { GithubStarsService } from '../github/github-stars.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'jsdaddy-github-buttons[title]',
