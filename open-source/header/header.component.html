@@ -4,7 +4,7 @@
             <a
                 [href]="jsDaddyWebsite"
                 target="_self"
-                aria-label="Navigate to JsDaddy corporate site">
+                [attr.aria-label]="'JsDaddy corporate site' | anchorLabel">
                 <img
                     width="34"
                     height="29"
@@ -17,7 +17,10 @@
     @for (item of headerItems; track item.title) {
         <div class="center-side row ai-c">
             <span class="mrl-20" [class]="activeLink() | color: item.link">
-                <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
+                <a
+                    [href]="item.link"
+                    target="_self"
+                    [attr.aria-label]="'Github-pages' | anchorLabel">
                     <button class="center-buttons row ai-c pointer">
                         {{ item.title }}
                     </button>
@@ -47,7 +50,10 @@
         <div class="nav-buttons column">
             @for (item of headerItems; track item.title) {
                 <div [class]="activeLink() | color: item.link">
-                    <a [href]="item.link" target="_self" aria-label="Navigate to Github-pages">
+                    <a
+                        [href]="item.link"
+                        target="_self"
+                        [attr.aria-label]="'Github-pages' | anchorLabel">
                         <button class="row">
                             {{ item.title }}
                         </button>

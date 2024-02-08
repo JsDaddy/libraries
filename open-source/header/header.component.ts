@@ -8,13 +8,14 @@ import { AssetPipe } from '../../asset/asset.pipe';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { LinkPath } from '../../link/link.path';
 import { OpenSourcePath } from '../path/open-source.path';
+import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
 
 @Component({
     selector: 'jsdaddy-open-source-header',
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     standalone: true,
-    imports: [AssetPipe, ColorPipe, HidePipe, VisitBtnComponent, NgOptimizedImage],
+    imports: [AssetPipe, ColorPipe, HidePipe, VisitBtnComponent, NgOptimizedImage, AnchorLabelPipe],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
