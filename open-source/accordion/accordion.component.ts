@@ -9,9 +9,8 @@ import {
     Output,
     // type-coverage:ignore-next-line
     PLATFORM_ID,
-    QueryList,
-    ViewChild,
-    ViewChildren,
+    viewChild,
+    viewChildren,
 } from '@angular/core';
 import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
 import { IListItem } from './content.interfaces';
@@ -38,10 +37,12 @@ export class AccordionComponent implements AfterViewInit {
 
     @Output() public switchCardIndex = new EventEmitter<number>();
 
-    @ViewChildren('accordion', { read: ElementRef }) public accordion!: QueryList<
-        ElementRef<HTMLElement>
-    >;
-    @ViewChild('accordionBlock') public accordionBlockElement!: ElementRef<HTMLElement>;
+    public accordion = viewChildren<string, ElementRef<HTMLElement>>('accordion', {
+        read: ElementRef,
+    });
+    public accordionBlockElement = viewChild<string, ElementRef<HTMLElement>>('accordionBlock', {
+        read: ElementRef,
+    });
 
     public showAccordion = false;
     public itemInAccordion = 1;
@@ -61,7 +62,7 @@ export class AccordionComponent implements AfterViewInit {
                 filter(
                     () =>
                         this.showAccordion &&
-                        event?.target !== this.accordionBlockElement.nativeElement
+                        event?.target !== this.accordionBlockElement()?.nativeElement
                 ),
                 takeUntilDestroyed(this.destroyRef)
             )
@@ -108,14 +109,14 @@ export class AccordionComponent implements AfterViewInit {
     }
 
     public toggle(index: number): void {
-        this.accordion.forEach((_el, i) => {
+        this.accordion()?.forEach((el, i) => {
             index !== i
-                ? this.accordion.get(i)?.nativeElement.classList.remove('active')
-                : this.accordion.get(index)?.nativeElement.classList.toggle('active');
+                ? el?.nativeElement.classList.remove('active')
+                : el?.nativeElement.classList.toggle('active');
         });
     }
 
     public openFirstAccordion(): void {
-        this.accordion.first.nativeElement.classList.toggle('active');
+        this.accordion()?.[0]?.nativeElement.classList.toggle('active');
     }
 }
