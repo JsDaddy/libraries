@@ -11,7 +11,7 @@ import { GithubButtonsComponent } from '../../github-buttons/github-buttons.comp
     imports: [ChipComponent, AssetPipe, GithubButtonsComponent],
 })
 export class SubHeaderComponent {
-    public title = input<string>;
+    public title = input<string>();
     public subtitle = input<string>();
     public chips = input<string[]>();
 }
