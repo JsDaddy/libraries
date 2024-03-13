@@ -21,7 +21,7 @@ export class ScrollService {
         fromEvent(document, 'scroll')
             .pipe(debounceTime(100), takeUntilDestroyed(this.destroyRef))
             .subscribe(() => {
-                const scrollIdCard = cards?.find((e) => this.isInViewport(e.nativeElement))
+                const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;
                 if (
                     this.activeCardId$$.value !== Number(scrollIdCard) &&
