@@ -1,5 +1,5 @@
 // type-coverage:ignore-next-line
-import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID, QueryList } from '@angular/core';
+import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
@@ -17,11 +17,11 @@ export class ScrollService {
 
     public readonly activeCard$ = this.activeCardId$$.asObservable();
 
-    public onScroll(cards: QueryList<ElementRef<HTMLElement>>): void {
+    public onScroll(cards: readonly ElementRef<HTMLElement>[]): void {
         fromEvent(document, 'scroll')
             .pipe(debounceTime(100), takeUntilDestroyed(this.destroyRef))
             .subscribe(() => {
-                const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
+                const scrollIdCard = cards?.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;
                 if (
                     this.activeCardId$$.value !== Number(scrollIdCard) &&
