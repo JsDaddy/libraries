@@ -2,7 +2,7 @@
 import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, of } from 'rxjs';
+import { filter, map, of } from 'rxjs';
 
 @Injectable()
 export class AccordionService {
@@ -19,16 +19,15 @@ export class AccordionService {
         of(cards)
             .pipe(
                 map((el) => el[0]),
+                filter(Boolean),
                 takeUntilDestroyed(this.destroyRef)
             )
             .subscribe((elementRef) => {
-                if (elementRef) {
-                    const firstNativeElement: HTMLElement | null = this.document.getElementById(
-                        elementRef.nativeElement.id
-                    );
-                    if (firstNativeElement) {
-                        firstNativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                    }
+                const firstNativeElement: HTMLElement | null = this.document.getElementById(
+                    elementRef.nativeElement.id
+                );
+                if (firstNativeElement) {
+                    firstNativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
                 }
             });
     }
