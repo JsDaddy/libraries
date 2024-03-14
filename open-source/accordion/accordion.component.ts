@@ -4,7 +4,8 @@ import {
     DestroyRef,
     ElementRef,
     inject,
-    input, output,
+    input,
+    output,
     // type-coverage:ignore-next-line
     PLATFORM_ID,
     viewChild,

@@ -6,7 +6,8 @@ import {
     DestroyRef,
     inject,
     input,
-    OnInit, output,
+    OnInit,
+    output,
     ViewEncapsulation,
 } from '@angular/core';
 import {
