@@ -3,10 +3,8 @@ import {
     Component,
     DestroyRef,
     ElementRef,
-    EventEmitter,
     inject,
-    input,
-    Output,
+    input, output,
     // type-coverage:ignore-next-line
     PLATFORM_ID,
     viewChild,
@@ -35,7 +33,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class AccordionComponent implements AfterViewInit {
     public lists = input<IListItem[]>();
 
-    @Output() public switchCardIndex = new EventEmitter<number>();
+    public switchCardIndex = output<number>();
 
     public accordion = viewChildren<string, ElementRef<HTMLElement>>('accordion', {
         read: ElementRef,

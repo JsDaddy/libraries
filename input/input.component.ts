@@ -4,11 +4,9 @@ import {
     ChangeDetectorRef,
     Component,
     DestroyRef,
-    EventEmitter,
     inject,
     input,
-    OnInit,
-    Output,
+    OnInit, output,
     ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -55,7 +53,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     public isDark = input(false);
     public autoFocus = input(true);
 
-    @Output() public labelClick: EventEmitter<void> = new EventEmitter();
+    public labelClick = output();
 
     private readonly fb = inject(FormBuilder);
 
