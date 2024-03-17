@@ -1,8 +1,9 @@
 @import '../../styles/media-breakpoints';
 .all-rights {
     height: calc(100vh - 600px);
-    img {
+    span {
         padding-bottom: 40px;
+        color: rgb(100 116 139);
     }
 }
 

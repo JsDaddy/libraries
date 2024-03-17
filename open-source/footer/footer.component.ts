@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { AssetPipe } from '../../asset/asset.pipe';
-import { OpenSourcePath } from '../path/open-source.path';
-import { NgOptimizedImage } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { VersionToken } from '@libraries/version/version.token';
 
 @Component({
     selector: 'jsdaddy-open-source-footer',
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss',
     standalone: true,
-    imports: [AssetPipe, NgOptimizedImage],
 })
 export class FooterComponent {
-    public readonly openSourceFooterPath = OpenSourcePath.FOOTER;
+    public readonly copyrightText = `© JSdaddy, 2016-${new Date().getFullYear()}, All Rights Reserved`;
+
+    private readonly versionValue = inject(VersionToken, { optional: true });
+
+    public readonly version = `v${this.versionValue || '*.*.*'}`;
 }
