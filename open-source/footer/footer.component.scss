@@ -1,6 +1,6 @@
 @import '../../styles/media-breakpoints';
 .all-rights {
-    height: calc(100vh - 600px);
+    height: calc(100dvh - 600px);
     span {
         padding-bottom: 40px;
         color: rgb(100 116 139);
@@ -9,7 +9,7 @@
 
 @media screen and (max-width: $desktopWidth) {
     .all-rights {
-        height: calc(100vh - 65vh);
+        height: calc(100dvh - 65vh);
     }
 }
 

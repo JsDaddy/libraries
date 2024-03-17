@@ -64,7 +64,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     private cdr = inject(ChangeDetectorRef);
     private readonly destroyRef = inject(DestroyRef);
 
-    public uniqueId = crypto.randomUUID();
+    public uniqueId = crypto.randomUUID?.() ?? Date.now();
 
     public ngOnInit(): void {
         this.control.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
