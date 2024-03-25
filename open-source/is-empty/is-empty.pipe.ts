@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
     standalone: true,
 })
 export class IsEmptyPipe implements PipeTransform {
-    public transform(value: string | undefined): string {
-        return value || 'Empty';
+    public transform(value: string | number | undefined): string {
+        return String(value) || 'Empty';
     }
 }
