@@ -1,4 +1,4 @@
-<div
+<div aria-hidden="true"
     class="navigation row jc-sb ai-c bg-black pointer full-white"
     (click)="showAccordionBlock(); $event.stopPropagation()"
     [class]="showAccordion | hide">
@@ -20,7 +20,7 @@
     <div class="drawer bg-black">
         @for (list of lists(); track list.id; let i = $index) {
             <div class="non-active accordion-block" #accordion>
-                <div
+                <div aria-hidden="true"
                     class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
                     (click)="toggle(i); switchAccordion(list.id); $event.stopPropagation()">
                     <div class="left-side-accordion row ai-c bg-light-grey-accordion">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="panel full-white text bg-black">
                     @for (item of list.text; track item.id) {
-                        <p
+                        <p aria-hidden="true"
                             class="accordion-box pointer"
                             [class]="item.id | color: itemInAccordion"
                             (click)="handleClick(item.id, item.scrollTo)">
