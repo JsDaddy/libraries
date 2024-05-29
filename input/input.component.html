@@ -23,7 +23,7 @@
             class="span"></textarea>
     }
 
-    <label (click)="onLabelClick()" for="{{ uniqueId }}">
+    <label aria-hidden="true" (click)="onLabelClick()" for="{{ uniqueId }}">
         @if ((control | input) || (label() | uppercase); as l) {
             {{ l }}
         } @else {

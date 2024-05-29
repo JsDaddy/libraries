@@ -7,7 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class ScrollService {
-    private readonly activeCardId$$: BehaviorSubject<number> = new BehaviorSubject(1);
+    private readonly activeCardId$$ = new BehaviorSubject<number>(1);
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;
     private readonly minusTopMobileHeight = 150;

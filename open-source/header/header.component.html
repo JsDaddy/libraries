@@ -28,17 +28,17 @@
             </span>
         </div>
     }
-    <div class="open-nav pointer" (click)="toggleNavBlock()">
+    <div aria-hidden="true" class="open-nav pointer" (click)="toggleNavBlock()">
         <img width="48" height="48" [ngSrc]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
     </div>
     <div class="mob-open pointer">
-        <img
+        <img aria-hidden="true"
             width="34"
             height="29"
             [ngSrc]="'logo-white' | asset: openSourceHeaderPath"
             alt="Logo JsDaddy"
             class="logo-white ais-c" />
-        <img
+        <img aria-hidden="true"
             width="68"
             height="67"
             [ngSrc]="'close' | asset: openSourceHeaderPath"
