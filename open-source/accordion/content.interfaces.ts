@@ -54,15 +54,10 @@ export interface IMaskOptions {
     _inputTransformFn: InputTransformFn;
     _outputTransformFn: OutputTransformFn;
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface InputTransformFn {
-    (value: unknown): string | number;
-}
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface OutputTransformFn {
-    (value: string | number | undefined | null): unknown;
-}
+export type InputTransformFn = (value: unknown) => string | number;
+
+export type OutputTransformFn = (value: string | number | undefined | null) => unknown;
 
 export type TExample<T extends object> = {
     [P in keyof T]: IComExample & Partial<Pick<T, P>>;
