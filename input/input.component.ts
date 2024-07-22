@@ -89,7 +89,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
         this.onTouched = fn;
     }
 
-    /* eslint-disable @typescript-eslint/no-empty-function */
+     
     public onChange: (value: string | null) => void = () => {};
     public onTouched: () => void = () => {};
 
