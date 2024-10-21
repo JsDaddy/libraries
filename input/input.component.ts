@@ -89,7 +89,6 @@ export class InputComponent implements ControlValueAccessor, OnInit {
         this.onTouched = fn;
     }
 
-     
     public onChange: (value: string | null) => void = () => {};
     public onTouched: () => void = () => {};
 
