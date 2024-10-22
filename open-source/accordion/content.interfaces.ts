@@ -14,7 +14,7 @@ export interface IControl {
 }
 
 export interface IComExample {
-    _placeholder: string;
+    _placeholder?: string;
     _mask: string;
     control: IControl;
 }
