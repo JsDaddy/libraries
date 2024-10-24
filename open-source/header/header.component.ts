@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { ColorPipe } from '../color/color.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
@@ -15,7 +15,15 @@ import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     standalone: true,
-    imports: [AssetPipe, ColorPipe, HidePipe, VisitBtnComponent, NgOptimizedImage, AnchorLabelPipe],
+    imports: [
+        AssetPipe,
+        ColorPipe,
+        HidePipe,
+        VisitBtnComponent,
+        NgOptimizedImage,
+        AnchorLabelPipe,
+        NgTemplateOutlet,
+    ],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {

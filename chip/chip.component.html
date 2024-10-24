@@ -1,6 +1,6 @@
 <div
-    [style.background]="chipBgColor()"
-    [style.cursor]="pointer() ? 'pointer' : ''"
-    [class]="isActive() ? 'is-active' : ''">
+    [style.cursor]="pointer() ? 'cursor-pointer' : ''"
+    class="w-max py-5px px-15px rounded-25px"
+    [class]="isActive() ? 'bg-yellow' : chipBgColor()">
     {{ chip() }}
 </div>

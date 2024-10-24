@@ -1,31 +1,46 @@
 <div
     aria-hidden="true"
-    class="navigation row jc-sb ai-c bg-black pointer full-white"
-    (click)="showAccordionBlock(); $event.stopPropagation()"
-    [class]="showAccordion | hide">
-    <img
-        class="white-chevron"
+    class="flex justify-between items-center bg-black cursor-pointer desk:hidden h-[55px] w-full z-10 fixed top-[68px] px-5"
+    (click)="showAccordionBlock(); $event.stopPropagation()">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
         width="18"
         height="18"
-        [ngSrc]="'white-chevron-down' | asset: openSourceAccordionPath"
-        alt="Chevron white" />
-    <img
-        class="yellow-chevron"
-        width="18"
-        height="18"
-        [ngSrc]="'yellow-chevron-down' | asset: openSourceAccordionPath"
-        alt="Chevron yellow" />
-    <span class="navigation-text fs-16 ls-25 uppercase">Navigation</span>
+        viewBox="0 0 18 18"
+        fill="none"
+        [class]="showAccordion ? 'rotate-180' : ''">
+        <rect
+            x="18"
+            width="18"
+            height="18"
+            rx="9"
+            transform="rotate(90 18 0)"
+            [attr.fill]="showAccordion ? '#FFD64D' : 'white'" />
+        <path
+            d="M13.5 7.27875L12.4425 6.22125L9 9.65625L5.5575 6.22125L4.5 7.27875L9 11.7788L13.5 7.27875Z"
+            fill="currentColor" />
+    </svg>
+    <span
+        class="tracking-[.25em] uppercase"
+        [class]="showAccordion ? 'text-yellow' : 'text-full-white'"
+        >Navigation</span
+    >
 </div>
-<div class="drawer-container column bg-black" [class]="showAccordion | hide" #accordionBlock>
-    <div class="drawer bg-black">
+
+<div
+    class="flex flex-col fixed z-20 h-full overflow-auto bg-black pt-[22px] w-[310px] top-[68px] tab:w-[375px] tab:top-[122px] mob:w-full p-5"
+    [class]="showAccordion ? 'tab:block mob:block' : 'tab:hidden mob:hidden'"
+    #accordionBlock>
+    <div class="bg-black flex flex-col gap-5 relative h-full">
         @for (list of lists(); track list.id; let i = $index) {
-            <div class="non-active accordion-block" #accordion>
+            <div
+                class="non-active w-full bg-black text-white cursor-pointer border-t border-b border-yellow rounded-10px p-2.5"
+                #accordion>
                 <div
+                    class="flex items-center justify-between bg-black text-white"
                     aria-hidden="true"
-                    class="accordion row ai-c bg-black fs-white-14 pointer border-accordion-tb-def"
                     (click)="toggle(i); switchAccordion(list.id); $event.stopPropagation()">
-                    <div class="left-side-accordion row ai-c bg-light-grey-accordion">
+                    <div class="flex items-center bg-light-grey-accordion gap-15px">
                         <img
                             width="32"
                             height="32"
@@ -38,31 +53,32 @@
                             [ngSrc]="list.activeSvg | asset: openSourceAccordionPath"
                             class="active-svg"
                             alt="Accordion yellow" />
+                        <span class="accordion-title text-full-white">
+                            {{ list.header }}
+                        </span>
                     </div>
-                    <button class="accordion-btn bg-black full-white pointer">
-                        {{ list.header }}
-                    </button>
-                    <div class="right-side-accordion">
-                        <img
-                            width="12"
-                            height="12"
-                            [ngSrc]="list.whiteChevron | asset: openSourceAccordionPath"
-                            class="chevron-default"
-                            alt="Chevron white" />
-                        <img
-                            width="12"
-                            height="12"
-                            [ngSrc]="list.yellowChevron | asset: openSourceAccordionPath"
-                            class="chevron-active"
-                            alt="Chevron yellow" />
-                    </div>
+
+                    <img
+                        width="12"
+                        height="12"
+                        [ngSrc]="list.whiteChevron | asset: openSourceAccordionPath"
+                        class="chevron-default"
+                        alt="Chevron white" />
+                    <img
+                        width="12"
+                        height="12"
+                        [ngSrc]="list.yellowChevron | asset: openSourceAccordionPath"
+                        class="chevron-active"
+                        alt="Chevron yellow" />
                 </div>
-                <div class="panel full-white text bg-black">
+                <div class="panel flex-col text-full-white text-text bg-black pl-[45px]">
                     @for (item of list.text; track item.id) {
                         <p
                             aria-hidden="true"
-                            class="accordion-box pointer"
-                            [class]="item.id | color: itemInAccordion"
+                            class="text-text cursor-pointer px-2 py-2"
+                            [class]="
+                                itemInAccordion === item.id ? 'text-yellow' : 'text-full-white'
+                            "
                             (click)="handleClick(item.id, item.scrollTo)">
                             {{ item.content }}
                         </p>
@@ -70,7 +86,7 @@
                 </div>
             </div>
         }
-        <div class="visit-btn">
+        <div class="fixed bottom-5 w-[270px] mob:hidden tab:hidden">
             <jsdaddy-open-source-visit-btn />
         </div>
     </div>

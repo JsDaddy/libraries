@@ -1,7 +1,20 @@
-<a class="github-info pointer" target="_blank" [href]="jsdaddyGithub">
-    <div class="all-stars span">
-        <img width="16" height="16" [ngSrc]="'github' | asset: assetPathShared" alt="Github" />
+<a
+    class="flex cursor-pointer mx-5 mr-[44px] mob:mr-30px text-span-12 text-full-white"
+    target="_blank"
+    [href]="jsdaddyGithub">
+    <div
+        class="flex items-center px-2.5 py-[3px] bg-black border border-black rounded-4px relative mr-[7px]">
+        <img
+            width="16"
+            height="16"
+            [ngSrc]="'github' | asset: assetPathShared"
+            alt="Github"
+            class="mr-2.5" />
         <span [attr.aria-label]="'Github' | anchorLabel"> {{ title() }} </span>
+        <div
+            class="absolute w-2 h-2 bg-black transform rotate-45 top-1/2 right-[-1px] translate-y-[-50%]"></div>
     </div>
-    <div class="stars-count span">{{ countOfStarsOnGithub() || 0 }}</div>
+    <div class="flex items-center px-2.5 py-[3px] bg-black border border-black rounded-4px">
+        {{ countOfStarsOnGithub() || 0 }}
+    </div>
 </a>

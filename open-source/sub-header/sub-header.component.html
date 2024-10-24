@@ -1,19 +1,17 @@
-<div class="sub-header column white">
-    <div class="git-text title row jc-sb">
-        <h3 class="sub-text h3-text">{{ title() }}</h3>
-        <div class="title-btn row">
-            <jsdaddy-github-buttons title="GitHub Stars"></jsdaddy-github-buttons>
+<div class="flex flex-col text-full-white pl-30px py-5 pr-5 mob:pt-35px mob:px-5 mob:pb-5">
+    <div
+        class="git-text title flex justify-between text-title text-black mob:flex-col-reverse mob:justify-normal mob:gap-30px">
+        <h3 class="text-h3 pb-2.5">{{ title() }}</h3>
+        <div class="flex mob:relative mob:-left-5">
+            <jsdaddy-github-buttons title="GitHub Stars" />
         </div>
     </div>
-    <span class="sub-title span">
+    <span class="pb-2.5 text-span text-black">
         {{ subtitle() }}
     </span>
-    <div class="chips row orange">
+    <div class="flex flex-wrap gap-2.5 text-orange">
         @for (chip of chips(); track chip) {
-            <jsdaddy-chip
-                class="chips"
-                chipBgColor="rgba(255, 113, 10, 0.05)"
-                [chip]="chip"></jsdaddy-chip>
+            <jsdaddy-chip chipBgColor="bg-orange/[.05]" [chip]="chip" />
         }
     </div>
 </div>

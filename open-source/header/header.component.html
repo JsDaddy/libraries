@@ -1,44 +1,40 @@
-<div class="header row ai-c bg-full-white" [class]="showNav | hide">
-    <div class="left-side">
-        <span class="logo">
-            <a
-                [href]="jsDaddyWebsite"
-                target="_self"
-                [attr.aria-label]="'JsDaddy corporate site' | anchorLabel">
-                <img
-                    width="34"
-                    height="29"
-                    [ngSrc]="'logo' | asset: openSourceHeaderPath"
-                    alt="Logo JsDaddy"
-                    class="logo" />
-            </a>
-        </span>
-    </div>
-    @for (item of headerItems; track item.title) {
-        <div class="center-side row ai-c">
-            <span class="mrl-20" [class]="activeLink() | color: item.link">
-                <a
-                    [href]="item.link"
-                    target="_self"
-                    [attr.aria-label]="'Github-pages' | anchorLabel">
-                    <button class="center-buttons row ai-c pointer">
-                        {{ item.title }}
-                    </button>
-                </a>
-            </span>
-        </div>
-    }
-    <div aria-hidden="true" class="open-nav pointer" (click)="toggleNavBlock()">
+<div
+    class="fixed top-0 right-0 left-0 flex items-center px-30px py-15px bg-full-white h-[68px] z-10"
+    [class]="!showNav | hide">
+    <a
+        class="desk:pl-2.5 desk:w-[310px]"
+        [href]="jsDaddyWebsite"
+        target="_self"
+        [attr.aria-label]="'JsDaddy corporate site' | anchorLabel">
+        <img
+            width="34"
+            height="29"
+            [ngSrc]="'logo' | asset: openSourceHeaderPath"
+            alt="Logo JsDaddy"
+            class="logo" />
+    </a>
+    <div
+        aria-hidden="true"
+        class="desk:hidden tab:hidden ml-auto cursor-pointer"
+        (click)="toggleNavBlock()">
         <img width="48" height="48" [ngSrc]="'burger' | asset: openSourceHeaderPath" alt="Burger" />
     </div>
-    <div class="mob-open pointer">
+    <div class="flex items-center gap-5px mob:hidden tab:ml-30px">
+        <ng-container *ngTemplateOutlet="openSourceButtons" />
+    </div>
+</div>
+
+<div
+    class="fixed top-0 right-0 left-0 flex flex-col bg-black h-full z-10"
+    [class]="showNav ? 'block' : 'hidden'">
+    <div
+        class="flex items-center justify-between h-[68px] pl-30px py-15px border-b border-b-full-white/[.05]">
         <img
             aria-hidden="true"
             width="34"
             height="29"
             [ngSrc]="'logo-white' | asset: openSourceHeaderPath"
-            alt="Logo JsDaddy"
-            class="logo-white ais-c" />
+            alt="Logo JsDaddy" />
         <img
             aria-hidden="true"
             width="68"
@@ -47,24 +43,30 @@
             alt="Close"
             (click)="toggleNavBlock()" />
     </div>
-    <div class="nav-section bg-black" [class]="showNav | hide">
-        <h3 class="full-white text uppercase ls-25">Repositories</h3>
-        <div class="nav-buttons column">
-            @for (item of headerItems; track item.title) {
-                <div [class]="activeLink() | color: item.link">
-                    <a
-                        [href]="item.link"
-                        target="_self"
-                        [attr.aria-label]="'Github-pages' | anchorLabel">
-                        <button class="row">
-                            {{ item.title }}
-                        </button>
-                    </a>
-                </div>
-            }
-            <div class="btn-bottom">
-                <jsdaddy-open-source-visit-btn />
-            </div>
+    <div
+        class="fixed block overflow-auto z-10 top-[68px] left-0 right-0 w-full py-15px px-5 bg-black"
+        [class]="showNav ? 'block' : 'hidden'">
+        <h3 class="text-full-white text-h5 uppercase tracking-[.25em]">Repositories</h3>
+        <div class="flex flex-col mt-10 gap-2.5">
+            <ng-container *ngTemplateOutlet="openSourceButtons" />
         </div>
     </div>
+    <jsdaddy-open-source-visit-btn class="mt-auto py-15px px-5 w-full" />
 </div>
+
+<ng-template #openSourceButtons>
+    @for (item of headerItems; track item.title) {
+        <a
+            class="flex items-center px-6 py-5px rounded-10px cursor-pointer"
+            [class]="
+                activeLink() === item.link
+                    ? 'text-yellow bg-dark mob:bg-yellow/[.05]'
+                    : 'mob:text-full-white mob:hover:bg-yellow/[.05] hover:bg-black/[.05]'
+            "
+            [href]="item.link"
+            target="_self"
+            [attr.aria-label]="'Github-pages' | anchorLabel">
+            {{ item.title }}
+        </a>
+    }
+</ng-template>
