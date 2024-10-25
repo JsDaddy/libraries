@@ -25,7 +25,9 @@ export class BaseHttpService {
         return this.http.get<T>(path.startsWith('http') ? path : `${domain}/${path}`).pipe(
             tap((data) => key && this.transferState.set<T>(key, data)),
             catchError(() => {
-                key && this.transferState.set<T>(key, defaultValue);
+                if (key) {
+                    this.transferState.set<T>(key, defaultValue);
+                }
                 return of(defaultValue);
             })
         );

@@ -12,7 +12,7 @@ import {
     viewChildren,
 } from '@angular/core';
 import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
-import { IListItem } from './content.interfaces';
+import { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
@@ -32,7 +32,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     providers: [BodyStylesService],
 })
 export class AccordionComponent implements AfterViewInit {
-    public lists = input<IListItem[]>();
+    public lists = input<ListItem[]>();
 
     public switchCardIndex = output<number>();
 
@@ -109,9 +109,11 @@ export class AccordionComponent implements AfterViewInit {
 
     public toggle(index: number): void {
         this.accordion()?.forEach((el, i) => {
-            index !== i
-                ? el?.nativeElement.classList.remove('active')
-                : el?.nativeElement.classList.toggle('active');
+            if (index !== i) {
+                el?.nativeElement.classList.remove('active');
+            } else {
+                el?.nativeElement.classList.toggle('active');
+            }
         });
     }
 

@@ -1,41 +1,41 @@
 import { FormControl } from '@angular/forms';
 
-export interface IComDoc {
+export type ComDoc = {
     header: string;
     text: string;
     code: string;
     id: number;
     anchor?: string;
-}
+};
 
-export interface IControl {
+export type Control = {
     form: FormControl<string | null>;
     model: string;
-}
+};
 
-export interface IComExample {
+export type ComExample = {
     _placeholder?: string;
     _mask: string;
-    control: IControl;
-}
+    control: Control;
+};
 
-export interface ITextContent {
+export type TextContent = {
     content: string;
     id: number;
     scrollTo?: string;
-}
+};
 
-export interface IListItem {
+export type ListItem = {
     header: string;
     id: number;
-    text: ITextContent[];
+    text: TextContent[];
     defaultSvg?: string;
     activeSvg?: string;
     whiteChevron?: string;
     yellowChevron?: string;
-}
+};
 
-export interface IMaskOptions {
+export type MaskOptions = {
     _prefix: string;
     _suffix: string;
     _dropSpecialCharacters: boolean | string[];
@@ -53,12 +53,12 @@ export interface IMaskOptions {
     _keepCharacterPositions: boolean;
     _inputTransformFn: InputTransformFn;
     _outputTransformFn: OutputTransformFn;
-}
+};
 
 export type InputTransformFn = (value: unknown) => string | number;
 
 export type OutputTransformFn = (value: string | number | undefined | null) => unknown;
 
 export type TExample<T extends object> = {
-    [P in keyof T]: IComExample & Partial<Pick<T, P>>;
+    [P in keyof T]: ComExample & Partial<Pick<T, P>>;
 }[keyof T];
