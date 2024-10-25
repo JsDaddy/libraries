@@ -1,57 +1,37 @@
 .input-wrapper {
-    width: 100%;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    border-bottom: 2px solid var(--full-white);
-    border-radius: 10px;
+    @apply w-full box-border inline-flex items-center rounded-10px border-b-2 border-b-full-white;
     &.dark {
-        border-color: var(--black);
+        @apply border-black;
     }
     textarea {
-        height: 157px;
-        resize: none;
+        @apply h-[157px] resize-none;
     }
     input,
     textarea {
-        box-sizing: border-box;
-        width: 67%;
-        padding: 14px 15px;
-        outline: none;
-        border: none;
-        color: var(--full-white);
-        font-family: 'Varela', sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 21px;
-        background-color: transparent;
+        @apply w-[67%] box-border py-[14px] px-15px outline-none border-none text-full-white text-span bg-transparent;
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
             transition: background-color 5000s ease-in-out 0s;
             -webkit-text-fill-color: #fff !important;
-            caret-color: white;
+            @apply caret-full-white;
         }
         &.dark {
-            color: var(--black);
+            @apply text-black;
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
                 transition: background-color 5000s ease-in-out 0s;
                 -webkit-text-fill-color: var(--black) !important;
-                caret-color: var(--black);
+                @apply caret-black;
             }
         }
     }
 
     label {
-        margin: 0 16px 0 auto;
-        cursor: pointer;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 13px;
+        @apply cursor-pointer text-label ml-auto mr-4;
     }
 
     input::placeholder,
@@ -60,16 +40,15 @@
     }
 
     .dark::placeholder {
-        color: var(--black);
-        opacity: 0.25;
+        @apply text-black opacity-25;
     }
 
     &.not-valid {
-        color: var(--red);
-        border-bottom: 2px solid var(--red);
+        @apply text-red border-b-2 border-b-red;
+
     }
 
     &.valid {
-        border-bottom: 2px solid var(--yellow);
+        @apply border-b-2 border-b-yellow;
     }
 }
