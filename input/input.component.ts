@@ -68,7 +68,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
 
     public ngOnInit(): void {
         this.control.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-            this.onChange && this.onChange(value);
+            if (this.onChange) {
+                this.onChange(value);
+            }
             this.cdr.detectChanges();
         });
     }
@@ -89,7 +91,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
         this.onTouched = fn;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public onChange: (value: string | null) => void = () => {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public onTouched: () => void = () => {};
 
     public onLabelClick(): void {

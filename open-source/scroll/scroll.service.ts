@@ -23,10 +23,7 @@ export class ScrollService {
             .subscribe(() => {
                 const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
                     ?.nativeElement.id;
-                if (
-                    this.activeCardId$$.value !== Number(scrollIdCard) &&
-                    scrollIdCard !== undefined
-                ) {
+                if (this.activeCardId$$.value !== Number(scrollIdCard) && scrollIdCard) {
                     this.activeCardId$$.next(Number(scrollIdCard));
                     this.router.navigate(['/'], {
                         fragment: scrollIdCard,

@@ -3,7 +3,7 @@ import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { ColorPipe } from '../color/color.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
-import { IHeaderITem } from '../header/header.interface';
+import { HeaderITem } from './header.type';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { LinkPath } from '../../link/link.path';
@@ -30,7 +30,7 @@ export class HeaderComponent {
     public activeLink = input<string>();
 
     public showNav = false;
-    public headerItems: IHeaderITem[] = [
+    public headerItems: HeaderITem[] = [
         {
             title: 'Ngx-Mask',
             link: LinkPath.NGX_MASK,

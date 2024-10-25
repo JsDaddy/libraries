@@ -1,4 +1,4 @@
-export interface IHeaderITem {
+export type HeaderITem = {
     title: string;
     link: string;
-}
+};
