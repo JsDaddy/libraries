@@ -1,5 +1,6 @@
 // type-coverage:ignore-next-line
-import { DestroyRef, ElementRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import type { ElementRef} from '@angular/core';
+import { DestroyRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, map, of } from 'rxjs';

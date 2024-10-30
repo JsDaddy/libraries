@@ -1,4 +1,6 @@
 import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
+import type {
+    OnInit} from '@angular/core';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -6,17 +8,17 @@ import {
     DestroyRef,
     inject,
     input,
-    OnInit,
     output,
     ViewEncapsulation,
 } from '@angular/core';
-import {
+import type {
     ControlValueAccessor,
-    FormBuilder,
     FormControl,
+    ValidatorFn} from '@angular/forms';
+import {
+    FormBuilder,
     NG_VALUE_ACCESSOR,
-    ReactiveFormsModule,
-    ValidatorFn,
+    ReactiveFormsModule
 } from '@angular/forms';
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';

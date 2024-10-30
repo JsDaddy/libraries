@@ -1,5 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import type { PipeTransform } from '@angular/core';
+import { Pipe } from '@angular/core';
+import type { FormControl } from '@angular/forms';
 
 @Pipe({
     name: 'input',

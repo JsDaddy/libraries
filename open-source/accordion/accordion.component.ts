@@ -1,5 +1,6 @@
+import type {
+    AfterViewInit} from '@angular/core';
 import {
-    AfterViewInit,
     Component,
     DestroyRef,
     ElementRef,
@@ -12,7 +13,7 @@ import {
     viewChildren,
 } from '@angular/core';
 import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
-import { ListItem } from './content.types';
+import type { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
