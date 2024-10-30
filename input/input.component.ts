@@ -1,6 +1,5 @@
 import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
-import type {
-    OnInit} from '@angular/core';
+import type { OnInit } from '@angular/core';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -11,15 +10,8 @@ import {
     output,
     ViewEncapsulation,
 } from '@angular/core';
-import type {
-    ControlValueAccessor,
-    FormControl,
-    ValidatorFn} from '@angular/forms';
-import {
-    FormBuilder,
-    NG_VALUE_ACCESSOR,
-    ReactiveFormsModule
-} from '@angular/forms';
+import type { ControlValueAccessor, FormControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
 import { AutofocusDirective } from '../input/auto-focus.directive';

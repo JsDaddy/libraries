@@ -1,5 +1,5 @@
 // type-coverage:ignore-next-line
-import type { ElementRef} from '@angular/core';
+import type { ElementRef } from '@angular/core';
 import { DestroyRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';

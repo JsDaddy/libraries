@@ -1,9 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 // type-coverage:ignore-next-line
-import type { StateKey} from '@angular/core';
+import type { StateKey } from '@angular/core';
 import { inject, Injectable, PLATFORM_ID, TransferState } from '@angular/core';
-import type { Observable} from 'rxjs';
+import type { Observable } from 'rxjs';
 import { catchError, of, tap } from 'rxjs';
 import { DOMAIN } from '../token/token';
 

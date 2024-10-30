@@ -1,5 +1,5 @@
-import type {
-    AfterViewInit} from '@angular/core';
+import type { AfterViewInit } from '@angular/core';
+import { signal } from '@angular/core';
 import {
     Component,
     DestroyRef,
@@ -44,8 +44,8 @@ export class AccordionComponent implements AfterViewInit {
         read: ElementRef,
     });
 
-    public showAccordion = false;
-    public itemInAccordion = 1;
+    public showAccordion = signal<boolean>(false);
+    public itemInAccordion = signal<number>(1);
 
     public readonly openSourceAccordionPath = OpenSourcePath.ACCORDION;
     public readonly bodyStylesService = inject(BodyStylesService);
@@ -61,7 +61,7 @@ export class AccordionComponent implements AfterViewInit {
             .pipe(
                 filter(
                     () =>
-                        this.showAccordion &&
+                        this.showAccordion() &&
                         event?.target !== this.accordionBlockElement()?.nativeElement
                 ),
                 takeUntilDestroyed(this.destroyRef)
@@ -71,13 +71,13 @@ export class AccordionComponent implements AfterViewInit {
         this.activatedRoute.fragment
             .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
             .subscribe((itemId) => {
-                this.itemInAccordion = Number(itemId);
+                this.itemInAccordion.set(Number(itemId));
             });
     }
 
     public showAccordionBlock(): void {
-        this.showAccordion = !this.showAccordion;
-        this.bodyStylesService.setOverflowYBodyHtml(this.showAccordion);
+        this.showAccordion.set(!this.showAccordion());
+        this.bodyStylesService.setOverflowYBodyHtml(this.showAccordion());
     }
 
     public switchAccordion(index: number): void {
@@ -85,7 +85,7 @@ export class AccordionComponent implements AfterViewInit {
     }
 
     public handleClick(idItem: number, scrollTo: string | undefined): void {
-        if (this.showAccordion) {
+        if (this.showAccordion()) {
             this.showAccordionBlock();
         }
         this.anchorScroll(idItem, scrollTo);
@@ -95,7 +95,7 @@ export class AccordionComponent implements AfterViewInit {
         if (isPlatformServer(this.platformId)) {
             return;
         }
-        this.itemInAccordion = idItem;
+        this.itemInAccordion.set(idItem);
         this.router.navigate(['/'], {
             fragment: idItem.toString(),
         });
