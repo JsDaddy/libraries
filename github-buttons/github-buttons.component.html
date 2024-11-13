@@ -3,7 +3,7 @@
     target="_blank"
     [href]="jsdaddyGithub">
     <div
-        class="flex items-center px-2.5 py-[3px] bg-black border border-black rounded-4px relative mr-[7px]">
+        class="flex items-center px-2.5 py-[3px] bg-dark border border-black rounded-4px relative mr-[7px]">
         <img
             width="16"
             height="16"
@@ -12,9 +12,9 @@
             class="mr-2.5" />
         <span [attr.aria-label]="'Github' | anchorLabel"> {{ title() }} </span>
         <div
-            class="absolute w-2 h-2 bg-black transform rotate-45 top-1/2 right-[-1px] translate-y-[-50%]"></div>
+            class="absolute w-2 h-2 bg-dark transform rotate-45 top-1/2 -right-1 translate-y-[-50%]"></div>
     </div>
-    <div class="flex items-center px-2.5 py-[3px] bg-black border border-black rounded-4px">
+    <div class="flex items-center px-2.5 py-[3px] bg-dark border border-black rounded-4px">
         {{ countOfStarsOnGithub() || 0 }}
     </div>
 </a>
