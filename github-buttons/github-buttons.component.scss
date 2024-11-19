@@ -1,0 +1,49 @@
+@import '../styles/media-breakpoints';
+@import '../styles/general';
+
+.github-info {
+    display: flex;
+    margin: 0 44px 0 20px;
+    div {
+        display: flex;
+        align-items: center;
+
+        padding: 3px 10px;
+
+        background-color: var(--black);
+
+        border: 1px solid var(--black);
+        border-radius: 4px;
+
+        font-size: 12px;
+
+        color: var(--full-white);
+
+        &.all-stars {
+            margin-right: 7px;
+            position: relative;
+
+            &:after {
+                content: '';
+                width: 8px;
+                height: 8px;
+                background-color: var(--black);
+
+                transform: rotate(45deg) translateY(-50%);
+
+                position: absolute;
+                top: 50%;
+                right: -1px;
+            }
+
+            img {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: $mobileWidth) {
+    .github-info {
+        margin-right: 30px;
+    }
+}

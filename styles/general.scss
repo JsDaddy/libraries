@@ -2,6 +2,10 @@
 @import 'media-breakpoints';
 @import 'typography.mixin';
 @import '../fonts/fonts';
+*:focus,
+*:active {
+    -webkit-tap-highlight-color: transparent;
+}
 
 :root {
     --yellowHover: #f4c529;
@@ -16,8 +20,61 @@
     --ligth-grey: rgba(255, 255, 255, 0.05);
 }
 
+.border-accordion-tb-def {
+    border-width: 2px 0;
+    border-style: solid;
+    border-color: var(--ligth-grey);
+    border-radius: 10px;
+}
+
 .bg-light-grey-accordion {
     background-color: var(--ligth-grey);
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Prompt', sans-serif;
+    height: 100%;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+/* Typograhpy */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -63,10 +120,6 @@ h5,
     letter-spacing: 0.05em;
 }
 
-.z-10 {
-    z-index: 10;
-}
-
 .ls-25 {
     letter-spacing: 0.25em;
 }
@@ -106,6 +159,12 @@ h5,
     background: var(--orangeYellow);
 }
 
+.orange-yellow {
+    background: var(--orangeYellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
 .yellow {
     color: var(--yellow);
 }
@@ -194,4 +253,66 @@ h5,
 }
 .ais-c {
     align-self: center;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+/* End Positioning */
+
+.remove-right-wrapper-padding {
+    margin-right: -$desktopHorizontalPadding;
+}
+.remove-left-wrapper-padding {
+    margin-left: -$desktopHorizontalPadding;
+}
+@media (min-width: $desktopWidth) {
+    .hide-desktop {
+        display: none !important;
+    }
+    .remove-right-desktop-wrapper-padding {
+        margin-right: -$desktopHorizontalPadding;
+    }
+    .remove-left-desktop-wrapper-padding {
+        margin-left: -$desktopHorizontalPadding;
+    }
+}
+@media screen and (min-width: $mobileWidth) and (max-width: $desktopWidth) {
+    .remove-tablet-wrapper-padding {
+        width: 100vw !important;
+        transform: translate(-50%);
+        margin-left: 50%;
+    }
+    .remove-right-tablet-wrapper-padding {
+        margin-right: -$tabletHorizontalPadding;
+    }
+    .remove-left-tablet-wrapper-padding {
+        margin-left: -$tabletHorizontalPadding;
+    }
+    .hide-tablet {
+        display: none !important;
+    }
+}
+
+@media (max-width: $mobileWidth) {
+    .remove-mobile-wrapper-padding {
+        width: 100vw !important;
+        transform: translate(-50%);
+        margin-left: 50%;
+    }
+    .remove-right-mobile-wrapper-padding {
+        margin-right: -$mobileHorizontalPadding;
+    }
+    .remove-left-mobile-wrapper-padding {
+        margin-left: -$mobileHorizontalPadding;
+    }
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
 }

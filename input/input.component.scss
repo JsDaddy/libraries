@@ -1,37 +1,59 @@
+@import '../styles/general';
+
 .input-wrapper {
-    @apply w-full box-border inline-flex items-center rounded-10px border-b-2 border-b-full-white;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 2px solid var(--full-white);
+    border-radius: 10px;
     &.dark {
-        @apply border-black;
+        border-color: var(--black);
     }
     textarea {
-        @apply h-[157px] resize-none;
+        height: 157px;
+        resize: none;
     }
     input,
     textarea {
-        @apply w-[67%] box-border py-[14px] px-15px outline-none border-none text-full-white text-span bg-transparent;
+        box-sizing: border-box;
+        width: 67%;
+        padding: 14px 15px;
+        outline: none;
+        border: none;
+        color: var(--full-white);
+        font-family: 'Varela', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        background-color: transparent;
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
             transition: background-color 5000s ease-in-out 0s;
             -webkit-text-fill-color: #fff !important;
-            @apply caret-full-white;
+            caret-color: white;
         }
         &.dark {
-            @apply text-black;
+            color: var(--black);
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
                 transition: background-color 5000s ease-in-out 0s;
                 -webkit-text-fill-color: var(--black) !important;
-                @apply caret-black;
+                caret-color: var(--black);
             }
         }
     }
 
     label {
-        @apply cursor-pointer text-label ml-auto mr-4;
+        margin: 0 16px 0 auto;
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 13px;
     }
 
     input::placeholder,
@@ -40,14 +62,16 @@
     }
 
     .dark::placeholder {
-        @apply text-black opacity-25;
+        color: var(--black);
+        opacity: 0.25;
     }
 
     &.not-valid {
-        @apply text-red border-b-2 border-b-red;
+        color: var(--red);
+        border-bottom: 2px solid var(--red);
     }
 
     &.valid {
-        @apply border-b-2 border-b-yellow;
+        border-bottom: 2px solid var(--yellow);
     }
 }
