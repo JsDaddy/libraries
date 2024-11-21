@@ -25,7 +25,11 @@ export class BaseHttpService {
         const domain = isPlatformBrowser(this.platformId) ? this.domain[1] : this.domain[0];
 
         return this.http.get<T>(path.startsWith('http') ? path : `${domain}/${path}`).pipe(
-            tap((data) => key && this.transferState.set<T>(key, data)),
+            tap((data) => {
+                if (key) {
+                    this.transferState.set<T>(key, data);
+                }
+            }),
             catchError(() => {
                 if (key) {
                     this.transferState.set<T>(key, defaultValue);

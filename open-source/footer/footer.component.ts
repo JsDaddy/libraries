@@ -12,5 +12,5 @@ export class FooterComponent {
 
     private readonly versionValue = inject(VersionToken, { optional: true });
 
-    public readonly version = `v${this.versionValue || '*.*.*'}`;
+    public readonly version = `v${this.versionValue ?? '*.*.*'}`;
 }

@@ -1,6 +1,5 @@
 import { Component, inject, input } from '@angular/core';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { ColorPipe } from '../color/color.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import type { HeaderITem } from './header.type';
@@ -17,7 +16,6 @@ import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
     standalone: true,
     imports: [
         AssetPipe,
-        ColorPipe,
         HidePipe,
         VisitBtnComponent,
         NgOptimizedImage,

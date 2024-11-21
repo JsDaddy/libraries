@@ -17,7 +17,6 @@ import type { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
-import { ColorPipe } from '../color/color.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, fromEvent } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
@@ -28,7 +27,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrl: './accordion.component.scss',
-    imports: [AssetPipe, HidePipe, VisitBtnComponent, ColorPipe, NgOptimizedImage],
+    imports: [AssetPipe, HidePipe, VisitBtnComponent, NgOptimizedImage],
     standalone: true,
     providers: [BodyStylesService],
 })
@@ -57,16 +56,18 @@ export class AccordionComponent implements AfterViewInit {
     private readonly destroyRef = inject(DestroyRef);
 
     public ngAfterViewInit(): void {
-        fromEvent(window, 'click')
+        fromEvent<MouseEvent>(window, 'click')
             .pipe(
                 filter(
-                    () =>
+                    (event) =>
                         this.showAccordion() &&
-                        event?.target !== this.accordionBlockElement()?.nativeElement
+                        event.target !== this.accordionBlockElement()?.nativeElement
                 ),
                 takeUntilDestroyed(this.destroyRef)
             )
-            .subscribe(() => this.showAccordionBlock());
+            .subscribe(() => {
+                this.showAccordionBlock();
+            });
         this.openFirstAccordion();
         this.activatedRoute.fragment
             .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
@@ -96,7 +97,7 @@ export class AccordionComponent implements AfterViewInit {
             return;
         }
         this.itemInAccordion.set(idItem);
-        this.router.navigate(['/'], {
+        void this.router.navigate(['/'], {
             fragment: idItem.toString(),
         });
         if (!scrollTo) {
@@ -109,16 +110,16 @@ export class AccordionComponent implements AfterViewInit {
     }
 
     public toggle(index: number): void {
-        this.accordion()?.forEach((el, i) => {
+        this.accordion().forEach((el, i) => {
             if (index !== i) {
-                el?.nativeElement.classList.remove('active');
+                el.nativeElement.classList.remove('active');
             } else {
-                el?.nativeElement.classList.toggle('active');
+                el.nativeElement.classList.toggle('active');
             }
         });
     }
 
     public openFirstAccordion(): void {
-        this.accordion()?.[0]?.nativeElement.classList.toggle('active');
+        this.accordion()[0]?.nativeElement.classList.toggle('active');
     }
 }
