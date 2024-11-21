@@ -1,7 +1,6 @@
-@import 'border-mixin';
-@import 'media-breakpoints';
-@import 'typography.mixin';
-@import '../fonts/fonts';
+@use './media-breakpoints' as *;
+@use '../fonts/fonts' as *;
+
 *:focus,
 *:active {
     -webkit-tap-highlight-color: transparent;
@@ -79,23 +78,39 @@ p {
 
 h1,
 .h1-text {
-    @include h1-text;
+    font-size: 56px;
+    line-height: 56px;
+    font-weight: 600;
+    color: var(--black);
 }
 h2,
 .h2-text {
-    @include h2-text;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 500;
+    color: var(--black);
 }
 h3,
 .h3-text {
-    @include h3-text;
+    font-size: 25px;
+    line-height: 27px;
+    font-weight: 500;
+    color: var(--black);
 }
 h4,
 .h4-text {
-    @include h4-text;
+    font-size: 22px;
+    line-height: 27px;
+    font-weight: 500;
+    color: var(--black);
 }
 h5,
 .text {
-    @include regular-text;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(--black);
+    font-family: 'Varela', sans-serif;
 }
 
 .title {

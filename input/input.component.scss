@@ -1,14 +1,12 @@
-@import '../styles/general';
-
 .input-wrapper {
     width: 100%;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    border-bottom: 2px solid var(--full-white);
+    border-bottom: 2px solid #fff;
     border-radius: 10px;
     &.dark {
-        border-color: var(--black);
+        border-color: #191919;
     }
     textarea {
         height: 157px;
@@ -21,7 +19,7 @@
         padding: 14px 15px;
         outline: none;
         border: none;
-        color: var(--full-white);
+        color: #fff;
         font-family: 'Varela', sans-serif;
         font-weight: 400;
         font-size: 14px;
@@ -36,14 +34,14 @@
             caret-color: white;
         }
         &.dark {
-            color: var(--black);
+            color: #191919;
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
                 transition: background-color 5000s ease-in-out 0s;
-                -webkit-text-fill-color: var(--black) !important;
-                caret-color: var(--black);
+                -webkit-text-fill-color: #191919 !important;
+                caret-color: #191919;
             }
         }
     }
@@ -62,16 +60,16 @@
     }
 
     .dark::placeholder {
-        color: var(--black);
+        color: #191919;
         opacity: 0.25;
     }
 
     &.not-valid {
-        color: var(--red);
-        border-bottom: 2px solid var(--red);
+        color: #e35353;
+        border-bottom: 2px solid #e35353;
     }
 
     &.valid {
-        border-bottom: 2px solid var(--yellow);
+        border-bottom: 2px solid #ffd64d;
     }
 }
