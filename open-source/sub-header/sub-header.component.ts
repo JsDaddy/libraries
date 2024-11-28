@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core';
-import { AssetPipe } from '../../asset/asset.pipe';
 import { ChipComponent } from '../../chip/chip.component';
 import { GithubButtonsComponent } from '../../github-buttons/github-buttons.component';
 
@@ -8,7 +7,7 @@ import { GithubButtonsComponent } from '../../github-buttons/github-buttons.comp
     templateUrl: './sub-header.component.html',
     styleUrl: './sub-header.component.scss',
     standalone: true,
-    imports: [ChipComponent, AssetPipe, GithubButtonsComponent],
+    imports: [ChipComponent, GithubButtonsComponent],
 })
 export class SubHeaderComponent {
     public title = input<string>();

@@ -15,7 +15,6 @@ import {
 import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
 import type { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
-import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, fromEvent } from 'rxjs';
@@ -27,7 +26,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'jsdaddy-open-source-accordion',
     templateUrl: './accordion.component.html',
     styleUrl: './accordion.component.scss',
-    imports: [AssetPipe, HidePipe, VisitBtnComponent, NgOptimizedImage],
+    imports: [AssetPipe, VisitBtnComponent, NgOptimizedImage],
     standalone: true,
     providers: [BodyStylesService],
 })
