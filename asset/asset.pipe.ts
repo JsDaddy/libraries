@@ -1,12 +1,17 @@
 import type { PipeTransform } from '@angular/core';
 import { Pipe } from '@angular/core';
+import { AssetPath } from '@libraries/asset/asset.type';
 
 @Pipe({
     name: 'asset',
     standalone: true,
 })
 export class AssetPipe implements PipeTransform {
-    public transform(nameImg: string | undefined, additionalPath = '', isWebp = false): string {
+    public transform(
+        nameImg: string | undefined,
+        additionalPath: AssetPath | string = '',
+        isWebp = false
+    ): string {
         if (!nameImg) {
             return '';
         }
