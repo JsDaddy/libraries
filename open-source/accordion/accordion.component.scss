@@ -1,25 +1,25 @@
 .non-active {
     .accordion-title {
-        @apply text-full-white;
+        color: #ffffff;
     }
     .panel,
     .chevron-active,
     .active-svg {
-        @apply hidden;
+        display: none;
     }
     .chevron-default,
     .default-svg {
-        @apply block;
+        display: block;
     }
 
     &:hover {
         .chevron-default,
         .default-svg {
-            @apply hidden;
+            display: none;
         }
         .chevron-active,
         .active-svg {
-            @apply block;
+            display: block;
         }
     }
 }
@@ -27,15 +27,15 @@
 .active {
     .chevron-default,
     .default-svg {
-        @apply hidden;
+        display: none;
     }
     .chevron-active,
     .active-svg,
     .panel {
-        @apply block;
+        display: block;
     }
 
     .accordion-title {
-        @apply text-yellow;
+        color: #ffd64d;
     }
 }
