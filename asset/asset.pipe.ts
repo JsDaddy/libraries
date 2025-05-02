@@ -1,6 +1,6 @@
 import type { PipeTransform } from '@angular/core';
 import { Pipe } from '@angular/core';
-import { AssetPath } from '@libraries/asset/asset.type';
+import type { AssetPath } from '@libraries/asset/asset.type';
 
 @Pipe({
     name: 'asset',
