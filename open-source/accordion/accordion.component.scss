@@ -1,16 +1,16 @@
 .active {
     .chevron-default,
     .default-svg {
-        display: none;
+        display: none !important;
     }
     .chevron-active,
     .active-svg,
     .panel {
-        display: block;
+        display: block !important;
     }
 
     .accordion-title {
-        color: #ffd64d;
+        color: #ffd64d !important;
     }
 }
 
