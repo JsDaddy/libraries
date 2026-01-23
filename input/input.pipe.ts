@@ -12,7 +12,7 @@ export class InputPipe implements PipeTransform {
         if (!value) {
             return '';
         }
-        // Call FieldTree to get FieldState, then access signals
+
         const fieldState = value();
         const dirty = fieldState.dirty();
         const touched = fieldState.touched();

@@ -43,7 +43,7 @@ export class InputComponent {
     public uniqueId = crypto.randomUUID();
 
     public onLabelClick(): void {
-        // Call FieldTree to get FieldState, then check invalid
+
         if (this.control()().invalid()) {
             return;
         }
