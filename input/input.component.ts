@@ -14,14 +14,7 @@ import { AutofocusDirective } from '../input/auto-focus.directive';
 @Component({
     selector: 'jsdaddy-input[placeholder]',
     standalone: true,
-    imports: [
-        UpperCasePipe,
-        AssetPipe,
-        InputPipe,
-        AutofocusDirective,
-        NgOptimizedImage,
-        FormField,
-    ],
+    imports: [UpperCasePipe, AssetPipe, InputPipe, AutofocusDirective, NgOptimizedImage, FormField],
     templateUrl: './input.component.html',
     styleUrl: './input.component.scss',
     encapsulation: ViewEncapsulation.Emulated,
@@ -42,7 +35,6 @@ export class InputComponent {
     public uniqueId = crypto.randomUUID();
 
     public onLabelClick(): void {
-
         if (this.control()().invalid()) {
             return;
         }
