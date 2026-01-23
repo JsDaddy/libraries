@@ -1,4 +1,4 @@
-import type { FormControl } from '@angular/forms';
+import type { FieldTree } from '@angular/forms';
 
 export type ComDoc = {
     header: string;
@@ -9,7 +9,7 @@ export type ComDoc = {
 };
 
 export type Control = {
-    form: FormControl<string | null>;
+    form: FieldTree<string | null>;
     model: string;
 };
 
