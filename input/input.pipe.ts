@@ -1,5 +1,6 @@
 import type { PipeTransform } from '@angular/core';
 import { Pipe } from '@angular/core';
+import type { FieldTree, ValidationError } from '@angular/forms/signals';
 
 @Pipe({
     name: 'input',
@@ -7,8 +8,7 @@ import { Pipe } from '@angular/core';
     pure: false,
 })
 export class InputPipe implements PipeTransform {
-    // type-coverage:ignore-next-line
-    public transform(value: any | null, className?: boolean): string {
+    public transform(value: FieldTree<string> | null, className?: boolean): string {
         if (!value) {
             return '';
         }
@@ -25,13 +25,13 @@ export class InputPipe implements PipeTransform {
             if (className && errors.length === 0 && (dirty || touched)) {
                 return 'valid';
             }
-            if (errors.some((e: any) => e.kind === 'required')) {
+            if (errors.some((e: ValidationError) => e.kind === 'required')) {
                 return 'Required';
             }
-            if (errors.some((e: any) => e.kind === 'email')) {
+            if (errors.some((e: ValidationError) => e.kind === 'email')) {
                 return 'Wrong E-mail';
             }
-            if (errors.some((e: any) => e.kind === 'minlength')) {
+            if (errors.some((e: ValidationError) => e.kind === 'minlength')) {
                 return 'Wrong length';
             }
         }

@@ -6,7 +6,7 @@ import {
     output,
     ViewEncapsulation,
 } from '@angular/core';
-import { FormField } from '@angular/forms/signals';
+import { FieldTree, FormField } from '@angular/forms/signals';
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
 import { AutofocusDirective } from '../input/auto-focus.directive';
@@ -33,8 +33,7 @@ export class InputComponent {
     public isTextarea = input(false);
     public isDark = input(false);
     public autoFocus = input(true);
-    // type-coverage:ignore-next-line
-    public control = input.required<any>();
+    public control = input.required<FieldTree<string>>();
 
     public labelClick = output();
 
