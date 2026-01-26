@@ -1,6 +1,6 @@
 <div
     class="fixed top-0 right-0 left-0 flex items-center px-30px py-15px bg-full-white h-[68px] z-10"
-    [class]="!showNav | hide">
+    [class.hidden]="showNav()">
     <a
         class="desk:pl-2.5 desk:w-[310px]"
         [href]="jsDaddyWebsite"
@@ -26,7 +26,7 @@
 
 <div
     class="fixed top-0 right-0 left-0 flex flex-col bg-black h-full z-10"
-    [class]="showNav ? 'block' : 'hidden'">
+    [class.hidden]="!showNav()">
     <div
         class="flex items-center justify-between h-[68px] pl-30px py-15px border-b border-b-full-white/[.05]">
         <img
@@ -46,7 +46,7 @@
     </div>
     <div
         class="fixed block overflow-auto z-10 top-[68px] left-0 right-0 w-full py-15px px-5 bg-black"
-        [class]="showNav ? 'block' : 'hidden'">
+        [class.hidden]="!showNav()">
         <h3 class="text-full-white text-h5 uppercase tracking-[.25em]">Repositories</h3>
         <div class="flex flex-col mt-10 gap-2.5">
             <ng-container *ngTemplateOutlet="openSourceButtons" />

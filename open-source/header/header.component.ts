@@ -1,6 +1,5 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { HidePipe } from '../hide/hide.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import type { HeaderITem } from './header.type';
 import { AssetPipe } from '../../asset/asset.pipe';
@@ -16,7 +15,6 @@ import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
     standalone: true,
     imports: [
         AssetPipe,
-        HidePipe,
         VisitBtnComponent,
         NgOptimizedImage,
         AnchorLabelPipe,
@@ -27,7 +25,7 @@ import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
 export class HeaderComponent {
     public activeLink = input<string>();
 
-    public showNav = false;
+    public showNav = signal(false);
     public headerItems: HeaderITem[] = [
         {
             title: 'Ngx-Mask',
@@ -48,7 +46,7 @@ export class HeaderComponent {
     public readonly openSourceHeaderPath = OpenSourcePath.HEADER;
 
     public toggleNavBlock(): void {
-        this.showNav = !this.showNav;
-        this.bodyStylesService.setOverflowYBodyHtml(this.showNav);
+        this.showNav.update((val) => !val);
+        this.bodyStylesService.setOverflowYBodyHtml(this.showNav());
     }
 }

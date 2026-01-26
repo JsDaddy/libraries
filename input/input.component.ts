@@ -6,7 +6,8 @@ import {
     output,
     ViewEncapsulation,
 } from '@angular/core';
-import { FieldTree, FormField } from '@angular/forms/signals';
+import type { FieldTree} from '@angular/forms/signals';
+import { FormField } from '@angular/forms/signals';
 import { AssetPipe } from '../asset/asset.pipe';
 import { InputPipe } from './input.pipe';
 import { AutofocusDirective } from '../input/auto-focus.directive';

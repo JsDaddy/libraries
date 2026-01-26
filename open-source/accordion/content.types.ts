@@ -1,4 +1,4 @@
-import type { FieldTree } from '@angular/forms';
+import type { FieldTree } from '@angular/forms/signals';
 
 export type ComDoc = {
     header: string;
@@ -8,11 +8,36 @@ export type ComDoc = {
     anchor?: string;
 };
 
+/**
+ * Control configuration for examples.
+ * The `initialValue` is used to create a FieldTree at runtime within injection context.
+ */
+export type ControlConfig = {
+    initialValue: string | null;
+    model: string;
+};
+
+/**
+ * Runtime control with FieldTree created in component.
+ */
 export type Control = {
     form: FieldTree<string | null>;
     model: string;
 };
 
+/**
+ * Example configuration from content files.
+ * Uses ControlConfig which stores initial value (created at module load time).
+ */
+export type ComExampleConfig = {
+    _placeholder?: string;
+    _mask: string;
+    control: ControlConfig;
+};
+
+/**
+ * Runtime example with FieldTree created in component.
+ */
 export type ComExample = {
     _placeholder?: string;
     _mask: string;
@@ -59,6 +84,16 @@ export type InputTransformFn = (value: unknown) => string | number;
 
 export type OutputTransformFn = (value: string | number | undefined | null) => unknown;
 
+/**
+ * Type for content file examples (with ControlConfig).
+ */
+export type TExampleConfig<T extends object> = {
+    [P in keyof T]: ComExampleConfig & Partial<Pick<T, P>>;
+}[keyof T];
+
+/**
+ * Type for runtime examples (with FieldTree Control).
+ */
 export type TExample<T extends object> = {
     [P in keyof T]: ComExample & Partial<Pick<T, P>>;
 }[keyof T];
