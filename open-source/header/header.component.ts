@@ -13,13 +13,7 @@ import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     standalone: true,
-    imports: [
-        AssetPipe,
-        VisitBtnComponent,
-        NgOptimizedImage,
-        AnchorLabelPipe,
-        NgTemplateOutlet,
-    ],
+    imports: [AssetPipe, VisitBtnComponent, NgOptimizedImage, AnchorLabelPipe, NgTemplateOutlet],
     providers: [BodyStylesService],
 })
 export class HeaderComponent {
