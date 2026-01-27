@@ -1,3 +1,5 @@
+import type { WritableSignal } from '@angular/core';
+import type { FormControl } from '@angular/forms';
 import type { FieldTree } from '@angular/forms/signals';
 
 export type ComDoc = {
@@ -10,7 +12,7 @@ export type ComDoc = {
 
 /**
  * Control configuration for examples.
- * The `initialValue` is used to create a FieldTree at runtime within injection context.
+ * The `initialValue` is used to create a signal at runtime.
  */
 export type ControlConfig = {
     initialValue: string | null;
@@ -18,11 +20,15 @@ export type ControlConfig = {
 };
 
 /**
- * Runtime control with FieldTree created in component.
+ * Runtime control with all three form types.
+ * - formControl: Reactive Forms (FormControl)
+ * - model: Template-driven (ngModel signal)
+ * - signalForm: Signal Forms (FieldTree)
  */
 export type Control = {
-    form: FieldTree<string | null>;
-    model: string;
+    formControl: FormControl<string | null>;
+    model: WritableSignal<string | null>;
+    signalForm: FieldTree<{ value: string | null }>;
 };
 
 /**
