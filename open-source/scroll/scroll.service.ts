@@ -16,22 +16,35 @@ export class ScrollService {
     private cards = signal<readonly ElementRef<HTMLElement>[]>([]);
     private scrollHandler: (() => void) | null = null;
     private debounceTimer: ReturnType<typeof setTimeout> | null = null;
+    private scrollListenerInitialized = false;
+
+    public constructor() {
+        // afterNextRender must be called in an injection context (constructor)
+        afterNextRender(() => {
+            this.initScrollListener();
+        });
+    }
+
+    private initScrollListener(): void {
+        if (this.scrollListenerInitialized) {
+            return;
+        }
+        this.scrollListenerInitialized = true;
+
+        this.scrollHandler = () => {
+            if (this.debounceTimer) {
+                clearTimeout(this.debounceTimer);
+            }
+            this.debounceTimer = setTimeout(() => {
+                this.handleScroll();
+            }, 100);
+        };
+
+        document.addEventListener('scroll', this.scrollHandler);
+    }
 
     public onScroll(cards: readonly ElementRef<HTMLElement>[]): void {
         this.cards.set(cards);
-
-        afterNextRender(() => {
-            this.scrollHandler = () => {
-                if (this.debounceTimer) {
-                    clearTimeout(this.debounceTimer);
-                }
-                this.debounceTimer = setTimeout(() => {
-                    this.handleScroll();
-                }, 100);
-            };
-
-            document.addEventListener('scroll', this.scrollHandler);
-        });
     }
 
     private handleScroll(): void {
