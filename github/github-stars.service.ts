@@ -1,30 +1,29 @@
 import { isPlatformServer } from '@angular/common';
-// type-coverage:ignore-next-line
-import { Injectable, PLATFORM_ID, inject, makeStateKey } from '@angular/core';
-import { concatAll, of, reduce } from 'rxjs';
-import { BaseHttpService } from '../base-http/base-http.service';
+import { computed, inject, Injectable, PLATFORM_ID, resource } from '@angular/core';
 
 @Injectable()
 export class GithubStarsService {
-    public http = inject(BaseHttpService);
     private readonly platformId = inject<string>(PLATFORM_ID);
 
-    public getAllStars() {
-        if (isPlatformServer(this.platformId)) {
-            return of(0);
-        }
-        return this.http
-            .getData<
-                { stargazers_count: number }[]
-            >(`https://api.github.com/users/JsDaddy/repos`, [], makeStateKey<{ stargazers_count: number }[]>('all-stars'))
-            .pipe(
-                concatAll(),
+    private readonly reposResource = resource({
+        loader: async () => {
+            if (isPlatformServer(this.platformId)) {
+                return [];
+            }
+            try {
+                const response = await fetch('https://api.github.com/users/JsDaddy/repos');
+                if (!response.ok) {
+                    return [];
+                }
+                return (await response.json()) as { stargazers_count: number }[];
+            } catch {
+                return [];
+            }
+        },
+    });
 
-                reduce(
-                    (acc: number, { stargazers_count }: { stargazers_count: number }) =>
-                        acc + stargazers_count,
-                    0
-                )
-            );
-    }
+    public readonly allStars = computed(() => {
+        const repos = this.reposResource.value() ?? [];
+        return repos.reduce((acc, { stargazers_count }) => acc + stargazers_count, 0);
+    });
 }

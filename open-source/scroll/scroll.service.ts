@@ -1,39 +1,51 @@
-// type-coverage:ignore-next-line
 import type { ElementRef } from '@angular/core';
-import { DestroyRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
+import { afterNextRender, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class ScrollService {
-    private readonly activeCardId$$ = new BehaviorSubject<number>(1);
     private readonly router = inject(Router);
     private readonly minusTopHeight = 300;
     private readonly minusTopMobileHeight = 150;
     private readonly document = inject(DOCUMENT);
     private readonly platformId = inject<string>(PLATFORM_ID);
-    private readonly destroyRef = inject(DestroyRef);
 
-    public readonly activeCard$ = this.activeCardId$$.asObservable();
+    public readonly activeCard = signal<number>(1);
+
+    private cards = signal<readonly ElementRef<HTMLElement>[]>([]);
+    private scrollHandler: (() => void) | null = null;
+    private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
     public onScroll(cards: readonly ElementRef<HTMLElement>[]): void {
-        fromEvent(document, 'scroll')
-            .pipe(debounceTime(100), takeUntilDestroyed(this.destroyRef))
-            .subscribe(() => {
-                const scrollIdCard = cards.find((e) => this.isInViewport(e.nativeElement))
-                    ?.nativeElement.id;
-                if (this.activeCardId$$.value !== Number(scrollIdCard) && scrollIdCard) {
-                    this.activeCardId$$.next(Number(scrollIdCard));
-                    void this.router.navigate(['/'], {
-                        fragment: scrollIdCard,
-                    });
+        this.cards.set(cards);
+
+        afterNextRender(() => {
+            this.scrollHandler = () => {
+                if (this.debounceTimer) {
+                    clearTimeout(this.debounceTimer);
                 }
-            });
+                this.debounceTimer = setTimeout(() => {
+                    this.handleScroll();
+                }, 100);
+            };
+
+            document.addEventListener('scroll', this.scrollHandler);
+        });
     }
 
-    public isInViewport(elm: HTMLElement) {
+    private handleScroll(): void {
+        const scrollIdCard = this.cards().find((e) => this.isInViewport(e.nativeElement))
+            ?.nativeElement.id;
+        if (this.activeCard() !== Number(scrollIdCard) && scrollIdCard) {
+            this.activeCard.set(Number(scrollIdCard));
+            void this.router.navigate(['/'], {
+                fragment: scrollIdCard,
+            });
+        }
+    }
+
+    public isInViewport(elm: HTMLElement): boolean {
         if (isPlatformServer(this.platformId)) {
             return false;
         }

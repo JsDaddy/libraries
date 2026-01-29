@@ -1,13 +1,11 @@
-import type { AfterViewInit } from '@angular/core';
+import type { AfterViewInit, OnDestroy } from '@angular/core';
 import { signal } from '@angular/core';
 import {
     Component,
-    DestroyRef,
     ElementRef,
     inject,
     input,
     output,
-    // type-coverage:ignore-next-line
     PLATFORM_ID,
     viewChild,
     viewChildren,
@@ -17,10 +15,8 @@ import type { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, fromEvent } from 'rxjs';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { OpenSourcePath } from '../path/open-source.path';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'jsdaddy-open-source-accordion',
@@ -30,7 +26,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: true,
     providers: [BodyStylesService],
 })
-export class AccordionComponent implements AfterViewInit {
+export class AccordionComponent implements AfterViewInit, OnDestroy {
     public lists = input<ListItem[]>();
 
     public switchCardIndex = output<number>();
@@ -52,27 +48,38 @@ export class AccordionComponent implements AfterViewInit {
     private readonly router = inject(Router);
     private readonly platformId = inject<string>(PLATFORM_ID);
     private readonly document = inject(DOCUMENT);
-    private readonly destroyRef = inject(DestroyRef);
+
+    private clickHandler: ((event: MouseEvent) => void) | null = null;
+    private fragmentSubscription: { unsubscribe: () => void } | null = null;
 
     public ngAfterViewInit(): void {
-        fromEvent<MouseEvent>(window, 'click')
-            .pipe(
-                filter(
-                    (event) =>
-                        this.showAccordion() &&
-                        event.target !== this.accordionBlockElement()?.nativeElement
-                ),
-                takeUntilDestroyed(this.destroyRef)
-            )
-            .subscribe(() => {
+        this.clickHandler = (event: MouseEvent) => {
+            if (
+                this.showAccordion() &&
+                event.target !== this.accordionBlockElement()?.nativeElement
+            ) {
                 this.showAccordionBlock();
-            });
+            }
+        };
+
+        window.addEventListener('click', this.clickHandler);
+
         this.openFirstAccordion();
-        this.activatedRoute.fragment
-            .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
-            .subscribe((itemId) => {
+
+        this.fragmentSubscription = this.activatedRoute.fragment.subscribe((itemId) => {
+            if (itemId) {
                 this.itemInAccordion.set(Number(itemId));
-            });
+            }
+        });
+    }
+
+    public ngOnDestroy(): void {
+        if (this.clickHandler) {
+            window.removeEventListener('click', this.clickHandler);
+        }
+        if (this.fragmentSubscription) {
+            this.fragmentSubscription.unsubscribe();
+        }
     }
 
     public showAccordionBlock(): void {

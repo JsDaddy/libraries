@@ -1,7 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { AssetPipe } from '../asset/asset.pipe';
 import { GithubStarsService } from '../github/github-stars.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import { AnchorLabelPipe } from '@libraries/anchor/anchor-label.pipe';
 
@@ -16,5 +15,5 @@ export class GithubButtonsComponent {
     public title = input.required<string>();
 
     public readonly jsdaddyGithub = 'https://github.com/JsDaddy/';
-    public readonly countOfStarsOnGithub = toSignal(inject(GithubStarsService).getAllStars());
+    public readonly countOfStarsOnGithub = inject(GithubStarsService).allStars;
 }
