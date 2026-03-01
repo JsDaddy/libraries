@@ -1,4 +1,4 @@
-import type { ElementRef } from '@angular/core';
+import { type ElementRef, DestroyRef } from '@angular/core';
 import { afterNextRender, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
@@ -10,6 +10,7 @@ export class ScrollService {
     private readonly minusTopMobileHeight = 150;
     private readonly document = inject(DOCUMENT);
     private readonly platformId = inject<string>(PLATFORM_ID);
+    private readonly destroyRef = inject(DestroyRef);
 
     public readonly activeCard = signal<number>(1);
 
@@ -40,7 +41,16 @@ export class ScrollService {
             }, 100);
         };
 
-        document.addEventListener('scroll', this.scrollHandler);
+        this.document.addEventListener('scroll', this.scrollHandler);
+
+        this.destroyRef.onDestroy(() => {
+            if (this.scrollHandler) {
+                this.document.removeEventListener('scroll', this.scrollHandler);
+            }
+            if (this.debounceTimer) {
+                clearTimeout(this.debounceTimer);
+            }
+        });
     }
 
     public onScroll(cards: readonly ElementRef<HTMLElement>[]): void {
