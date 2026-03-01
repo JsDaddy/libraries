@@ -1,5 +1,5 @@
 import type { AfterViewInit, OnDestroy } from '@angular/core';
-import { signal } from '@angular/core';
+import { effect, signal } from '@angular/core';
 import {
     Component,
     ElementRef,
@@ -14,7 +14,7 @@ import { DOCUMENT, isPlatformServer, NgOptimizedImage } from '@angular/common';
 import type { ListItem } from './content.types';
 import { AssetPipe } from '../../asset/asset.pipe';
 import { VisitBtnComponent } from '../visit-btn/visit-btn.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BodyStylesService } from '../../body-styles/body-styles.service';
 import { OpenSourcePath } from '../path/open-source.path';
 
@@ -41,16 +41,26 @@ export class AccordionComponent implements AfterViewInit, OnDestroy {
     public showAccordion = signal<boolean>(false);
     public itemInAccordion = signal<number>(1);
 
+    // Bound from URL fragment via withComponentInputBinding()
+    public readonly fragment = input<string>();
+
     public readonly openSourceAccordionPath = OpenSourcePath.ACCORDION;
     public readonly bodyStylesService = inject(BodyStylesService);
 
-    private readonly activatedRoute = inject(ActivatedRoute);
     private readonly router = inject(Router);
     private readonly platformId = inject<string>(PLATFORM_ID);
     private readonly document = inject(DOCUMENT);
 
     private clickHandler: ((event: MouseEvent) => void) | null = null;
-    private fragmentSubscription: { unsubscribe: () => void } | null = null;
+
+    public constructor() {
+        effect(() => {
+            const itemId = this.fragment();
+            if (itemId) {
+                this.itemInAccordion.set(Number(itemId));
+            }
+        });
+    }
 
     public ngAfterViewInit(): void {
         this.clickHandler = (event: MouseEvent) => {
@@ -65,20 +75,11 @@ export class AccordionComponent implements AfterViewInit, OnDestroy {
         window.addEventListener('click', this.clickHandler);
 
         this.openFirstAccordion();
-
-        this.fragmentSubscription = this.activatedRoute.fragment.subscribe((itemId) => {
-            if (itemId) {
-                this.itemInAccordion.set(Number(itemId));
-            }
-        });
     }
 
     public ngOnDestroy(): void {
         if (this.clickHandler) {
             window.removeEventListener('click', this.clickHandler);
-        }
-        if (this.fragmentSubscription) {
-            this.fragmentSubscription.unsubscribe();
         }
     }
 
